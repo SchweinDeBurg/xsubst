@@ -26,7 +26,7 @@ DWORD g_dwServiceState = SERVICE_STOPPED;
 
 // entry-point symbol for the Unicode builds
 #if defined(UNICODE) || defined(_UNICODE)
-#pragma comment(linker, "/entry:wWinMainCRTStartup")
+#pragma comment(linker, "/entry:wmainCRTStartup")
 #endif	// UNICODE
 
 // end of file
