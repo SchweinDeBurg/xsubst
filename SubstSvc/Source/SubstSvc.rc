@@ -54,7 +54,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,2297,0
+ FILEVERSION 1,0,2302,0
  PRODUCTVERSION 1,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -73,13 +73,13 @@ BEGIN
             VALUE "Comments", "none\0"
             VALUE "CompanyName", "ICBANK\0"
             VALUE "FileDescription", "SubstSvc executable module\0"
-            VALUE "FileVersion", "1.0.2297\0"
+            VALUE "FileVersion", "1.0.2302\0"
             VALUE "InternalName", "SubstSvc\0"
             VALUE "LegalCopyright", "Copyright © 2004 by Elijah Zarezky\0"
             VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation\0"
             VALUE "OriginalFilename", "SubstSvc.exe\0"
             VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "SubstSvc NT service\0"
+            VALUE "ProductName", "xsubst\0"
             VALUE "ProductVersion", "1.0.0\0"
             VALUE "SpecialBuild", "\0"
         END
@@ -109,7 +109,37 @@ IDI_APP_ICON            ICON    DISCARDABLE     "BinRes\\AppIcon.ico"
 
 STRINGTABLE DISCARDABLE 
 BEGIN
+    IDS_LOG_BEGIN           ">>> begin of log\n"
+    IDS_STARTUP_STARTED     "Started startup thread."
+    IDS_STARTUP_FINISHED    "Finished startup thread."
+    IDS_OS_SHUTDOWN         "Detected operating system shutdown."
+    IDS_SERVICE_STOP        "Requested to stop %s service."
+    IDS_SERVICE_STOPPED     "Stopped %s service."
+    IDS_SERVICE_RUNNED      "Runned %s service."
+    IDS_EXE_STARTED         "Started %s executable."
+    IDS_SERVICE_REGISTERED  "Registered %s service."
+    IDS_SERVICE_UNREGISTERED "Unregistered %s service."
+    IDS_CMDLINE_BAD_ARGUMENT "Command-line argument %s unrecognized."
+    IDS_SCM_CONNECT         "Attempted to connect to the SCM."
+    IDS_SCM_DISCONNECTED    "Disconnected from the SCM."
+    IDS_EXE_FINISHED        "Finished %s executable.\n<<< end of log"
     IDS_REGISTRY_KEY        "Elijah Zarezky\\xsubst"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_REGKEY_FORMAT       "HKCU\\%s registry key"
+    IDS_REGKEY_OPENED       "Opened %s."
+    IDS_REGKEY_CLOSED       "Closed %s."
+    IDS_REGKEY_FAILED       "Failed to access %s."
+    IDS_SUBST_CREATED       "Substituted %s for %s."
+    IDS_SUBST_FAILED        "Failed to sustitute %s for %s."
+    IDS_SUBST_TOTAL         "Total substituted %i drive(s)."
+    IDS_MODIFY_REQUEST      "Requested to modify current substitutions."
+    IDS_MODIFIED_TOTAL      "Total modified %i substitution(s)."
+    IDS_SUBST_DELETED       "Deleted %s as a substitution for %s."
+    IDS_DELETE_FAILED       "Failed to delete %s as a substitution for %s."
+    IDS_DELETED_TOTAL       "Total deleted %i substitution(s)."
 END
 
 #endif    // English (U.S.) resources
