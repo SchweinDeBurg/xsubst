@@ -48,6 +48,7 @@ public:
 // implementation helpers
 private:
 	void GetSvcStateText(CString& strDest);
+	void ControlService(DWORD dwCode);
 
 // diagnostic services
 #if defined(_DEBUG)

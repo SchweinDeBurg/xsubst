@@ -14,8 +14,10 @@
 #define SZ_SERVICE_NAME			_T("Substituted Drives Manager")
 
 // synchronization event name
+#define SZ_SYNC_EVENT_NAME		_T("xsubst_completion_event")
 
 // custom control codes
+#define SUBSTSVC_SERVICE_CONTROL_MODIFY_DRIVES	128
 
 // return alignment to whatever it was before we entered this file
 #pragma pack(pop, ServiceInterop)
