@@ -10,6 +10,10 @@
 #if !defined(__stdafx_h)
 #define __stdafx_h
 
+#if defined(_MSC_VER) && (_MSC_VER > 1000)
+#pragma once
+#endif	// _MSC_VER
+
 // unreferenced inline/local function has been removed
 #pragma warning(disable: 4514)
 // function not inlined
@@ -25,6 +29,7 @@
 #include <atlbase.h>
 
 // PSDK headers
+#include <shlobj.h>
 #include <shlwapi.h>			// light-weight utility APIs
 
 // additional headers
