@@ -72,14 +72,14 @@ BEGIN
         BEGIN
             VALUE "Comments", "none\0"
             VALUE "CompanyName", "ICBANK\0"
-            VALUE "FileDescription", "SubstSvc executable module\0"
+            VALUE "FileDescription", "WinSubst executable module\0"
             VALUE "FileVersion", "1.0.2297\0"
-            VALUE "InternalName", "SubstSvc\0"
+            VALUE "InternalName", "WinSubst\0"
             VALUE "LegalCopyright", "Copyright © 2004 by Elijah Zarezky\0"
             VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation\0"
-            VALUE "OriginalFilename", "SubstSvc.exe\0"
+            VALUE "OriginalFilename", "WinSubst.exe\0"
             VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "SubstSvc NT service\0"
+            VALUE "ProductName", "WinSubst application\0"
             VALUE "ProductVersion", "1.0.0\0"
             VALUE "SpecialBuild", "\0"
         END
@@ -104,13 +104,34 @@ IDI_APP_ICON            ICON    DISCARDABLE     "BinRes\\AppIcon.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// String Table
+// Dialog
 //
 
-STRINGTABLE DISCARDABLE 
+IDD_MAIN DIALOG DISCARDABLE  0, 0, 228, 154
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "WinSubst"
+FONT 8, "Tahoma"
 BEGIN
-    IDS_REGISTRY_KEY        "Elijah Zarezky\\xsubst"
 END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 221
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+END
+#endif    // APSTUDIO_INVOKED
 
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
