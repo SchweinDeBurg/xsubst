@@ -48,16 +48,42 @@ void CSubstsList::InsertColumns(void)
 	SetColumnWidth(I_PATH, cxWidth + (cxWidth - GetColumnWidth(I_DRIVE)));
 }
 
-void CSubstsList::ListSubstitutions(void)
+void CSubstsList::InsertItem(int iItem, LPCTSTR pszDrive, LPCTSTR pszPath)
+{
+	int iImage;
+	SHFILEINFO shfi;
+
+	ASSERT(0 <= iItem && iItem <= GetItemCount());
+	ASSERT(AfxIsValidString(pszDrive));
+	ASSERT(AfxIsValidString(pszPath));
+
+	CString strTemp(pszDrive);
+	strTemp += _T('\\');
+	memset(&shfi, 0, sizeof(shfi));
+	::SHGetFileInfo(strTemp, 0, &shfi, sizeof(shfi), SHGFI_ICON | SHGFI_SMALLICON);
+	if (shfi.hIcon != NULL) {
+		iImage = GetImageList(LVSIL_SMALL)->Add(shfi.hIcon);
+		::DestroyIcon(shfi.hIcon);
+	}
+	else {
+		// no system icon - so use default
+		CMainDialog* pMainDlg = DYNAMIC_DOWNCAST(CMainDialog, GetParent());
+		ASSERT_VALID(pMainDlg);
+		iImage = pMainDlg->m_iDefIcon;
+	}
+	VERIFY(CSortingListCtrl::InsertItem(iItem, pszDrive, iImage) == iItem);
+	SetItemText(iItem, I_PATH, pszPath);
+}
+
+void CSubstsList::InsertRegItems(void)
 {
 	CString strKeyName;
 	LONG nResult;
 	CRegKey regKey;
 	TCHAR szDrive[_MAX_DRIVE];
 	TCHAR szPath[_MAX_PATH];
-	int iImage;
-	SHFILEINFO shfi;
 
+	// build the name of the registry key
 	strKeyName.LoadString(IDS_REGISTRY_KEY);
 	strKeyName.Insert(0, _T(".DEFAULT\\Software\\"));
 	strKeyName += _T("\\SubstSvc\\Drives");
@@ -82,23 +108,7 @@ void CSubstsList::ListSubstitutions(void)
 			if (fdwType == REG_SZ) {
 				DWORD cchValue = _MAX_PATH;
 				if (regKey.QueryValue(szPath, szDrive, &cchValue) == ERROR_SUCCESS) {
-					// try to obtain associated icon from the system image list
-					CString strTemp(szDrive);
-					strTemp += _T('\\');
-					memset(&shfi, 0, sizeof(shfi));
-					::SHGetFileInfo(strTemp, 0, &shfi, sizeof(shfi), SHGFI_ICON | SHGFI_SMALLICON);
-					if (shfi.hIcon != NULL) {
-						iImage = GetImageList(LVSIL_SMALL)->Add(shfi.hIcon);
-						::DestroyIcon(shfi.hIcon);
-					}
-					else {
-						// no system icon - so use default
-						CMainDialog* pMainDlg = DYNAMIC_DOWNCAST(CMainDialog, GetParent());
-						ASSERT_VALID(pMainDlg);
-						iImage = pMainDlg->m_iDefIcon;
-					}
-					VERIFY(InsertItem(0, szDrive, iImage) == 0);
-					SetItemText(0, I_PATH, szPath);
+					InsertItem(0, szDrive, szPath);
 				}
 			}
 		}
@@ -117,14 +127,18 @@ void CSubstsList::ListSubstitutions(void)
 	}
 }
 
-int CSubstsList::CompareItems(int /*iItemLhs*/, int /*iItemRhs*/)
+int CSubstsList::CompareItems(int iItemLhs, int iItemRhs)
 {
+	CString strTextLhs;
+	CString strTextRhs;
+
 	switch (m_iSortColumn)
 	{
 	case I_DRIVE:
-		return (0);
 	case I_PATH:
-		return (0);
+		strTextLhs = GetItemText(iItemLhs, m_iSortColumn);
+		strTextRhs = GetItemText(iItemRhs, m_iSortColumn);
+		return (::lstrcmp(strTextLhs, strTextRhs) * m_nSortOrder);
 	default:
 		return (0);
 	}

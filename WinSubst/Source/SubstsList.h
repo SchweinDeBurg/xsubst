@@ -20,7 +20,8 @@ public:
 // operations
 public:
 	void InsertColumns(void);
-	void ListSubstitutions(void);
+	void InsertItem(int iItem, LPCTSTR pszDrive, LPCTSTR pszPath);
+	void InsertRegItems(void);
 
 // overridables
 protected:

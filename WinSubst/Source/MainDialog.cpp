@@ -89,7 +89,7 @@ BOOL CMainDialog::OnInitDialog(void)
 	m_listSubsts.SetImageList(&m_imageList, LVSIL_SMALL);
 	m_listSubsts.InsertColumns();
 	try {
-		m_listSubsts.ListSubstitutions();
+		m_listSubsts.InsertRegItems();
 	}
 	catch (CWin32Error* pXcpt) {
 		pXcpt->ReportError(MB_ICONSTOP | MB_OK);
@@ -211,13 +211,47 @@ void CMainDialog::OnSubstsListItemChanged(NMHDR* /*pHdr*/, LRESULT* pnResult)
 
 void CMainDialog::OnButtonNewSubst(void)
 {
+	CString strKeyName;
+	LONG nResult;
+	CRegKey regKey;
+
 	CSubstDialog dlgSubst(this);
 	if (dlgSubst.DoModal() == IDOK) {
+		ASSERT(::lstrlen(dlgSubst.m_szDrive) > 0);
+		ASSERT(::lstrlen(dlgSubst.m_szPath) > 0);
+		// build the name of the registry key...
+		strKeyName.LoadString(IDS_REGISTRY_KEY);
+		strKeyName.Insert(0, _T(".DEFAULT\\Software\\"));
+		strKeyName += _T("\\SubstSvc\\Drives");
+		// ...and then open this key
+		regKey.Create(HKEY_USERS, strKeyName);
+		CString strPlusPath(dlgSubst.m_szPath);
+		strPlusPath.Insert(0, _T('+'));
+		if ((nResult = regKey.SetValue(strPlusPath, dlgSubst.m_szDrive)) == ERROR_SUCCESS) {
+			// kick the service...
+			ControlService(SUBSTSVC_SERVICE_CONTROL_MODIFY_DRIVES);
+			// ...and then update the list
+			int iItem = m_listSubsts.GetItemCount();
+			m_listSubsts.InsertItem(iItem, dlgSubst.m_szDrive, dlgSubst.m_szPath);
+			m_listSubsts.EnsureVisible(iItem, FALSE);
+			m_listSubsts.SetItemState(iItem, LVIS_SELECTED | LVIS_FOCUSED, 0xFFFFFFFF);
+			m_listSubsts.SetFocus();
+		}
+		else {
+			// unable to update system registry
+			CWin32Error* pXcpt = new CWin32Error(nResult);
+			throw pXcpt;
+		}
+		regKey.Close();
 	}
 }
 
 void CMainDialog::OnButtonChangeSubst(void)
 {
+	CString strKeyName;
+	LONG nResult;
+	CRegKey regKey;
+
 	CSubstDialog dlgSubst(this);
 	POSITION pos = m_listSubsts.GetFirstSelectedItemPosition();
 	ASSERT(pos != NULL);
@@ -225,6 +259,32 @@ void CMainDialog::OnButtonChangeSubst(void)
 	m_listSubsts.GetItemText(iItem, CSubstsList::I_DRIVE, dlgSubst.m_szDrive, _MAX_DRIVE);
 	m_listSubsts.GetItemText(iItem, CSubstsList::I_PATH, dlgSubst.m_szPath, _MAX_PATH);
 	if (dlgSubst.DoModal() == IDOK) {
+		ASSERT(::lstrlen(dlgSubst.m_szPath) > 0);
+		if (m_listSubsts.GetItemText(iItem, CSubstsList::I_PATH) != dlgSubst.m_szPath) {
+			// build the name of the registry key...
+			strKeyName.LoadString(IDS_REGISTRY_KEY);
+			strKeyName.Insert(0, _T(".DEFAULT\\Software\\"));
+			strKeyName += _T("\\SubstSvc\\Drives");
+			// ...and then open this key
+			regKey.Create(HKEY_USERS, strKeyName);
+			CString strPlusPath(dlgSubst.m_szPath);
+			strPlusPath.Insert(0, _T('*'));
+			if ((nResult = regKey.SetValue(strPlusPath, dlgSubst.m_szDrive)) == ERROR_SUCCESS) {
+				// kick the service...
+				ControlService(SUBSTSVC_SERVICE_CONTROL_MODIFY_DRIVES);
+				// ...and then update the list
+				m_listSubsts.SetItemText(iItem, CSubstsList::I_PATH, dlgSubst.m_szPath);
+				m_listSubsts.EnsureVisible(iItem, FALSE);
+				m_listSubsts.SetItemState(iItem, LVIS_SELECTED | LVIS_FOCUSED, 0xFFFFFFFF);
+				m_listSubsts.SetFocus();
+			}
+			else {
+				// unable to update system registry
+				CWin32Error* pXcpt = new CWin32Error(nResult);
+				throw pXcpt;
+			}
+			regKey.Close();
+		}
 	}
 }
 
@@ -264,6 +324,32 @@ void CMainDialog::GetSvcStateText(CString& strDest)
 		idsFormat = IDS_SERVICE_UNKNOWN_STATE;
 	}
 	strDest.Format(idsFormat, SZ_SERVICE_NAME);
+}
+
+void CMainDialog::ControlService(DWORD dwCode)
+{
+	SERVICE_STATUS ss;
+	CString strState;
+
+	SC_HANDLE schManager = ::OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
+	enum { fdwAccess = SERVICE_QUERY_STATUS | SERVICE_USER_DEFINED_CONTROL };
+	SC_HANDLE schService = ::OpenService(schManager, SZ_SERVICE_NAME, fdwAccess);
+	memset(&ss, 0, sizeof(ss));
+	::QueryServiceStatus(schService, &ss);
+	m_dwSvcState = ss.dwCurrentState;
+	GetSvcStateText(strState);
+	GetDlgItem(IDC_TEXT_STATUS)->SetWindowText(strState);
+	if (m_dwSvcState == SERVICE_RUNNING) {
+		BeginWaitCursor();
+		HANDLE hEvent = ::CreateEvent(NULL, TRUE, FALSE, SZ_SYNC_EVENT_NAME);
+		::ControlService(schService, dwCode, &ss);
+		::WaitForSingleObject(hEvent, INFINITE);
+		::ResetEvent(hEvent);
+		::CloseHandle(hEvent);
+		EndWaitCursor();
+	}
+	::CloseServiceHandle(schService);
+	::CloseServiceHandle(schManager);
 }
 
 #if defined(_DEBUG)

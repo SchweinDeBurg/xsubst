@@ -8,6 +8,7 @@
 #include "stdafx.h"
 #include "ExecLogging.h"
 #include "Resource.h"
+#include "ServiceInterop.h"
 #include "SubstSvcApp.h"
 
 #if defined(_DEBUG)
@@ -16,7 +17,7 @@ static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif	// _DEBUG
 
-static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(LPCTSTR, LPCTSTR))
+static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(CRegKey&, LPCTSTR, LPCTSTR))
 {
 	CString strKeyName;
 	CString strRegistryKey;		// for logging
@@ -32,17 +33,14 @@ static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(LPCTSTR, LPCTSTR))
 	strKeyName += _T("\\Drives");
 	strRegistryKey.Format(_T("HKCU\\%s registry key"), static_cast<LPCTSTR>(strKeyName));
 
-	HKEY hkDrives = NULL;
-	::RegCreateKey(HKEY_CURRENT_USER, strKeyName, &hkDrives);
-	if (hkDrives != NULL) {
-		WriteLogFileEntry(LL_MINIMAL, _T("Opened %s."), static_cast<LPCTSTR>(strRegistryKey));
-		regKey.Attach(hkDrives);
+	if (regKey.Create(HKEY_CURRENT_USER, strKeyName) == ERROR_SUCCESS) {
+		LogFile_WriteEntry(LL_MINIMAL, _T("Opened %s."), static_cast<LPCTSTR>(strRegistryKey));
 		int cNumDrives = 0;
 		BOOL fHasValue = TRUE;
 		for (int i = 0; fHasValue; ++i) {
 			DWORD cchName = _MAX_DRIVE;
 			DWORD fdwType = REG_NONE;
-			LONG nResult = ::RegEnumValue(hkDrives, i, szDrive, &cchName, NULL, &fdwType, NULL, NULL);
+			LONG nResult = ::RegEnumValue(regKey, i, szDrive, &cchName, NULL, &fdwType, NULL, NULL);
 			if (nResult == ERROR_NO_MORE_ITEMS) {
 				// no more values - so break the loop
 				fHasValue = FALSE;
@@ -52,7 +50,7 @@ static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(LPCTSTR, LPCTSTR))
 				if (fdwType == REG_SZ) {
 					DWORD cchValue = _MAX_PATH;
 					if (regKey.QueryValue(szPath, szDrive, &cchValue) == ERROR_SUCCESS) {
-						(*pfnCallback)(szDrive, szPath) ? ++cNumDrives : (void)0;
+						(*pfnCallback)(regKey, szDrive, szPath) ? ++cNumDrives : (void)0;
 					}
 				}
 			}
@@ -60,26 +58,69 @@ static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(LPCTSTR, LPCTSTR))
 				// what the shit is that?!
 			}
 		}
-		regKey.Detach();
-		if (::RegCloseKey(hkDrives) == ERROR_SUCCESS) {
-			WriteLogFileEntry(LL_MINIMAL, _T("Closed %s."), static_cast<LPCTSTR>(strRegistryKey));
+		if (regKey.Close() == ERROR_SUCCESS) {
+			LogFile_WriteEntry(LL_MINIMAL, _T("Closed %s."), static_cast<LPCTSTR>(strRegistryKey));
 		}
 		return (cNumDrives);
 	}
 	else {
-		WriteLogFileEntry(LL_MINIMAL, _T("Failed to access %s."), static_cast<LPCTSTR>(strRegistryKey));
+		LogFile_WriteEntry(LL_MINIMAL, _T("Failed to access %s."), static_cast<LPCTSTR>(strRegistryKey));
 		return (0);
 	}
 }
 
-static BOOL SubstCreate(LPCTSTR pszDrive, LPCTSTR pszPath)
+static BOOL SubstCreate(CRegKey& /*regKey*/, LPCTSTR pszDrive, LPCTSTR pszPath)
 {
 	if (::DefineDosDevice(0, pszDrive, pszPath)) {
-		WriteLogFileEntry(LL_MINIMAL, _T("Substituted %s for %s."), pszDrive, pszPath);
+		LogFile_WriteEntry(LL_MINIMAL, _T("Substituted %s for %s."), pszDrive, pszPath);
 		return (TRUE);
 	}
 	else {
-		WriteLogFileEntry(LL_MINIMAL, _T("Failed to sustitute %s for %s."), pszDrive, pszPath);
+		LogFile_WriteEntry(LL_MINIMAL, _T("Failed to sustitute %s for %s."), pszDrive, pszPath);
+		return (FALSE);
+	}
+}
+
+static BOOL SubstModify(CRegKey& regKey, LPCTSTR pszDrive, LPCTSTR pszPath)
+{
+	if (pszPath[0] == _T('+')) {
+		// create new substitution
+		if (::DefineDosDevice(0, pszDrive, &pszPath[1])) {
+			LogFile_WriteEntry(LL_MINIMAL, _T("Substituted %s for %s."), pszDrive, &pszPath[1]);
+			regKey.SetValue(&pszPath[1], pszDrive);
+			return (TRUE);
+		}
+		else {
+			LogFile_WriteEntry(LL_MINIMAL, _T("Failed to substitute %s for %s."), pszDrive, &pszPath[1]);
+			return (FALSE);
+		}
+	}
+	else if (pszPath[0] == _T('*')) {
+		// modify existing substitution
+		LPTSTR pszPrevPath = new TCHAR[_MAX_PATH];
+		if (::QueryDosDevice(pszDrive, pszPrevPath, _MAX_PATH) > 0) {
+			// first remove current substitution...
+			if (::DefineDosDevice(DDD_REMOVE_DEFINITION, pszDrive, pszPrevPath)) {
+				LogFile_WriteEntry(LL_MINIMAL, _T(""), pszDrive, pszPrevPath);
+			}
+			else {
+				LogFile_WriteEntry(LL_MINIMAL, _T(""), pszDrive, pszPrevPath);
+			}
+		}
+		delete[] pszPrevPath;
+		// ...and then create a new one
+		if (::DefineDosDevice(0, pszDrive, &pszPath[1])) {
+			LogFile_WriteEntry(LL_MINIMAL, _T("Substituted %s for %s."), pszDrive, &pszPath[1]);
+			regKey.SetValue(&pszPath[1], pszDrive);
+			return (TRUE);
+		}
+		else {
+			LogFile_WriteEntry(LL_MINIMAL, _T("Failed to substitute %s for %s."), pszDrive, &pszPath[1]);
+			return (FALSE);
+		}
+	}
+	else {
+		// nothing to do
 		return (FALSE);
 	}
 }
@@ -87,14 +128,14 @@ static BOOL SubstCreate(LPCTSTR pszDrive, LPCTSTR pszPath)
 // startup thread procedure
 static UINT StartupProc(void* /*pParam*/)
 {
-	WriteLogFileEntry(LL_MINIMAL, _T("Started startup thread."));
+	LogFile_WriteEntry(LL_MINIMAL, _T("Started startup thread."));
 
 	// create initial substitutions
 	int cDrivesSubst = EnumDrivesKey(SubstCreate);
-	WriteLogFileEntry(LL_MINIMAL, _T("Total substituted %i drive(s)."), cDrivesSubst);
+	LogFile_WriteEntry(LL_MINIMAL, _T("Total substituted %i drive(s)."), cDrivesSubst);
 
 	// successfully finished
-	WriteLogFileEntry(LL_MINIMAL, _T("Finished startup thread."));
+	LogFile_WriteEntry(LL_MINIMAL, _T("Finished startup thread."));
 	AfxEndThread(0);
 	return (0);
 }
@@ -103,18 +144,28 @@ static UINT StartupProc(void* /*pParam*/)
 void WINAPI ServiceHandler(DWORD fdwControl)
 {
 	SERVICE_STATUS ss;
+	HANDLE hEvent;
+	int cDrivesSubst;
 
 	ss.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
 	switch (fdwControl)
 	{
 	case SERVICE_CONTROL_SHUTDOWN:
-		WriteLogFileEntry(LL_MINIMAL, _T("Detected operating system shutdown."));
+		LogFile_WriteEntry(LL_MINIMAL, _T("Detected operating system shutdown."));
 		// fall through
 	case SERVICE_CONTROL_STOP:
-		WriteLogFileEntry(LL_MINIMAL, _T("Requested to stop %s service."), g_szServiceName);
+		LogFile_WriteEntry(LL_MINIMAL, _T("Requested to stop %s service."), g_szServiceName);
 		ss.dwCurrentState = SERVICE_STOPPED;
 		g_dwServiceState = ss.dwCurrentState;
 		break;
+	case SUBSTSVC_SERVICE_CONTROL_MODIFY_DRIVES:
+		LogFile_WriteEntry(LL_MINIMAL, _T("Requested to modify current substitutions."));
+		cDrivesSubst = EnumDrivesKey(SubstModify);
+		LogFile_WriteEntry(LL_MINIMAL, _T("Total modified %i substitution(s)."), cDrivesSubst);
+		hEvent = ::OpenEvent(EVENT_MODIFY_STATE, FALSE, SZ_SYNC_EVENT_NAME);
+		::SetEvent(hEvent);
+		::CloseHandle(hEvent);
+		// fall through
 	default:
 		ss.dwCurrentState = g_dwServiceState;
 		break;
@@ -126,7 +177,7 @@ void WINAPI ServiceHandler(DWORD fdwControl)
 	ss.dwWaitHint = 0;
 	::SetServiceStatus(g_hServiceStatus, &ss);
 	if (g_dwServiceState == SERVICE_STOPPED) {
-		WriteLogFileEntry(LL_MINIMAL, _T("Stopped %s service."), g_szServiceName);
+		LogFile_WriteEntry(LL_MINIMAL, _T("Stopped %s service."), g_szServiceName);
 	}
 }
 
@@ -145,7 +196,7 @@ void WINAPI ServiceMain(DWORD /*dwArgc*/, LPTSTR /*apszArgv*/[])
 	ss.dwWaitHint = 0;
 	::SetServiceStatus(g_hServiceStatus, &ss);
 	g_dwServiceState = ss.dwCurrentState;
-	WriteLogFileEntry(LL_MINIMAL, _T("Runned %s service."), g_szServiceName);
+	LogFile_WriteEntry(LL_MINIMAL, _T("Runned %s service."), g_szServiceName);
 	AfxBeginThread(StartupProc, NULL);
 }
 
