@@ -7,6 +7,10 @@
 #if !defined(__SubstsList_h)
 #define __SubstsList_h
 
+#if defined(_MSC_VER) && (_MSC_VER > 1000)
+#pragma once
+#endif	// _MSC_VER
+
 class CSubstsList: public CSortingListCtrl
 {
 	DECLARE_DYNAMIC(CSubstsList)

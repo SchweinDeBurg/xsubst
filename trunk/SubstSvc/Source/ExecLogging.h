@@ -10,6 +10,10 @@
 #if !defined(__ExecLogging_h)
 #define __ExecLogging_h
 
+#if defined(_MSC_VER) && (_MSC_VER > 1000)
+#pragma once
+#endif	// _MSC_VER
+
 // logging level
 enum LOG_LEVEL {
 	LL_NONE		= 0,
