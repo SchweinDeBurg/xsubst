@@ -75,7 +75,7 @@ BEGIN
             VALUE "FileDescription", "SubstSvc executable module\0"
             VALUE "FileVersion", "1.0.2461\0"
             VALUE "InternalName", "SubstSvc\0"
-            VALUE "LegalCopyright", "Copyright © 2004 by Elijah Zarezky\0"
+            VALUE "LegalCopyright", "Copyright © 2004-2005 by Elijah Zarezky\0"
             VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation\0"
             VALUE "OriginalFilename", "SubstSvc.exe\0"
             VALUE "PrivateBuild", "\0"

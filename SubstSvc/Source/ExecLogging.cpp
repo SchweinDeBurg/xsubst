@@ -1,5 +1,5 @@
 // SubstSvc NT service.
-// Copyright (c) 2004 by Elijah Zarezky,
+// Copyright (c) 2004-2005 by Elijah Zarezky,
 // All rights reserved.
 
 // ExecLogging.cpp - implementation of the execution logging

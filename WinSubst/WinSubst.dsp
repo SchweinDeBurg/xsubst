@@ -201,6 +201,10 @@ SOURCE=.\Source\MainDialog.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Source\Resource.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Source\stdafx.h
 # End Source File
 # Begin Source File
