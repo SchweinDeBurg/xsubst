@@ -101,17 +101,31 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_APP_ICON            ICON    DISCARDABLE     "BinRes\\AppIcon.ico"
+IDI_DRIVE_ICON          ICON    DISCARDABLE     "BinRes\\DriveIcon.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_MAIN DIALOG DISCARDABLE  0, 0, 228, 154
+IDD_MAIN DIALOGEX 0, 0, 306, 178
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "WinSubst"
 FONT 8, "Tahoma"
 BEGIN
+    GROUPBOX        "&Substitutions",IDC_STATIC,4,4,298,142,WS_GROUP
+    CONTROL         "List1",IDC_LIST_SUBSTS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_GROUP | 
+                    WS_TABSTOP,10,16,286,102,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "&New substitution...",IDC_BUTTON_NEW_SUBST,10,124,84,16,
+                    WS_GROUP
+    PUSHBUTTON      "&Change substitution...",IDC_BUTTON_CHANGE_SUBST,110,
+                    124,86,16
+    PUSHBUTTON      "&Delete substitution",IDC_BUTTON_DELETE_SUBST,212,124,
+                    84,16
+    CTEXT           "",IDC_TEXT_STATUS,4,158,240,16,SS_CENTERIMAGE | 
+                    SS_SUNKEN
+    PUSHBUTTON      "E&xit",IDC_BUTTON_EXIT,254,158,48,16,WS_GROUP
 END
 
 
@@ -126,12 +140,25 @@ BEGIN
     IDD_MAIN, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 221
+        RIGHTMARGIN, 299
         TOPMARGIN, 7
-        BOTTOMMARGIN, 147
+        BOTTOMMARGIN, 171
     END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SUBST_DRIVE         "Drive"
+    IDS_SUBST_PATH          "Path"
+    IDS_REGISTRY_KEY        "Elijah Zarezky\\xsubst"
+END
 
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////

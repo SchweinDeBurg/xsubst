@@ -21,11 +21,24 @@ public:
 // overridables
 public:
 	virtual BOOL OnInitDialog(void);
+protected:
+	virtual void DoDataExchange(CDataExchange* pDX);
+	virtual void OnOK(void);
+	virtual void OnCancel(void);
+
+// message map functions
+protected:
+	afx_msg void OnClose(void);
+	afx_msg void OnSubstsListItemChanged(NMHDR* pHdr, LRESULT* pnResult);
+	afx_msg void OnButtonExit(void);
 
 // attributes
 public:
 	HICON m_hIcon;
 	HICON m_hSmIcon;
+	CImageList m_imageList;
+	int m_iDefIcon;
+	CSubstsList m_listSubsts;
 
 // diagnostic services
 #if defined(_DEBUG)
