@@ -56,7 +56,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* /*envp*/[])
 		if (::lstrcmpi(argv[1], _T("/Register")) == 0) {
 			// insert service into the SCM database
 			SC_HANDLE schService = ::CreateService(schManager, g_szServiceName, g_szServiceName,
-				SERVICE_ALL_ACCESS, SERVICE_WIN32_OWN_PROCESS, SERVICE_DEMAND_START,
+				SERVICE_ALL_ACCESS, SERVICE_WIN32_OWN_PROCESS, SERVICE_AUTO_START,
 				SERVICE_ERROR_NORMAL, argv[0], NULL, NULL, NULL, NULL, NULL);
 			::CloseServiceHandle(schService);
 			LogFile_WriteEntry(LL_MINIMAL, IDS_SERVICE_REGISTERED, g_szServiceName);
