@@ -21,6 +21,7 @@ public:
 // operations
 public:
 	HICON LoadSmIcon(LPCTSTR pszResName);
+	void GetVersionString(CString& strDest);
 
 // overridables
 public:

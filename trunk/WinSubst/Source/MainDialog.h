@@ -29,7 +29,11 @@ protected:
 // message map functions
 protected:
 	afx_msg void OnClose(void);
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT uCtlColor);
+	afx_msg void OnSysCommand(UINT uID, LPARAM lParam);
 	afx_msg void OnSubstsListItemChanged(NMHDR* pHdr, LRESULT* pnResult);
+	afx_msg void OnButtonNewSubst(void);
+	afx_msg void OnButtonChangeSubst(void);
 	afx_msg void OnButtonExit(void);
 
 // attributes
@@ -39,6 +43,11 @@ public:
 	CImageList m_imageList;
 	int m_iDefIcon;
 	CSubstsList m_listSubsts;
+	DWORD m_dwSvcState;
+
+// implementation helpers
+private:
+	void GetSvcStateText(CString& strDest);
 
 // diagnostic services
 #if defined(_DEBUG)

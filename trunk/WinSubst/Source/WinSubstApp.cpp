@@ -7,6 +7,7 @@
 
 #include "stdafx.h"
 #include "WinSubstApp.h"
+#include "Resource.h"
 #include "SubstsList.h"
 #include "MainDialog.h"
 
@@ -38,6 +39,25 @@ HICON CWinSubstApp::LoadSmIcon(LPCTSTR pszResName)
 	int cySmIcon = ::GetSystemMetrics(SM_CYSMICON);
 	HANDLE hSmIcon = ::LoadImage(hInstRes, pszResName, IMAGE_ICON, cxSmIcon, cySmIcon, 0);
 	return (static_cast<HICON>(hSmIcon));
+}
+
+void CWinSubstApp::GetVersionString(CString& strDest)
+{
+	TCHAR szExeName[_MAX_PATH];
+	DWORD dwHandle;
+	CString strValueName;
+	void* pvVerString;
+	UINT cchFileVer;
+
+	::GetModuleFileName(AfxGetInstanceHandle(), szExeName, _MAX_PATH);
+	DWORD cbSize = ::GetFileVersionInfoSize(szExeName, &dwHandle);
+	BYTE* pbVerInfo = new BYTE[cbSize];
+	::GetFileVersionInfo(szExeName, dwHandle, cbSize, pbVerInfo);
+	strValueName.LoadString(IDS_FILE_VERSION);
+	::VerQueryValue(pbVerInfo, strValueName.GetBuffer(0), &pvVerString, &cchFileVer);
+	strValueName.ReleaseBuffer();
+	strDest = reinterpret_cast<LPCTSTR>(pvVerString);
+	delete[] pbVerInfo;
 }
 
 BOOL CWinSubstApp::InitInstance(void)

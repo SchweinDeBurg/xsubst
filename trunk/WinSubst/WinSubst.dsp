@@ -159,6 +159,11 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\Source\AboutDialog.cpp
+# ADD CPP /Yu"stdafx.h"
+# End Source File
+# Begin Source File
+
 SOURCE=.\Source\MainDialog.cpp
 # ADD CPP /Yu"stdafx.h"
 # End Source File
@@ -166,6 +171,11 @@ SOURCE=.\Source\MainDialog.cpp
 
 SOURCE=.\Source\stdafx.cpp
 # ADD CPP /Yc"stdafx.h"
+# End Source File
+# Begin Source File
+
+SOURCE=.\Source\SubstDialog.cpp
+# ADD CPP /Yu"stdafx.h"
 # End Source File
 # Begin Source File
 
@@ -183,11 +193,19 @@ SOURCE=.\Source\WinSubstApp.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
+SOURCE=.\Source\AboutDialog.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Source\MainDialog.h
 # End Source File
 # Begin Source File
 
 SOURCE=.\Source\stdafx.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Source\SubstDialog.h
 # End Source File
 # Begin Source File
 
