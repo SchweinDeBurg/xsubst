@@ -7,6 +7,7 @@
 
 #include "stdafx.h"
 #include "WinSubstApp.h"
+#include "SubstsList.h"
 #include "MainDialog.h"
 
 #if defined(_DEBUG)
@@ -42,6 +43,7 @@ HICON CWinSubstApp::LoadSmIcon(LPCTSTR pszResName)
 BOOL CWinSubstApp::InitInstance(void)
 {
 	CMainDialog dlgMain;
+	m_pMainWnd = &dlgMain;
 	dlgMain.DoModal();
 	return (FALSE);
 }

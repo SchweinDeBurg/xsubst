@@ -17,6 +17,14 @@
 
 // MFC headers
 #include <afxwin.h>			// MFC core and standard components
+#include <afxcmn.h>			// MFC common control classes
+
+// ATL headers
+#include <atlbase.h>
+
+// additional headers
+#include "../../../Repository/AfxGadgets/Source/SortingListCtrl.h"
+#include "../../../Repository/AfxGadgets/Source/Win32Error.h"
 
 #endif	// __stdafx_h
 

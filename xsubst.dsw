@@ -3,6 +3,18 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
+Project: "AfxGadgets"=..\Repository\AfxGadgets\AfxGadgets.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
 Project: "SubstSvc"=.\SubstSvc\SubstSvc.dsp - Package Owner=<4>
 
 Package=<5>
@@ -25,6 +37,9 @@ Package=<4>
 {{{
     Begin Project Dependency
     Project_Dep_Name SubstSvc
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name AfxGadgets
     End Project Dependency
 }}}
 

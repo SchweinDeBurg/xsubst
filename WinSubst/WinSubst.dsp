@@ -169,6 +169,11 @@ SOURCE=.\Source\stdafx.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Source\SubstsList.cpp
+# ADD CPP /Yu"stdafx.h"
+# End Source File
+# Begin Source File
+
 SOURCE=.\Source\WinSubstApp.cpp
 # ADD CPP /Yu"stdafx.h"
 # End Source File
@@ -186,6 +191,10 @@ SOURCE=.\Source\stdafx.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Source\SubstsList.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Source\WinSubstApp.h
 # End Source File
 # End Group
@@ -195,6 +204,10 @@ SOURCE=.\Source\WinSubstApp.h
 # Begin Source File
 
 SOURCE=.\Source\BinRes\AppIcon.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\Source\BinRes\DriveIcon.ico
 # End Source File
 # Begin Source File
 
