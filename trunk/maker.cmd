@@ -1,6 +1,6 @@
 @echo off
 echo.
-echo Compiling executables...
+echo Building executables...
 echo.
 msdev.com xsubst.dsw /MAKE "WinSubst - Win32 Unicode Release" /REBUILD
 echo.
