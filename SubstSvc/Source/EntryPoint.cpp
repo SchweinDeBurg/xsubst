@@ -12,6 +12,13 @@
 #include "Resource.h"
 #include "ExecLogging.h"
 
+#if defined(__INTEL_COMPILER)
+// remark #177: variable was declared but never referenced
+#pragma warning(disable: 177)
+// remark #981: operands are evaluated in unspecified order
+#pragma warning(disable: 981)
+#endif	// __INTEL_COMPILER
+
 #if defined(_DEBUG)
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
