@@ -13,6 +13,9 @@ static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif	// _DEBUG
 
+// import libraries
+#pragma comment(lib, "version.lib")
+
 // linker options
 #pragma comment(linker, "/ignore:4089")		// all references to DLL discarded by /opt:ref
 

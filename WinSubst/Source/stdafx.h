@@ -23,8 +23,10 @@
 #include <atlbase.h>
 
 // additional headers
+#include "../../SubstSvc/Source/ServiceInterop.h"
 #include "../../../Repository/AfxGadgets/Source/SortingListCtrl.h"
 #include "../../../Repository/AfxGadgets/Source/Win32Error.h"
+#include "../../../Repository/CodeProject/Source/FolderDlg.h"
 
 #endif	// __stdafx_h
 

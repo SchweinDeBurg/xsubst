@@ -10,6 +10,8 @@
 #include "MainDialog.h"
 #include "Resource.h"
 #include "WinSubstApp.h"
+#include "AboutDialog.h"
+#include "SubstDialog.h"
 
 #if defined(_DEBUG)
 #undef THIS_FILE
@@ -23,7 +25,11 @@ IMPLEMENT_DYNAMIC(CMainDialog, CDialog)
 // message map
 BEGIN_MESSAGE_MAP(CMainDialog, CDialog)
 	ON_WM_CLOSE()
+	ON_WM_CTLCOLOR()
+	ON_WM_SYSCOMMAND()
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_SUBSTS, OnSubstsListItemChanged)
+	ON_BN_CLICKED(IDC_BUTTON_NEW_SUBST, OnButtonNewSubst)
+	ON_BN_CLICKED(IDC_BUTTON_CHANGE_SUBST, OnButtonChangeSubst)
 	ON_BN_CLICKED(IDC_BUTTON_EXIT, OnButtonExit)
 END_MESSAGE_MAP()
 
@@ -31,7 +37,8 @@ CMainDialog::CMainDialog(CWnd* pParentWnd):
 CDialog(IDD_MAIN, pParentWnd),
 m_hIcon(NULL),
 m_hSmIcon(NULL),
-m_iDefIcon(-1)
+m_iDefIcon(-1),
+m_dwSvcState(0)
 {
 	CWinSubstApp* pApp = DYNAMIC_DOWNCAST(CWinSubstApp, AfxGetApp());
 	ASSERT_VALID(pApp);
@@ -58,12 +65,25 @@ CMainDialog::~CMainDialog(void)
 
 BOOL CMainDialog::OnInitDialog(void)
 {
+	CString strAbout;
+	SERVICE_STATUS ss;
+	CString strMessage;
+	CString strState;
+
 	CDialog::OnInitDialog();
 
 	// set dialog's icons
 	SetIcon(m_hIcon, TRUE);
 	SetIcon(m_hSmIcon, FALSE);
 
+	// adjust system menu
+	CMenu* pSysMenu = GetSystemMenu(FALSE);
+	ASSERT_VALID(pSysMenu);
+	pSysMenu->AppendMenu(MF_BYPOSITION | MF_SEPARATOR);
+	strAbout.LoadString(IDS_ABOUT);
+	pSysMenu->AppendMenu(MF_BYPOSITION, IDM_SC_ABOUT, strAbout);
+
+	// prepare current substitutions
 	DWORD fdwExStyle = m_listSubsts.GetExtendedStyle();
 	m_listSubsts.SetExtendedStyle(fdwExStyle | LVS_EX_FULLROWSELECT);
 	m_listSubsts.SetImageList(&m_imageList, LVSIL_SMALL);
@@ -76,6 +96,7 @@ BOOL CMainDialog::OnInitDialog(void)
 		delete pXcpt;
 	}
 
+	// adjust controls state
 	if (m_listSubsts.GetItemCount() > 0) {
 		m_listSubsts.SortItems(CSubstsList::I_DRIVE, CSubstsList::SORT_ASCENDING);
 		m_listSubsts.SetItemState(0, LVIS_SELECTED | LVIS_FOCUSED, 0xFFFFFFFF);
@@ -83,6 +104,34 @@ BOOL CMainDialog::OnInitDialog(void)
 	else {
 		GetDlgItem(IDC_BUTTON_CHANGE_SUBST)->EnableWindow(FALSE);
 		GetDlgItem(IDC_BUTTON_DELETE_SUBST)->EnableWindow(FALSE);
+	}
+
+	// verify service presence and state
+	SC_HANDLE schManager = ::OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
+	if (schManager != NULL) {
+		SC_HANDLE schService = ::OpenService(schManager, SZ_SERVICE_NAME, SERVICE_QUERY_STATUS);
+		if (schService != NULL) {
+			memset(&ss, 0, sizeof(ss));
+			::QueryServiceStatus(schService, &ss);
+			m_dwSvcState = ss.dwCurrentState;
+			GetSvcStateText(strState);
+			GetDlgItem(IDC_TEXT_STATUS)->SetWindowText(strState);
+			::CloseServiceHandle(schService);
+		}
+		else {
+			DWORD dwErrCode = ::GetLastError();
+			if (dwErrCode == ERROR_SERVICE_DOES_NOT_EXIST) {
+				// probably service doesn't installed
+				strMessage.Format(IDS_SERVICE_DOES_NOT_EXIST, SZ_SERVICE_NAME);
+				AfxMessageBox(strMessage, MB_ICONSTOP | MB_OK);
+				EndDialog(IDABORT);
+			}
+			else {
+				CWin32Error xcpt(dwErrCode);
+				xcpt.ReportError(MB_ICONWARNING | MB_OK);
+			}
+		}
+		::CloseServiceHandle(schManager);
 	}
 
 	// initialized
@@ -111,6 +160,47 @@ void CMainDialog::OnClose(void)
 	EndDialog(IDCANCEL);
 }
 
+HBRUSH CMainDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT uCtlColor)
+{
+	COLORREF crText;
+
+	if (pWnd->GetDlgCtrlID() == IDC_TEXT_STATUS) {
+		pDC->SetBkColor(::GetSysColor(COLOR_3DFACE));
+		switch (m_dwSvcState)
+		{
+		case SERVICE_RUNNING:
+			crText = RGB(0, 128, 0);
+			break;
+		case SERVICE_STOPPED:
+		case SERVICE_START_PENDING:
+		case SERVICE_STOP_PENDING:
+		case SERVICE_CONTINUE_PENDING:
+		case SERVICE_PAUSE_PENDING:
+		case SERVICE_PAUSED:
+			crText = RGB(128, 0, 0);
+			break;
+		default:
+			crText = ::GetSysColor(COLOR_WINDOWTEXT);
+		}
+		pDC->SetTextColor(crText);
+		return (::GetSysColorBrush(COLOR_3DFACE));
+	}
+	else {
+		return (CDialog::OnCtlColor(pDC, pWnd, uCtlColor));
+	}
+}
+
+void CMainDialog::OnSysCommand(UINT uID, LPARAM lParam)
+{
+	if ((uID & 0xFFF0) == IDM_SC_ABOUT) {
+		CAboutDialog dlgAbout;
+		dlgAbout.DoModal();
+	}
+	else {
+		CDialog::OnSysCommand(uID, lParam);
+	}
+}
+
 void CMainDialog::OnSubstsListItemChanged(NMHDR* /*pHdr*/, LRESULT* pnResult)
 {
 	BOOL fEnable = m_listSubsts.GetSelectedCount() > 0;
@@ -119,9 +209,61 @@ void CMainDialog::OnSubstsListItemChanged(NMHDR* /*pHdr*/, LRESULT* pnResult)
 	*pnResult = 0;
 }
 
+void CMainDialog::OnButtonNewSubst(void)
+{
+	CSubstDialog dlgSubst(this);
+	if (dlgSubst.DoModal() == IDOK) {
+	}
+}
+
+void CMainDialog::OnButtonChangeSubst(void)
+{
+	CSubstDialog dlgSubst(this);
+	POSITION pos = m_listSubsts.GetFirstSelectedItemPosition();
+	ASSERT(pos != NULL);
+	int iItem = m_listSubsts.GetNextSelectedItem(pos);
+	m_listSubsts.GetItemText(iItem, CSubstsList::I_DRIVE, dlgSubst.m_szDrive, _MAX_DRIVE);
+	m_listSubsts.GetItemText(iItem, CSubstsList::I_PATH, dlgSubst.m_szPath, _MAX_PATH);
+	if (dlgSubst.DoModal() == IDOK) {
+	}
+}
+
 void CMainDialog::OnButtonExit(void)
 {
 	EndDialog(IDCANCEL);
+}
+
+void CMainDialog::GetSvcStateText(CString& strDest)
+{
+	UINT idsFormat;
+
+	switch (m_dwSvcState)
+	{
+	case SERVICE_STOPPED:
+		idsFormat = IDS_SERVICE_STOPPED;
+		break;
+	case SERVICE_START_PENDING:
+		idsFormat = IDS_SERVICE_START_PENDING;
+		break;
+	case SERVICE_STOP_PENDING:
+		idsFormat = IDS_SERVICE_STOP_PENDING;
+		break;
+	case SERVICE_RUNNING:
+		idsFormat = IDS_SERVICE_RUNNING;
+		break;
+	case SERVICE_CONTINUE_PENDING:
+		idsFormat = IDS_SERVICE_CONTINUE_PENDING;
+		break;
+	case SERVICE_PAUSE_PENDING:
+		idsFormat = IDS_SERVICE_PAUSE_PENDING;
+		break;
+	case SERVICE_PAUSED:
+		idsFormat = IDS_SERVICE_PAUSED;
+		break;
+	default:
+		idsFormat = IDS_SERVICE_UNKNOWN_STATE;
+	}
+	strDest.Format(idsFormat, SZ_SERVICE_NAME);
 }
 
 #if defined(_DEBUG)
@@ -146,6 +288,7 @@ void CMainDialog::Dump(CDumpContext& dumpCtx) const
 		dumpCtx << "\nm_imageList = " << m_imageList;
 		dumpCtx << "\nm_iDefIcon = " << m_iDefIcon;
 		dumpCtx << "\nm_listSubsts = " << m_listSubsts;
+		dumpCtx << "\nm_dwSvcState = " << m_dwSvcState;
 	}
 	catch (CFileException* pXcpt) {
 		pXcpt->ReportError();
