@@ -54,7 +54,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,2302,0
+ FILEVERSION 1,0,2461,0
  PRODUCTVERSION 1,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -73,7 +73,7 @@ BEGIN
             VALUE "Comments", "none\0"
             VALUE "CompanyName", "ICBANK\0"
             VALUE "FileDescription", "WinSubst executable module\0"
-            VALUE "FileVersion", "1.0.2302\0"
+            VALUE "FileVersion", "1.0.2461\0"
             VALUE "InternalName", "WinSubst\0"
             VALUE "LegalCopyright", "Copyright © 2004 by Elijah Zarezky\0"
             VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation\0"
