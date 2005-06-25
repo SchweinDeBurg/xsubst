@@ -9,9 +9,9 @@ AppName=xsubst
 AppVerName=xsubst 1.0.2461
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
-AppPublisherURL=http://home.peterstar.ru/zarezky
-AppSupportURL=http://home.peterstar.ru/zarezky/projects/xsubst.html
-AppUpdatesURL=http://home.peterstar.ru/zarezky/projects/xsubst.html
+AppPublisherURL=http://zarezky.spb.ru/
+AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
+AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
 AppVersion=1.0.2461
 DefaultDirName={pf}\PowerGadgets\xsubst
 DefaultGroupName=PowerGadgets\xsubst
@@ -55,7 +55,7 @@ Name: "{userdesktop}\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: desktopic
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: quicklaunchicon
 
 [INI]
-Filename: "{app}\xsubst.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://home.peterstar.ru/zarezky/projects/xsubst.html"
+Filename: "{app}\xsubst.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://zarezky.spb.ru/projects/xsubst.html"
 
 [Registry]
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky"; Flags: uninsdeletekeyifempty
