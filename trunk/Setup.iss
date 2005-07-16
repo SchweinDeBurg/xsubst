@@ -1,26 +1,26 @@
 ;; xsubst utility.
-;; Copyright (c) 2004 by Elijah Zarezky,
+;; Copyright (c) 2004-2005 by Elijah Zarezky,
 ;; All rights reserved.
 
 ;; Setup.iss - setup script for Inno Setup compiler
 
 [Setup]
 AppName=xsubst
-AppVerName=xsubst 1.0.2461
+AppVerName=xsubst 1.0.2800
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
 AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
-AppVersion=1.0.2461
+AppVersion=1.0.2800
 DefaultDirName={pf}\PowerGadgets\xsubst
 DefaultGroupName=PowerGadgets\xsubst
 AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
 OutputDir=.\Setup
-OutputBaseFilename=xsubst-1.0.2461-setup
-VersionInfoVersion=1.0.2461
+OutputBaseFilename=xsubst-1.0.2800-setup
+VersionInfoVersion=1.0.2800
 MinVersion=0,5.0.2195
 PrivilegesRequired=admin
 
