@@ -1,15 +1,11 @@
 // WinSubst application.
-// Copyright (c) 2004-2005 by Elijah Zarezky,
+// Copyright (c) 2004 by Elijah Zarezky,
 // All rights reserved.
 
 // SubstDialog.h - interface of the CSubstDialog class
 
 #if !defined(__SubstDialog_h)
 #define __SubstDialog_h
-
-#if defined(_MSC_VER) && (_MSC_VER > 1000)
-#pragma once
-#endif	// _MSC_VER
 
 class CSubstDialog: public CDialog
 {

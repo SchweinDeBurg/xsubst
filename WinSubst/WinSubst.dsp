@@ -4,7 +4,7 @@
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
-CFG=WinSubst - Win32 ICL Unicode Debug
+CFG=WinSubst - Win32 Unicode Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,7 +13,7 @@ CFG=WinSubst - Win32 ICL Unicode Debug
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "WinSubst.mak" CFG="WinSubst - Win32 ICL Unicode Debug"
+!MESSAGE NMAKE /f "WinSubst.mak" CFG="WinSubst - Win32 Unicode Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
@@ -21,10 +21,6 @@ CFG=WinSubst - Win32 ICL Unicode Debug
 !MESSAGE "WinSubst - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE "WinSubst - Win32 Unicode Release" (based on "Win32 (x86) Application")
 !MESSAGE "WinSubst - Win32 Unicode Debug" (based on "Win32 (x86) Application")
-!MESSAGE "WinSubst - Win32 ICL Release" (based on "Win32 (x86) Application")
-!MESSAGE "WinSubst - Win32 ICL Debug" (based on "Win32 (x86) Application")
-!MESSAGE "WinSubst - Win32 ICL Unicode Release" (based on "Win32 (x86) Application")
-!MESSAGE "WinSubst - Win32 ICL Unicode Debug" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -49,7 +45,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /c
-# ADD CPP /nologo /Zp4 /MD /W4 /GR /GX /O1 /D "NDEBUG" /D "_MBCS" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_USE_NON_INTEL_COMPILER" /FD /c
+# ADD CPP /nologo /Zp4 /MD /W4 /GR /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /FD /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
@@ -76,7 +72,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /GZ /c
-# ADD CPP /nologo /Zp4 /MDd /W4 /GR /GX /Zi /Od /Ob1 /Gf /Gy /D "_DEBUG" /D "_MBCS" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_USE_NON_INTEL_COMPILER" /FD /GZ /c
+# ADD CPP /nologo /Zp4 /MDd /W4 /GR /GX /Zi /Od /Ob1 /Gf /Gy /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -106,7 +102,7 @@ LINK32=link.exe
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /Zp4 /MD /W4 /GR /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /FD /c
 # SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /Zp4 /MD /W4 /GR /GX /O1 /D "NDEBUG" /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_USE_NON_INTEL_COMPILER" /FD /c
+# ADD CPP /nologo /Zp4 /MD /W4 /GR /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "UNICODE" /D "_UNICODE" /D "_AFXDLL" /FD /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
@@ -135,127 +131,7 @@ LINK32=link.exe
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /Zp4 /MDd /W4 /GR /GX /Zi /Od /Ob1 /Gf /Gy /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /FD /GZ /c
 # SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /Zp4 /MDd /W4 /GR /GX /Zi /Od /Ob1 /Gf /Gy /D "_DEBUG" /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_USE_NON_INTEL_COMPILER" /FD /GZ /c
-# SUBTRACT CPP /YX
-# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /version:1.0 /subsystem:windows /incremental:no /debug /machine:I386 /pdbtype:sept /opt:ref
-# SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /version:1.0 /subsystem:windows /incremental:no /debug /machine:I386 /pdbtype:sept /opt:ref
-# SUBTRACT LINK32 /pdb:none
-
-!ELSEIF  "$(CFG)" == "WinSubst - Win32 ICL Release"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "WinSubst___Win32_ICL_Release"
-# PROP BASE Intermediate_Dir "WinSubst___Win32_ICL_Release"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir ".\ICL_ReleaseA"
-# PROP Intermediate_Dir ".\ICL_ReleaseA"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /Zp4 /MD /W4 /GR /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /FD /c
-# SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /Zp4 /MD /W4 /GR /GX /O1 /D "NDEBUG" /D "_MBCS" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_USE_INTEL_COMPILER" /FD /c
-# SUBTRACT CPP /YX
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /version:1.0 /subsystem:windows /pdb:none /machine:I386 /opt:ref
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /version:1.0 /subsystem:windows /pdb:none /machine:I386 /opt:ref
-
-!ELSEIF  "$(CFG)" == "WinSubst - Win32 ICL Debug"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "WinSubst___Win32_ICL_Debug"
-# PROP BASE Intermediate_Dir "WinSubst___Win32_ICL_Debug"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 1
-# PROP Output_Dir ".\ICL_DebugA"
-# PROP Intermediate_Dir ".\ICL_DebugA"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /Zp4 /MDd /W4 /GR /GX /Zi /Od /Ob1 /Gf /Gy /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /FD /GZ /c
-# SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /Zp4 /MDd /W4 /GR /GX /Zi /Od /Ob1 /Gf /Gy /D "_DEBUG" /D "_MBCS" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_USE_INTEL_COMPILER" /FD /GZ /c
-# SUBTRACT CPP /YX
-# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /version:1.0 /subsystem:windows /incremental:no /debug /machine:I386 /pdbtype:sept /opt:ref
-# SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /version:1.0 /subsystem:windows /incremental:no /debug /machine:I386 /pdbtype:sept /opt:ref
-# SUBTRACT LINK32 /pdb:none
-
-!ELSEIF  "$(CFG)" == "WinSubst - Win32 ICL Unicode Release"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "WinSubst___Win32_ICL_Unicode_Release"
-# PROP BASE Intermediate_Dir "WinSubst___Win32_ICL_Unicode_Release"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir ".\ICL_ReleaseW"
-# PROP Intermediate_Dir ".\ICL_ReleaseW"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /Zp4 /MD /W4 /GR /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "UNICODE" /D "_UNICODE" /D "_AFXDLL" /FD /c
-# SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /Zp4 /MD /W4 /GR /GX /O1 /D "NDEBUG" /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_USE_INTEL_COMPILER" /FD /c
-# SUBTRACT CPP /YX
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
-# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /version:1.0 /subsystem:windows /pdb:none /machine:I386 /opt:ref
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /version:1.0 /subsystem:windows /pdb:none /machine:I386 /opt:ref
-
-!ELSEIF  "$(CFG)" == "WinSubst - Win32 ICL Unicode Debug"
-
-# PROP BASE Use_MFC 0
-# PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "WinSubst___Win32_ICL_Unicode_Debug"
-# PROP BASE Intermediate_Dir "WinSubst___Win32_ICL_Unicode_Debug"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 0
-# PROP Use_Debug_Libraries 1
-# PROP Output_Dir ".\ICL_DebugW"
-# PROP Intermediate_Dir ".\ICL_DebugW"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /Zp4 /MDd /W4 /GR /GX /Zi /Od /Ob1 /Gf /Gy /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "UNICODE" /D "_UNICODE" /D "_AFXDLL" /FD /GZ /c
-# SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /Zp4 /MDd /W4 /GR /GX /Zi /Od /Ob1 /Gf /Gy /D "_DEBUG" /D "UNICODE" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_USE_INTEL_COMPILER" /FD /GZ /c
+# ADD CPP /nologo /Zp4 /MDd /W4 /GR /GX /Zi /Od /Ob1 /Gf /Gy /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "UNICODE" /D "_UNICODE" /D "_AFXDLL" /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -278,10 +154,6 @@ LINK32=link.exe
 # Name "WinSubst - Win32 Debug"
 # Name "WinSubst - Win32 Unicode Release"
 # Name "WinSubst - Win32 Unicode Debug"
-# Name "WinSubst - Win32 ICL Release"
-# Name "WinSubst - Win32 ICL Debug"
-# Name "WinSubst - Win32 ICL Unicode Release"
-# Name "WinSubst - Win32 ICL Unicode Debug"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;def;r;odl;idl;hpj;bat"
@@ -326,10 +198,6 @@ SOURCE=.\Source\AboutDialog.h
 # Begin Source File
 
 SOURCE=.\Source\MainDialog.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Source\Resource.h
 # End Source File
 # Begin Source File
 
