@@ -1,0 +1,274 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "Resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "Resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "// English (U.S.) resources\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "\r\n"
+    "#if defined(_WIN32)\r\n"
+    "LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#if !defined(RT_MANIFEST)\r\n"
+    "#define RT_MANIFEST 24\r\n"
+    "#define CREATEPROCESS_MANIFEST_RESOURCE_ID 1\r\n"
+    "#endif\r\n"
+    "CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST ""WinSubst.manifest""\r\n"
+    "\r\n"
+    "#endif    // English (U.S.) resources\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,2800,17
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "none\0"
+            VALUE "CompanyName", "Spb Software House\0"
+            VALUE "FileDescription", "WinSubst executable module\0"
+            VALUE "FileVersion", "1.0.2800\0"
+            VALUE "InternalName", "WinSubst\0"
+            VALUE "LegalCopyright", "Copyright © 2004-2005 by Elijah Zarezky\0"
+            VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation\0"
+            VALUE "OriginalFilename", "WinSubst.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "xsubst\0"
+            VALUE "ProductVersion", "1.0.0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP_ICON            ICON    DISCARDABLE     "BinRes\\AppIcon.ico"
+IDI_DRIVE_ICON          ICON    DISCARDABLE     "BinRes\\DriveIcon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 306, 178
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "WinSubst"
+FONT 8, "Tahoma", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "&Substitutions",IDC_STATIC,4,4,298,142,WS_GROUP
+    CONTROL         "List1",IDC_LIST_SUBSTS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_GROUP | 
+                    WS_TABSTOP,10,16,286,102,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "&New substitution...",IDC_BUTTON_NEW_SUBST,10,124,84,16,
+                    WS_GROUP
+    PUSHBUTTON      "&Change substitution...",IDC_BUTTON_CHANGE_SUBST,110,
+                    124,86,16
+    PUSHBUTTON      "&Delete substitution",IDC_BUTTON_DELETE_SUBST,212,124,
+                    84,16
+    CTEXT           "",IDC_TEXT_STATUS,4,158,240,16,SS_CENTERIMAGE | 
+                    SS_SUNKEN
+    PUSHBUTTON      "E&xit",IDC_BUTTON_EXIT,254,158,48,16,WS_GROUP
+END
+
+IDD_ABOUT DIALOG DISCARDABLE  0, 0, 144, 74
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "Tahoma"
+BEGIN
+    ICON            IDI_APP_ICON,IDC_STATIC,4,4,20,20
+    LTEXT           "",IDC_STATIC_TITLE,32,4,108,10
+    LTEXT           "Copyright © 2004 Elijah Zarezky\nAll rights reserved",
+                    IDC_STATIC,32,14,108,18
+    DEFPUSHBUTTON   "Close",IDOK,96,54,44,16
+END
+
+IDD_SUBST DIALOG DISCARDABLE  0, 0, 234, 74
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "Tahoma"
+BEGIN
+    RTEXT           "&Drive:",IDC_STATIC,4,8,22,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_COMBO_DRIVE,28,8,34,64,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "&Path:",IDC_STATIC,4,26,22,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_PATH,28,26,186,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_BUTTON_BROWSE,216,26,14,12,WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,130,54,44,16,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,186,54,44,16
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 171
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 137
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+
+    IDD_SUBST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 227
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SUBST_DRIVE         "Drive"
+    IDS_SUBST_PATH          "Path"
+    IDS_REGISTRY_KEY        "Elijah Zarezky\\xsubst"
+    IDS_SERVICE_STOPPED     "Warning! The %s service is not running."
+    IDS_SERVICE_START_PENDING "Warning! The %s service is starting."
+    IDS_SERVICE_STOP_PENDING "Warning! The %s service is stopping."
+    IDS_SERVICE_RUNNING     "Ready. The %s service is running."
+    IDS_SERVICE_CONTINUE_PENDING 
+                            "Warning! The %s service continue is pending."
+    IDS_SERVICE_PAUSE_PENDING "Warning! The %s service pause is pending."
+    IDS_SERVICE_PAUSED      "Warning! The %s service is paused."
+    IDS_SERVICE_DOES_NOT_EXIST 
+                            "The %s service does not installed.\nApplication will be terminated."
+    IDS_ABOUT               "About..."
+    IDS_FILE_VERSION        "\\StringFileInfo\\040904b0\\FileVersion"
+    IDS_TITLE_FORMAT        "WinSubst – Version %s"
+    IDS_SERVICE_UNKNOWN_STATE "Warning! The %s service is in unknown state."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NEW_SUBST           "New substitution"
+    IDS_CHANGE_SUBST        "Change substitution"
+    IDS_NO_FREE_DRIVES      "No free drive letters found."
+    IDS_CHOOSE_PATH         "Choose the folder:"
+    IDS_DELETE_CONFIRM      "Are You sure You wish to delete this substitution?"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+
+#if defined(_WIN32)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif
+
+#if !defined(RT_MANIFEST)
+#define RT_MANIFEST 24
+#define CREATEPROCESS_MANIFEST_RESOURCE_ID 1
+#endif
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "WinSubst.manifest"
+
+#endif    // English (U.S.) resources
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
