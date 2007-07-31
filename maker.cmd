@@ -1,11 +1,18 @@
 @echo off
+
 echo.
 echo Building executables...
 echo.
-msdev.com xsubst.dsw /MAKE "WinSubst - Win32 Unicode Release" /REBUILD
+devenv.com xsubst71.sln /rebuild "Unicode Release" /project WinSubst /nologo
+
 echo.
 echo.
-echo Creating installer...
+echo Creating standard installer...
 echo.
-if exist .\Setup\*.exe del .\Setup\*.exe
 iscc.exe Setup.iss
+
+echo.
+echo.
+echo Creating universal installer...
+echo.
+iscc.exe SetupUniversal.iss
