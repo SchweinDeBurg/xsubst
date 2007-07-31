@@ -1,0 +1,154 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "Resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "Resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,3839,31
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "none"
+            VALUE "CompanyName", "Spb Software House"
+            VALUE "FileDescription", "SubstSvc executable module"
+            VALUE "FileVersion", "1.0.3839"
+            VALUE "InternalName", "SubstSvc"
+            VALUE "LegalCopyright", "Copyright © 2004-2007 by Elijah Zarezky"
+            VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation"
+            VALUE "OriginalFilename", "SubstSvc.exe"
+            VALUE "ProductName", "xsubst"
+            VALUE "ProductVersion", "1.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP_ICON            ICON                    "BinRes\\AppIcon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_LOG_BEGIN           ">>> begin of log\n"
+    IDS_STARTUP_STARTED     "Started startup thread."
+    IDS_STARTUP_FINISHED    "Finished startup thread."
+    IDS_OS_SHUTDOWN         "Detected operating system shutdown."
+    IDS_SERVICE_STOP        "Requested to stop %s service."
+    IDS_SERVICE_STOPPED     "Stopped %s service."
+    IDS_SERVICE_RUNNED      "Runned %s service."
+    IDS_EXE_STARTED         "Started %s executable."
+    IDS_SERVICE_REGISTERED  "Registered %s service."
+    IDS_SERVICE_UNREGISTERED "Unregistered %s service."
+    IDS_CMDLINE_BAD_ARGUMENT "Command-line argument %s unrecognized."
+    IDS_SCM_CONNECT         "Attempted to connect to the SCM."
+    IDS_SCM_DISCONNECTED    "Disconnected from the SCM."
+    IDS_EXE_FINISHED        "Finished %s executable.\n<<< end of log"
+    IDS_REGISTRY_KEY        "Elijah Zarezky\\xsubst"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_REGKEY_FORMAT       "HKCU\\%s registry key"
+    IDS_REGKEY_OPENED       "Opened %s."
+    IDS_REGKEY_CLOSED       "Closed %s."
+    IDS_REGKEY_FAILED       "Failed to access %s."
+    IDS_SUBST_CREATED       "Substituted %s for %s."
+    IDS_SUBST_FAILED        "Failed to sustitute %s for %s."
+    IDS_SUBST_TOTAL         "Total substituted %i drive(s)."
+    IDS_MODIFY_REQUEST      "Requested to modify current substitutions."
+    IDS_MODIFIED_TOTAL      "Total modified %i substitution(s)."
+    IDS_SUBST_DELETED       "Deleted %s as a substitution for %s."
+    IDS_DELETE_FAILED       "Failed to delete %s as a substitution for %s."
+    IDS_DELETED_TOTAL       "Total deleted %i substitution(s)."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
