@@ -14,7 +14,7 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-;; Setup.iss - setup script for Inno Setup compiler
+;; SetupUniversal.iss - setup script for Inno Setup compiler
 
 [Setup]
 AppName=xsubst
@@ -31,7 +31,7 @@ AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
 OutputDir=.\Setup
-OutputBaseFilename=xsubst-1.0.2800-setup
+OutputBaseFilename=xsubst-1.0.2800-setup-universal
 VersionInfoVersion=1.0.2800
 MinVersion=0,5.0.2195
 PrivilegesRequired=admin
@@ -42,6 +42,17 @@ LicenseFile=ApacheLicense.rtf
 [LangOptions]
 DialogFontName=Tahoma
 DialogFontSize=8
+
+[Types]
+Name: "typical"; Description: "Typical Installation"
+Name: "compact"; Description: "Compact Installation"
+Name: "full"; Description: "Full Installation"
+Name: "custom"; Description: "Custom Installation"; Flags: iscustom
+
+[Components]
+Name: "core"; Description: "xsubst Core Files"; Types: compact typical full custom; Flags: fixed
+Name: "runtimes"; Description: "Application Runtimes"; Types: typical full custom
+Name: "sources"; Description: "Source Code"; Types: full custom
 
 [Code]
 procedure CleanupHKCU();
@@ -59,15 +70,26 @@ begin
 end;
 
 [Files]
-Source: ".\WinSubst\71_ReleaseW\WinSubst.exe"; DestDir: "{app}"
-Source: ".\SubstSvc\71_ReleaseW\SubstSvc.exe"; DestDir: "{app}"; Check: StopService
-Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Redist\mfc71u.dll"; DestDir: "{app}"
-Source: ".\Redist\msvcr71.dll"; DestDir: "{app}"
+Source: ".\WinSubst\71_ReleaseW\WinSubst.exe"; DestDir: "{app}"; Components: core
+Source: ".\SubstSvc\71_ReleaseW\SubstSvc.exe"; DestDir: "{app}"; Components: core; Check: StopService
+Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Components: core; Flags: ignoreversion
+Source: ".\Redist\mfc71u.dll"; DestDir: "{app}"; Components: runtimes
+Source: ".\Redist\msvcr71.dll"; DestDir: "{app}"; Components: runtimes
+Source: "..\Repository\AfxGadgets\AfxGadgets71.vcproj"; DestDir: "{app}\Sources\Repository\AfxGadgets"; Components: sources; Flags: ignoreversion
+Source: "..\Repository\AfxGadgets\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\Repository\AfxGadgets\Source"; Components: sources; Flags: ignoreversion
+Source: "..\Repository\CodeProject\CodeProject71.vcproj"; DestDir: "{app}\Sources\Repository\CodeProject"; Components: sources; Flags: ignoreversion
+Source: "..\Repository\CodeProject\Help\*"; Excludes: ".svn"; DestDir: "{app}\Sources\Repository\CodeProject\Help"; Components: sources; Flags: ignoreversion
+Source: "..\Repository\CodeProject\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\Repository\CodeProject\Source"; Components: sources; Flags: ignoreversion
+Source: ".\SubstSvc\SubstSvc71.vcproj"; DestDir: "{app}\Sources\xsubst\SubstSvc"; Components: sources; Flags: ignoreversion
+Source: ".\SubstSvc\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\SubstSvc\Source"; Components: sources; Flags: ignoreversion recursesubdirs
+Source: ".\WinSubst\WinSubst71.vcproj"; DestDir: "{app}\Sources\xsubst\WinSubst"; Components: sources; Flags: ignoreversion
+Source: ".\WinSubst\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Source"; Components: sources; Flags: ignoreversion recursesubdirs
+Source: ".\xsubst71.sln"; DestDir: "{app}\Sources\xsubst"; Components: sources; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"
 Name: "{group}\xsubst on the Web"; Filename: "{app}\xsubst.url"
+Name: "{group}\Build xsubst"; FileName: "{app}\Sources\xsubst\xsubst71.sln"; Components: sources
 Name: "{group}\xsubst License"; Filename: "{app}\ApacheLicense.rtf"
 Name: "{group}\Uninstall xsubst"; Filename: "{uninstallexe}"
 Name: "{userdesktop}\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: desktopicon
