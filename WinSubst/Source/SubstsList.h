@@ -33,7 +33,8 @@ protected:
 
 // attributes
 public:
-	enum {
+	enum
+	{
 		// column indices
 		I_DRIVE,
 		I_PATH,

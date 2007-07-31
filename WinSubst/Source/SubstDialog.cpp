@@ -41,7 +41,8 @@ BOOL CSubstDialog::OnInitDialog(void)
 
 	CDialog::OnInitDialog();
 
-	if (m_szDrive[0] != 0) {
+	if (m_szDrive[0] != 0)
+	{
 		// change selected substitution
 		strCaption.LoadString(IDS_CHANGE_SUBST);
 		SetWindowText(strCaption);
@@ -56,13 +57,16 @@ BOOL CSubstDialog::OnInitDialog(void)
 		SetWindowText(strCaption);
 		TCHAR szTemp[_MAX_DRIVE] = _T("#:");
 		DWORD dwDrives = ::GetLogicalDrives();
-		for (int i = 0; i <= _T('Z') - _T('A'); i++) {
-			if ((dwDrives & (1 << i)) == 0) {
+		for (int i = 0; i <= _T('Z') - _T('A'); i++)
+		{
+			if ((dwDrives & (1 << i)) == 0)
+			{
 				szTemp[0] = static_cast<TCHAR>(_T('A') + i);
 				m_comboDrive.AddString(szTemp);
 			}
 		}
-		if (m_comboDrive.GetCount() > 0) {
+		if (m_comboDrive.GetCount() > 0)
+		{
 			// found free drive letter(s)
 			m_comboDrive.SetCurSel(0);
 			GetDlgItem(IDOK)->EnableWindow(FALSE);
@@ -100,7 +104,8 @@ HBRUSH CSubstDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT uCtlColor)
 	switch (pWnd->GetDlgCtrlID())
 	{
 	case IDC_EDIT_PATH:
-		if (uCtlColor == CTLCOLOR_STATIC) {
+		if (uCtlColor == CTLCOLOR_STATIC)
+		{
 			pDC->SetBkColor(::GetSysColor(COLOR_WINDOW));
 			pDC->SetTextColor(::GetSysColor(COLOR_WINDOWTEXT));
 			hbr = ::GetSysColorBrush(COLOR_WINDOW);
@@ -125,7 +130,8 @@ void CSubstDialog::OnButtonBrowse(void)
 	strPrompt.LoadString(IDS_CHOOSE_PATH);
 	m_editPath.GetWindowText(strPath);
 	CFolderDialog dlgFolder(strPrompt, strPath, this);
-	if (dlgFolder.DoModal() == IDOK) {
+	if (dlgFolder.DoModal() == IDOK)
+	{
 		m_editPath.SetWindowText(dlgFolder.GetFolderPath());
 	}
 }
@@ -143,7 +149,8 @@ void CSubstDialog::AssertValid(void) const
 
 void CSubstDialog::Dump(CDumpContext& dumpCtx) const
 {
-	try {
+	try
+	{
 		// first invoke inherited dumper...
 		CDialog::Dump(dumpCtx);
 		// ...and then dump own unique members
@@ -152,7 +159,8 @@ void CSubstDialog::Dump(CDumpContext& dumpCtx) const
 		dumpCtx << "\nm_szPath = " << m_szPath;
 		dumpCtx << "\nm_editPath = " << m_editPath;
 	}
-	catch (CFileException* pXcpt) {
+	catch (CFileException* pXcpt)
+	{
 		pXcpt->ReportError();
 		pXcpt->Delete();
 	}

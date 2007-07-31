@@ -21,6 +21,13 @@
 // identifier was truncated in the debug information
 #pragma warning(disable: 4786)
 
+#define WINVER 0x0500
+#define _WIN32_WINNT 0x0500
+
+#if (_MSC_VER >= 1300)
+#define _ATL_DISABLE_DEPRECATED
+#endif	// _MSC_VER
+
 // MFC headers
 #include <afxwin.h>			// MFC core and standard components
 #include <afxmt.h>			// MFC multithreaded extensions

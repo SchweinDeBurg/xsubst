@@ -61,7 +61,8 @@ void CSubstsList::InsertItem(int iItem, LPCTSTR pszDrive, LPCTSTR pszPath)
 	strTemp += _T('\\');
 	memset(&shfi, 0, sizeof(shfi));
 	::SHGetFileInfo(strTemp, 0, &shfi, sizeof(shfi), SHGFI_ICON | SHGFI_SMALLICON);
-	if (shfi.hIcon != NULL) {
+	if (shfi.hIcon != NULL)
+	{
 		iImage = GetImageList(LVSIL_SMALL)->Add(shfi.hIcon);
 		::DestroyIcon(shfi.hIcon);
 	}
@@ -88,26 +89,32 @@ void CSubstsList::InsertRegItems(void)
 	strKeyName.Insert(0, _T(".DEFAULT\\Software\\"));
 	strKeyName += _T("\\SubstSvc\\Drives");
 
-	if ((nResult = regKey.Create(HKEY_USERS, strKeyName)) != ERROR_SUCCESS) {
+	if ((nResult = regKey.Create(HKEY_USERS, strKeyName)) != ERROR_SUCCESS)
+	{
 		// failed to open needed key
 		CWin32Error* pXcpt = new CWin32Error(nResult);
 		throw pXcpt;
 	}
 
 	BOOL fHasValue = TRUE;
-	for (int i = 0; fHasValue; ++i) {
+	for (int i = 0; fHasValue; ++i)
+	{
 		DWORD cchName = _MAX_DRIVE;
 		DWORD fdwType = REG_NONE;
 		nResult = ::RegEnumValue(regKey, i, szDrive, &cchName, NULL, &fdwType, NULL, NULL);
-		if (nResult == ERROR_NO_MORE_ITEMS) {
+		if (nResult == ERROR_NO_MORE_ITEMS)
+		{
 			// no more values - so break the loop
 			fHasValue = FALSE;
 		}
-		else if (nResult == ERROR_SUCCESS) {
+		else if (nResult == ERROR_SUCCESS)
+		{
 			// only string values are interested
-			if (fdwType == REG_SZ) {
+			if (fdwType == REG_SZ)
+			{
 				DWORD cchValue = _MAX_PATH;
-				if (regKey.QueryValue(szPath, szDrive, &cchValue) == ERROR_SUCCESS) {
+				if (regKey.QueryValue(szPath, szDrive, &cchValue) == ERROR_SUCCESS)
+				{
 					InsertItem(0, szDrive, szPath);
 				}
 			}
@@ -120,7 +127,8 @@ void CSubstsList::InsertRegItems(void)
 		}
 	}
 
-	if ((nResult = regKey.Close()) != ERROR_SUCCESS) {
+	if ((nResult = regKey.Close()) != ERROR_SUCCESS)
+	{
 		// failed to close key
 		CWin32Error* pXcpt = new CWin32Error(nResult);
 		throw pXcpt;
@@ -155,12 +163,14 @@ void CSubstsList::AssertValid(void) const
 
 void CSubstsList::Dump(CDumpContext& dumpCtx) const
 {
-	try {
+	try
+	{
 		// first invoke inherited dumper...
 		CSortingListCtrl::Dump(dumpCtx);
 		// ...and then dump own unique members
 	}
-	catch (CFileException* pXcpt) {
+	catch (CFileException* pXcpt)
+	{
 		pXcpt->ReportError();
 		pXcpt->Delete();
 	}

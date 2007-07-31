@@ -28,11 +28,11 @@ static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
 #endif	// _DEBUG
 
-static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(CRegKey&, LPCTSTR, LPCTSTR))
+static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(ATL::CRegKey&, LPCTSTR, LPCTSTR))
 {
 	CString strKeyName;
 	CString strRegistryKey;		// for logging
-	CRegKey regKey;
+	ATL::CRegKey regKey;
 	TCHAR szDrive[_MAX_DRIVE];
 	TCHAR szPath[_MAX_PATH];
 	CMap<CString, LPCTSTR, CString, LPCTSTR> mapSubsts;
@@ -46,23 +46,30 @@ static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(CRegKey&, LPCTSTR, LPCTSTR)
 	strKeyName += _T("\\Drives");
 	strRegistryKey.Format(IDS_REGKEY_FORMAT, static_cast<LPCTSTR>(strKeyName));
 
-	if (regKey.Create(HKEY_CURRENT_USER, strKeyName) == ERROR_SUCCESS) {
+	if (regKey.Create(HKEY_CURRENT_USER, strKeyName) == ERROR_SUCCESS)
+	{
 		LogFile_WriteEntry(LL_MINIMAL, IDS_REGKEY_OPENED, static_cast<LPCTSTR>(strRegistryKey));
+		
 		// pass #1 - collect substitutions
 		BOOL fHasValue = TRUE;
-		for (int i = 0; fHasValue; ++i) {
+		for (int i = 0; fHasValue; ++i)
+		{
 			DWORD cchName = _MAX_DRIVE;
 			DWORD fdwType = REG_NONE;
 			LONG nResult = ::RegEnumValue(regKey, i, szDrive, &cchName, NULL, &fdwType, NULL, NULL);
-			if (nResult == ERROR_NO_MORE_ITEMS) {
+			if (nResult == ERROR_NO_MORE_ITEMS)
+			{
 				// no more values - so break the loop
 				fHasValue = FALSE;
 			}
-			else if (nResult == ERROR_SUCCESS) {
+			else if (nResult == ERROR_SUCCESS)
+			{
 				// only string values are interested
-				if (fdwType == REG_SZ) {
+				if (fdwType == REG_SZ)
+				{
 					DWORD cchValue = _MAX_PATH;
-					if (regKey.QueryValue(szPath, szDrive, &cchValue) == ERROR_SUCCESS) {
+					if (regKey.QueryValue(szPath, szDrive, &cchValue) == ERROR_SUCCESS)
+					{
 						mapSubsts.SetAt(szDrive, szPath);
 					}
 				}
@@ -71,16 +78,20 @@ static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(CRegKey&, LPCTSTR, LPCTSTR)
 				// what the shit is that?!
 			}
 		}
+		
 		// pass #2 - invoke callback for each substitution
 		int cNumDrives = 0;
 		POSITION pos = mapSubsts.GetStartPosition();
-		while (pos != NULL) {
+		while (pos != NULL)
+		{
 			mapSubsts.GetNextAssoc(pos, strDrive, strPath);
-			if ((*pfnCallback)(regKey, strDrive, strPath)) {
+			if ((*pfnCallback)(regKey, strDrive, strPath))
+			{
 				++cNumDrives;
 			}
 		}
-		if (regKey.Close() == ERROR_SUCCESS) {
+		if (regKey.Close() == ERROR_SUCCESS)
+		{
 			LogFile_WriteEntry(LL_MINIMAL, IDS_REGKEY_CLOSED, static_cast<LPCTSTR>(strRegistryKey));
 		}
 		return (cNumDrives);
@@ -91,9 +102,10 @@ static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(CRegKey&, LPCTSTR, LPCTSTR)
 	}
 }
 
-static BOOL SubstCreate(CRegKey& /*regKey*/, LPCTSTR pszDrive, LPCTSTR pszPath)
+static BOOL SubstCreate(ATL::CRegKey& /*regKey*/, LPCTSTR pszDrive, LPCTSTR pszPath)
 {
-	if (::DefineDosDevice(0, pszDrive, pszPath)) {
+	if (::DefineDosDevice(0, pszDrive, pszPath))
+	{
 		LogFile_WriteEntry(LL_MINIMAL, IDS_SUBST_CREATED, pszDrive, pszPath);
 		return (TRUE);
 	}
@@ -103,9 +115,10 @@ static BOOL SubstCreate(CRegKey& /*regKey*/, LPCTSTR pszDrive, LPCTSTR pszPath)
 	}
 }
 
-static BOOL SubstDelete(CRegKey& /*regKey*/, LPCTSTR pszDrive, LPCTSTR pszPath)
+static BOOL SubstDelete(ATL::CRegKey& /*regKey*/, LPCTSTR pszDrive, LPCTSTR pszPath)
 {
-	if (::DefineDosDevice(DDD_REMOVE_DEFINITION, pszDrive, pszPath)) {
+	if (::DefineDosDevice(DDD_REMOVE_DEFINITION, pszDrive, pszPath))
+	{
 		LogFile_WriteEntry(LL_MINIMAL, IDS_SUBST_DELETED, pszDrive, pszPath);
 		return (TRUE);
 	}
@@ -115,11 +128,13 @@ static BOOL SubstDelete(CRegKey& /*regKey*/, LPCTSTR pszDrive, LPCTSTR pszPath)
 	}
 }
 
-static BOOL SubstModify(CRegKey& regKey, LPCTSTR pszDrive, LPCTSTR pszPath)
+static BOOL SubstModify(ATL::CRegKey& regKey, LPCTSTR pszDrive, LPCTSTR pszPath)
 {
-	if (pszPath[0] == _T('+')) {
+	if (pszPath[0] == _T('+'))
+	{
 		// create new substitution
-		if (::DefineDosDevice(0, pszDrive, &pszPath[1])) {
+		if (::DefineDosDevice(0, pszDrive, &pszPath[1]))
+		{
 			LogFile_WriteEntry(LL_MINIMAL, IDS_SUBST_CREATED, pszDrive, &pszPath[1]);
 			regKey.SetValue(&pszPath[1], pszDrive);
 			return (TRUE);
@@ -129,13 +144,16 @@ static BOOL SubstModify(CRegKey& regKey, LPCTSTR pszDrive, LPCTSTR pszPath)
 			return (FALSE);
 		}
 	}
-	else if (pszPath[0] == _T('*')) {
+	else if (pszPath[0] == _T('*'))
+	{
 		// modify existing substitution
 		LPTSTR pszTemp = new TCHAR[_MAX_PATH];
-		if (::QueryDosDevice(pszDrive, pszTemp, _MAX_PATH) > 0) {
+		if (::QueryDosDevice(pszDrive, pszTemp, _MAX_PATH) > 0)
+		{
 			// first remove current substitution...
 			LPTSTR pszPrevPath = ::StrChr(pszTemp, _T(':')) - 1;
-			if (::DefineDosDevice(DDD_REMOVE_DEFINITION, pszDrive, pszPrevPath)) {
+			if (::DefineDosDevice(DDD_REMOVE_DEFINITION, pszDrive, pszPrevPath))
+			{
 				LogFile_WriteEntry(LL_MINIMAL, IDS_SUBST_DELETED, pszDrive, pszPrevPath);
 			}
 			else {
@@ -144,7 +162,8 @@ static BOOL SubstModify(CRegKey& regKey, LPCTSTR pszDrive, LPCTSTR pszPath)
 		}
 		delete[] pszTemp;
 		// ...and then create a new one
-		if (::DefineDosDevice(0, pszDrive, &pszPath[1])) {
+		if (::DefineDosDevice(0, pszDrive, &pszPath[1]))
+		{
 			LogFile_WriteEntry(LL_MINIMAL, IDS_SUBST_CREATED, pszDrive, &pszPath[1]);
 			regKey.SetValue(&pszPath[1], pszDrive);
 			return (TRUE);
@@ -154,9 +173,11 @@ static BOOL SubstModify(CRegKey& regKey, LPCTSTR pszDrive, LPCTSTR pszPath)
 			return (FALSE);
 		}
 	}
-	else if (pszPath[0] == _T('-')) {
+	else if (pszPath[0] == _T('-'))
+	{
 		// delete substitution
-		if (::DefineDosDevice(DDD_REMOVE_DEFINITION, pszDrive, &pszPath[1])) {
+		if (::DefineDosDevice(DDD_REMOVE_DEFINITION, pszDrive, &pszPath[1]))
+		{
 			LogFile_WriteEntry(LL_MINIMAL, IDS_SUBST_DELETED, pszDrive, &pszPath[1]);
 			regKey.DeleteValue(pszDrive);
 			return (TRUE);
@@ -225,7 +246,8 @@ void WINAPI ServiceHandler(DWORD fdwControl)
 	ss.dwCheckPoint = 0;
 	ss.dwWaitHint = 0;
 	::SetServiceStatus(g_hServiceStatus, &ss);
-	if (g_dwServiceState == SERVICE_STOPPED) {
+	if (g_dwServiceState == SERVICE_STOPPED)
+	{
 		LogFile_WriteEntry(LL_MINIMAL, IDS_SERVICE_STOPPED, g_szServiceName);
 	}
 }

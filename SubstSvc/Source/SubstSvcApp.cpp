@@ -16,6 +16,8 @@ static char THIS_FILE[] = __FILE__;
 // object model
 IMPLEMENT_DYNAMIC(CSubstSvcApp, CWinApp)
 
+// construction/destruction
+
 CSubstSvcApp::CSubstSvcApp(void):
 CWinApp(_T("SubstSvc"))
 {

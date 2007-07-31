@@ -14,6 +14,7 @@
 class CSubstSvcApp: public CWinApp
 {
 	friend int _tmain(int argc, TCHAR* argv[], TCHAR* envp[]);
+
 	DECLARE_DYNAMIC(CSubstSvcApp)
 
 // construction/destruction

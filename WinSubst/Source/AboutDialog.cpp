@@ -60,12 +60,14 @@ void CAboutDialog::AssertValid(void) const
 
 void CAboutDialog::Dump(CDumpContext& dumpCtx) const
 {
-	try {
+	try
+	{
 		// first invoke inherited dumper...
 		CDialog::Dump(dumpCtx);
 		// ...and then dump own unique members
 	}
-	catch (CFileException* pXcpt) {
+	catch (CFileException* pXcpt)
+	{
 		pXcpt->ReportError();
 		pXcpt->Delete();
 	}
