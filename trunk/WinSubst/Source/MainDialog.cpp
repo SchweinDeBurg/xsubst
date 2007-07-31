@@ -91,16 +91,19 @@ BOOL CMainDialog::OnInitDialog(void)
 	m_listSubsts.SetExtendedStyle(fdwExStyle | LVS_EX_FULLROWSELECT);
 	m_listSubsts.SetImageList(&m_imageList, LVSIL_SMALL);
 	m_listSubsts.InsertColumns();
-	try {
+	try
+	{
 		m_listSubsts.InsertRegItems();
 	}
-	catch (CWin32Error* pXcpt) {
+	catch (CWin32Error* pXcpt)
+	{
 		pXcpt->ReportError(MB_ICONSTOP | MB_OK);
 		delete pXcpt;
 	}
 
 	// adjust controls state
-	if (m_listSubsts.GetItemCount() > 0) {
+	if (m_listSubsts.GetItemCount() > 0)
+	{
 		m_listSubsts.SortItems(CSubstsList::I_DRIVE, CSubstsList::SORT_ASCENDING);
 		m_listSubsts.SetItemState(0, LVIS_SELECTED | LVIS_FOCUSED, 0xFFFFFFFF);
 	}
@@ -111,9 +114,11 @@ BOOL CMainDialog::OnInitDialog(void)
 
 	// verify service presence and state
 	SC_HANDLE schManager = ::OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
-	if (schManager != NULL) {
+	if (schManager != NULL)
+	{
 		SC_HANDLE schService = ::OpenService(schManager, SZ_SERVICE_NAME, SERVICE_QUERY_STATUS);
-		if (schService != NULL) {
+		if (schService != NULL)
+		{
 			memset(&ss, 0, sizeof(ss));
 			::QueryServiceStatus(schService, &ss);
 			m_dwSvcState = ss.dwCurrentState;
@@ -123,7 +128,8 @@ BOOL CMainDialog::OnInitDialog(void)
 		}
 		else {
 			DWORD dwErrCode = ::GetLastError();
-			if (dwErrCode == ERROR_SERVICE_DOES_NOT_EXIST) {
+			if (dwErrCode == ERROR_SERVICE_DOES_NOT_EXIST)
+			{
 				// probably service doesn't installed
 				strMessage.Format(IDS_SERVICE_DOES_NOT_EXIST, SZ_SERVICE_NAME);
 				AfxMessageBox(strMessage, MB_ICONSTOP | MB_OK);
@@ -167,7 +173,8 @@ HBRUSH CMainDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT uCtlColor)
 {
 	COLORREF crText;
 
-	if (pWnd->GetDlgCtrlID() == IDC_TEXT_STATUS) {
+	if (pWnd->GetDlgCtrlID() == IDC_TEXT_STATUS)
+	{
 		pDC->SetBkColor(::GetSysColor(COLOR_3DFACE));
 		switch (m_dwSvcState)
 		{
@@ -195,7 +202,8 @@ HBRUSH CMainDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT uCtlColor)
 
 void CMainDialog::OnSysCommand(UINT uID, LPARAM lParam)
 {
-	if ((uID & 0xFFF0) == IDM_SC_ABOUT) {
+	if ((uID & 0xFFF0) == IDM_SC_ABOUT)
+	{
 		CAboutDialog dlgAbout;
 		dlgAbout.DoModal();
 	}
@@ -219,7 +227,8 @@ void CMainDialog::OnButtonNewSubst(void)
 	CRegKey regKey;
 
 	CSubstDialog dlgSubst(this);
-	if (dlgSubst.DoModal() == IDOK) {
+	if (dlgSubst.DoModal() == IDOK)
+	{
 		ASSERT(::lstrlen(dlgSubst.m_szDrive) > 0);
 		ASSERT(::lstrlen(dlgSubst.m_szPath) > 0);
 		// build the name of the registry key...
@@ -230,7 +239,8 @@ void CMainDialog::OnButtonNewSubst(void)
 		regKey.Create(HKEY_USERS, strKeyName);
 		CString strPlusPath(dlgSubst.m_szPath);
 		strPlusPath.Insert(0, _T('+'));
-		if ((nResult = regKey.SetValue(strPlusPath, dlgSubst.m_szDrive)) == ERROR_SUCCESS) {
+		if ((nResult = regKey.SetValue(strPlusPath, dlgSubst.m_szDrive)) == ERROR_SUCCESS)
+		{
 			// kick the service...
 			ControlService(SUBSTSVC_SERVICE_CONTROL_MODIFY_DRIVES);
 			// ...and then update the list
@@ -261,9 +271,11 @@ void CMainDialog::OnButtonChangeSubst(void)
 	int iItem = m_listSubsts.GetNextSelectedItem(pos);
 	m_listSubsts.GetItemText(iItem, CSubstsList::I_DRIVE, dlgSubst.m_szDrive, _MAX_DRIVE);
 	m_listSubsts.GetItemText(iItem, CSubstsList::I_PATH, dlgSubst.m_szPath, _MAX_PATH);
-	if (dlgSubst.DoModal() == IDOK) {
+	if (dlgSubst.DoModal() == IDOK)
+	{
 		ASSERT(::lstrlen(dlgSubst.m_szPath) > 0);
-		if (m_listSubsts.GetItemText(iItem, CSubstsList::I_PATH) != dlgSubst.m_szPath) {
+		if (m_listSubsts.GetItemText(iItem, CSubstsList::I_PATH) != dlgSubst.m_szPath)
+		{
 			// build the name of the registry key...
 			strKeyName.LoadString(IDS_REGISTRY_KEY);
 			strKeyName.Insert(0, _T(".DEFAULT\\Software\\"));
@@ -272,7 +284,8 @@ void CMainDialog::OnButtonChangeSubst(void)
 			regKey.Create(HKEY_USERS, strKeyName);
 			CString strAsteriskPath(dlgSubst.m_szPath);
 			strAsteriskPath.Insert(0, _T('*'));
-			if ((nResult = regKey.SetValue(strAsteriskPath, dlgSubst.m_szDrive)) == ERROR_SUCCESS) {
+			if ((nResult = regKey.SetValue(strAsteriskPath, dlgSubst.m_szDrive)) == ERROR_SUCCESS)
+			{
 				// kick the service...
 				ControlService(SUBSTSVC_SERVICE_CONTROL_MODIFY_DRIVES);
 				// ...and then update the list
@@ -280,7 +293,8 @@ void CMainDialog::OnButtonChangeSubst(void)
 				m_listSubsts.EnsureVisible(iItem, FALSE);
 				m_listSubsts.SetItemState(iItem, LVIS_SELECTED | LVIS_FOCUSED, 0xFFFFFFFF);
 				m_listSubsts.SetFocus();
-				if (m_listSubsts.GetItemCount() == 1) {
+				if (m_listSubsts.GetItemCount() == 1)
+				{
 					// first item inserted
 					GetDlgItem(IDC_BUTTON_CHANGE_SUBST)->EnableWindow();
 					GetDlgItem(IDC_BUTTON_DELETE_SUBST)->EnableWindow();
@@ -302,7 +316,8 @@ void CMainDialog::OnButtonDeleteSubst(void)
 	LONG nResult;
 	CRegKey regKey;
 
-	if (AfxMessageBox(IDS_DELETE_CONFIRM, MB_ICONQUESTION | MB_YESNO) == IDYES) {
+	if (AfxMessageBox(IDS_DELETE_CONFIRM, MB_ICONQUESTION | MB_YESNO) == IDYES)
+	{
 		// obtain selected substitution
 		POSITION pos = m_listSubsts.GetFirstSelectedItemPosition();
 		ASSERT(pos != NULL);
@@ -322,9 +337,11 @@ void CMainDialog::OnButtonDeleteSubst(void)
 			// ...and then update the list
 			m_listSubsts.DeleteItem(iItem);
 			int cItems = m_listSubsts.GetItemCount();
-			if (cItems > 0) {
+			if (cItems > 0)
+			{
 				// adjust selected item
-				if (iItem == cItems) {
+				if (iItem == cItems)
+				{
 					--iItem;
 				}
 				m_listSubsts.SetItemState(iItem, LVIS_SELECTED | LVIS_FOCUSED, 0xFFFFFFFF);
@@ -397,7 +414,8 @@ void CMainDialog::ControlService(DWORD dwCode)
 	m_dwSvcState = ss.dwCurrentState;
 	GetSvcStateText(strState);
 	GetDlgItem(IDC_TEXT_STATUS)->SetWindowText(strState);
-	if (m_dwSvcState == SERVICE_RUNNING) {
+	if (m_dwSvcState == SERVICE_RUNNING)
+	{
 		BeginWaitCursor();
 		HANDLE hEvent = ::CreateEvent(NULL, TRUE, FALSE, SZ_SYNC_EVENT_NAME);
 		::ControlService(schService, dwCode, &ss);
@@ -423,7 +441,8 @@ void CMainDialog::AssertValid(void) const
 
 void CMainDialog::Dump(CDumpContext& dumpCtx) const
 {
-	try {
+	try
+	{
 		// first invoke inherited dumper...
 		CDialog::Dump(dumpCtx);
 		// ...and then dump own unique members
@@ -434,7 +453,8 @@ void CMainDialog::Dump(CDumpContext& dumpCtx) const
 		dumpCtx << "\nm_listSubsts = " << m_listSubsts;
 		dumpCtx << "\nm_dwSvcState = " << m_dwSvcState;
 	}
-	catch (CFileException* pXcpt) {
+	catch (CFileException* pXcpt)
+	{
 		pXcpt->ReportError();
 		pXcpt->Delete();
 	}

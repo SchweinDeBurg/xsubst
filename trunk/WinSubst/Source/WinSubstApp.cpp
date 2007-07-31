@@ -81,12 +81,14 @@ void CWinSubstApp::AssertValid(void) const
 
 void CWinSubstApp::Dump(CDumpContext& dumpCtx) const
 {
-	try {
+	try
+	{
 		// first invoke inherited dumper...
 		CWinApp::Dump(dumpCtx);
 		// ...and then dump own unique members
 	}
-	catch (CFileException* pXcpt) {
+	catch (CFileException* pXcpt)
+	{
 		pXcpt->ReportError();
 		pXcpt->Delete();
 	}

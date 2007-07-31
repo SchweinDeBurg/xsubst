@@ -15,7 +15,8 @@
 #endif	// _MSC_VER
 
 // logging level
-enum LOG_LEVEL {
+enum LOG_LEVEL
+{
 	LL_NONE		= 0,
 	LL_MINIMAL	= 1,
 	LL_NORMAL	= 2,

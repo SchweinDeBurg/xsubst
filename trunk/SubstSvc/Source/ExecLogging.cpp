@@ -45,17 +45,21 @@ void LogFile_Create(LPCTSTR pszFileName)
 	CWinApp* pApp = AfxGetApp();
 	g_strLogName = pszFileName;
 	UINT fuOpen = CFile::modeCreate | CFile::modeWrite | CFile::typeText;
-	if (pApp->GetProfileInt(_T("Logging"), _T("Continuous"), FALSE)) {
+	if (pApp->GetProfileInt(_T("Logging"), _T("Continuous"), FALSE))
+	{
 		fuOpen |= CFile::modeNoTruncate;
 	}
-	if (fileLog.Open(g_strLogName, fuOpen, &xcpt)) {
-		try {
+	if (fileLog.Open(g_strLogName, fuOpen, &xcpt))
+	{
+		try
+		{
 			fileLog.SeekToEnd();
 			strBegin.LoadString(IDS_LOG_BEGIN);
 			fileLog.WriteString(strBegin);
 			fileLog.Close();
 		}
-		catch (CFileException* pXcpt) {
+		catch (CFileException* pXcpt)
+		{
 			// simple clean-up
 			pXcpt->Delete();
 		}
@@ -74,7 +78,8 @@ void LogFile_WriteEntryV(LOG_LEVEL eLevel, LPCTSTR pszFormat, va_list argList)
 	CStdioFile fileLog;
 	CFileException xcpt;
 
-	if (eLevel <= g_eLogLevel) {
+	if (eLevel <= g_eLogLevel)
+	{
 		// this entry should be written
 		CString strTime = CTime::GetCurrentTime().Format(_T("%d.%m.%Y %H:%M:%S"));
 		strTemp.FormatV(pszFormat, argList);
@@ -83,16 +88,20 @@ void LogFile_WriteEntryV(LOG_LEVEL eLevel, LPCTSTR pszFormat, va_list argList)
 		strEntry.Format(_T("%s\t%s\n"), static_cast<LPCTSTR>(strTime), static_cast<LPCTSTR>(strTemp));
 		CSingleLock singleLock(&g_csLogging);
 		singleLock.Lock();
-		if (singleLock.IsLocked()) {
+		if (singleLock.IsLocked())
+		{
 			// log file has been locked
 			enum { fuOpen = CFile::modeWrite | CFile::typeText };
-			if (fileLog.Open(g_strLogName, fuOpen, &xcpt)) {
-				try {
+			if (fileLog.Open(g_strLogName, fuOpen, &xcpt))
+			{
+				try
+				{
 					fileLog.SeekToEnd();
 					fileLog.WriteString(strEntry);
 					fileLog.Close();
 				}
-				catch (CFileException* pXcpt) {
+				catch (CFileException* pXcpt)
+				{
 					// simple clean-up
 					pXcpt->Delete();
 				}
@@ -121,7 +130,8 @@ void LogFile_WriteEntry(LOG_LEVEL eLevel, UINT idsFormat, ...)
 	CString strFormat;
 	va_list argList;
 
-	if (strFormat.LoadString(idsFormat)) {
+	if (strFormat.LoadString(idsFormat))
+	{
 		va_start(argList, idsFormat);
 		LogFile_WriteEntryV(eLevel, strFormat, argList);
 		va_end(argList);
@@ -136,22 +146,26 @@ int LogFile_WriteDbgRpt(int /*fnType*/, char* pszMessage, int* /*pnRetVal*/)
 	CStdioFile fileLog;
 	CFileException xcpt;
 
-	if (g_eLogLevel > LL_NONE) {
+	if (g_eLogLevel > LL_NONE)
+	{
 		// some logging is enbaled
 		CSingleLock singleLock(&g_csLogging);
 		singleLock.Lock();
 		if (singleLock.IsLocked()) {
 			// log file has been locked
 			enum { fuOpen = CFile::modeWrite | CFile::typeText };
-			if (fileLog.Open(g_strLogName, fuOpen, &xcpt)) {
-				try {
+			if (fileLog.Open(g_strLogName, fuOpen, &xcpt))
+			{
+				try
+				{
 					fileLog.SeekToEnd();
 					CString strTemp(A2T(pszMessage));
 					strTemp.Replace(_T("\r\n"), _T("\n"));
 					fileLog.WriteString(strTemp);
 					fileLog.Close();
 				}
-				catch (CFileException* pXcpt) {
+				catch (CFileException* pXcpt)
+				{
 					// simple clean-up
 					pXcpt->Delete();
 				}
