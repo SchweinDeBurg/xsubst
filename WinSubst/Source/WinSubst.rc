@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "Resource.h"
 
@@ -27,18 +27,18 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "Resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "\r\n"
     "// English (U.S.) resources\r\n"
@@ -63,14 +63,13 @@ END
 #endif    // APSTUDIO_INVOKED
 
 
-#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,2800,17
+ FILEVERSION 1,0,3839,29
  PRODUCTVERSION 1,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -86,18 +85,16 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "Comments", "none\0"
-            VALUE "CompanyName", "Spb Software House\0"
-            VALUE "FileDescription", "WinSubst executable module\0"
-            VALUE "FileVersion", "1.0.2800\0"
-            VALUE "InternalName", "WinSubst\0"
-            VALUE "LegalCopyright", "Copyright © 2004-2005 by Elijah Zarezky\0"
-            VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation\0"
-            VALUE "OriginalFilename", "WinSubst.exe\0"
-            VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "xsubst\0"
-            VALUE "ProductVersion", "1.0.0\0"
-            VALUE "SpecialBuild", "\0"
+            VALUE "Comments", "none"
+            VALUE "CompanyName", "Spb Software House"
+            VALUE "FileDescription", "WinSubst executable module"
+            VALUE "FileVersion", "1.0.3839"
+            VALUE "InternalName", "WinSubst"
+            VALUE "LegalCopyright", "Copyright © 2004-2007 by Elijah Zarezky"
+            VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation"
+            VALUE "OriginalFilename", "WinSubst.exe"
+            VALUE "ProductName", "xsubst"
+            VALUE "ProductVersion", "1.0.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -105,8 +102,6 @@ BEGIN
         VALUE "Translation", 0x409, 1200
     END
 END
-
-#endif    // !_MAC
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -116,8 +111,8 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_APP_ICON            ICON    DISCARDABLE     "BinRes\\AppIcon.ico"
-IDI_DRIVE_ICON          ICON    DISCARDABLE     "BinRes\\DriveIcon.ico"
+IDI_APP_ICON            ICON                    "BinRes\\AppIcon.ico"
+IDI_DRIVE_ICON          ICON                    "BinRes\\DriveIcon.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -125,7 +120,7 @@ IDI_DRIVE_ICON          ICON    DISCARDABLE     "BinRes\\DriveIcon.ico"
 //
 
 IDD_MAIN DIALOGEX 0, 0, 306, 178
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "WinSubst"
 FONT 8, "Tahoma", 0, 0, 0x1
 BEGIN
@@ -144,8 +139,8 @@ BEGIN
     PUSHBUTTON      "E&xit",IDC_BUTTON_EXIT,254,158,48,16,WS_GROUP
 END
 
-IDD_ABOUT DIALOG DISCARDABLE  0, 0, 144, 74
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_ABOUT DIALOG  0, 0, 144, 74
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About"
 FONT 8, "Tahoma"
 BEGIN
@@ -156,8 +151,8 @@ BEGIN
     DEFPUSHBUTTON   "Close",IDOK,96,54,44,16
 END
 
-IDD_SUBST DIALOG DISCARDABLE  0, 0, 234, 74
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_SUBST DIALOG  0, 0, 234, 74
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 FONT 8, "Tahoma"
 BEGIN
     RTEXT           "&Drive:",IDC_STATIC,4,8,22,12,SS_CENTERIMAGE
@@ -177,7 +172,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO 
 BEGIN
     IDD_MAIN, DIALOG
     BEGIN
@@ -211,7 +206,7 @@ END
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_SUBST_DRIVE         "Drive"
     IDS_SUBST_PATH          "Path"
@@ -232,7 +227,7 @@ BEGIN
     IDS_SERVICE_UNKNOWN_STATE "Warning! The %s service is in unknown state."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_NEW_SUBST           "New substitution"
     IDS_CHANGE_SUBST        "Change substitution"

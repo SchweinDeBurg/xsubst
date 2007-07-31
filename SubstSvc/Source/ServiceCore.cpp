@@ -1,5 +1,5 @@
 // SubstSvc NT service.
-// Copyright (c) 2004-2005 by Elijah Zarezky,
+// Copyright (c) 2004-2007 by Elijah Zarezky,
 // All rights reserved.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,7 +61,7 @@ static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(ATL::CRegKey&, LPCTSTR, LPC
 	if (regKey.Create(HKEY_CURRENT_USER, strKeyName) == ERROR_SUCCESS)
 	{
 		LogFile_WriteEntry(LL_MINIMAL, IDS_REGKEY_OPENED, static_cast<LPCTSTR>(strRegistryKey));
-		
+
 		// pass #1 - collect substitutions
 		BOOL fHasValue = TRUE;
 		for (int i = 0; fHasValue; ++i)
@@ -90,7 +90,7 @@ static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(ATL::CRegKey&, LPCTSTR, LPC
 				// what the shit is that?!
 			}
 		}
-		
+
 		// pass #2 - invoke callback for each substitution
 		int cNumDrives = 0;
 		POSITION pos = mapSubsts.GetStartPosition();
