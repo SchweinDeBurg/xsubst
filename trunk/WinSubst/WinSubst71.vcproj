@@ -13,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="MBCS Release|Win32"
-			OutputDirectory="71_ReleaseA"
-			IntermediateDirectory="71_ReleaseA"
+			OutputDirectory="Output\x86\Release\MBCS"
+			IntermediateDirectory="Output\x86\Release\MBCS\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -30,7 +30,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="71_ReleaseA\WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -51,10 +51,6 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\ReleaseA/WinSubst.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -79,8 +75,8 @@
 		</Configuration>
 		<Configuration
 			Name="Unicode Release|Win32"
-			OutputDirectory="71_ReleaseW"
-			IntermediateDirectory="71_ReleaseW"
+			OutputDirectory="Output\x86\Release\Unicode"
+			IntermediateDirectory="Output\x86\Release\Unicode\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -96,7 +92,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="71_ReleaseW\WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -107,7 +103,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="71_ReleaseW\WinSubst.exe"
+				OutputFile="$(OutDir)/WinSubst.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -117,10 +113,6 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\ReleaseW/WinSubst.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -145,8 +137,8 @@
 		</Configuration>
 		<Configuration
 			Name="MBCS Debug|Win32"
-			OutputDirectory="71_DebugA"
-			IntermediateDirectory="71_DebugA"
+			OutputDirectory="Output\x86\Debug\MBCS"
+			IntermediateDirectory="Output\x86\Debug\MBCS\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -163,7 +155,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="71_DebugA\WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -175,22 +167,18 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="71_DebugA\WinSubst.exe"
+				OutputFile="$(OutDir)/WinSubst.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="71_DebugA\WinSubst.pdb"
+				ProgramDatabaseFile="$(OutDir)/WinSubst.pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\DebugA/WinSubst.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -215,8 +203,8 @@
 		</Configuration>
 		<Configuration
 			Name="Unicode Debug|Win32"
-			OutputDirectory="71_DebugW"
-			IntermediateDirectory="71_DebugW"
+			OutputDirectory="Output\x86\Debug\Unicode"
+			IntermediateDirectory="Output\x86\Debug\Unicode\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -233,7 +221,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="71_DebugW\WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -245,22 +233,18 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="71_DebugW\WinSubst.exe"
+				OutputFile="$(OutDir)/WinSubst.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="71_DebugW\WinSubst.pdb"
+				ProgramDatabaseFile="$(OutDir)/WinSubst.pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName=".\DebugW/WinSubst.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
