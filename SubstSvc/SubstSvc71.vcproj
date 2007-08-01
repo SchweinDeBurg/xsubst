@@ -13,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="Unicode Release|Win32"
-			OutputDirectory="71_ReleaseW"
-			IntermediateDirectory="71_ReleaseW"
+			OutputDirectory="Output\x86\Release\Unicode"
+			IntermediateDirectory="Output\x86\Release\Unicode\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -30,7 +30,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="71_ReleaseW\SubstSvc.pch"
+				PrecompiledHeaderFile="$(IntDir)/SubstSvc.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="71_ReleaseW\SubstSvc.exe"
+				OutputFile="$(OutDir)/SubstSvc.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -50,7 +50,7 @@
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\ReleaseW/SubstSvc.tlb"
+				PreprocessorDefinitions="NDEBUG"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -75,8 +75,8 @@
 		</Configuration>
 		<Configuration
 			Name="MBCS Release|Win32"
-			OutputDirectory="71_ReleaseA"
-			IntermediateDirectory="71_ReleaseA"
+			OutputDirectory="Output\x86\Release\MBCS"
+			IntermediateDirectory="Output\x86\Release\MBCS\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -92,7 +92,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="71_ReleaseA\SubstSvc.pch"
+				PrecompiledHeaderFile="$(IntDir)/SubstSvc.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -103,7 +103,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="71_ReleaseA\SubstSvc.exe"
+				OutputFile="$(OutDir)/SubstSvc.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -112,7 +112,7 @@
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\ReleaseA/SubstSvc.tlb"
+				PreprocessorDefinitions="NDEBUG"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -137,8 +137,8 @@
 		</Configuration>
 		<Configuration
 			Name="MBCS Debug|Win32"
-			OutputDirectory="71_DebugA"
-			IntermediateDirectory="71_DebugA"
+			OutputDirectory="Output\x86\Debug\MBCS"
+			IntermediateDirectory="Output\x86\Debug\MBCS\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -155,7 +155,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="71_DebugA\SubstSvc.pch"
+				PrecompiledHeaderFile="$(IntDir)/SubstSvc.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -167,18 +167,18 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="71_DebugA\SubstSvc.exe"
+				OutputFile="$(OutDir)/SubstSvc.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="71_DebugA\SubstSvc.pdb"
+				ProgramDatabaseFile="$(OutDir)/SubstSvc.pdb"
 				SubSystem="1"
 				OptimizeReferences="2"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\DebugA/SubstSvc.tlb"
+				PreprocessorDefinitions="_DEBUG"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -203,8 +203,8 @@
 		</Configuration>
 		<Configuration
 			Name="Unicode Debug|Win32"
-			OutputDirectory="71_DebugW"
-			IntermediateDirectory="71_DebugW"
+			OutputDirectory="Output\x86\Debug\Unicode"
+			IntermediateDirectory="Output\x86\Debug\Unicode\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -221,7 +221,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="71_DebugW\SubstSvc.pch"
+				PrecompiledHeaderFile="$(IntDir)/SubstSvc.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -233,18 +233,18 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="71_DebugW\SubstSvc.exe"
+				OutputFile="$(OutDir)/SubstSvc.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="71_DebugW\SubstSvc.pdb"
+				ProgramDatabaseFile="$(OutDir)/SubstSvc.pdb"
 				SubSystem="1"
 				OptimizeReferences="2"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\DebugW/SubstSvc.tlb"
+				PreprocessorDefinitions="_DEBUG"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>

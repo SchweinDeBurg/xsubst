@@ -70,8 +70,8 @@ begin
 end;
 
 [Files]
-Source: ".\WinSubst\71_ReleaseW\WinSubst.exe"; DestDir: "{app}"; Components: core
-Source: ".\SubstSvc\71_ReleaseW\SubstSvc.exe"; DestDir: "{app}"; Components: core; Check: StopService
+Source: ".\WinSubst\Output\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"; Components: core
+Source: ".\SubstSvc\Output\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Components: core; Check: StopService
 Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Components: core; Flags: ignoreversion
 Source: ".\Redist\mfc71u.dll"; DestDir: "{app}"; Components: runtimes
 Source: ".\Redist\msvcr71.dll"; DestDir: "{app}"; Components: runtimes
