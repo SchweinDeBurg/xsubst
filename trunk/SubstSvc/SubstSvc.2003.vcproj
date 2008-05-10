@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="WinSubst"
-	ProjectGUID="{BB18E23B-EED9-4DFD-A55E-72F9F43AEA9E}"
+	Name="SubstSvc"
+	ProjectGUID="{2399102F-9EA3-4FCE-9A51-98B361A9E8C9}"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
@@ -12,25 +12,25 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="MBCS Release|Win32"
-			OutputDirectory="Output\x86\Release\MBCS"
-			IntermediateDirectory="Output\x86\Release\MBCS\OBJ"
+			Name="Unicode Release|Win32"
+			OutputDirectory="Output.2003\x86\Release\Unicode"
+			IntermediateDirectory="Output.2003\x86\Release\Unicode\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_AFXDLL;_USE_NON_INTEL_COMPILER"
+				PreprocessorDefinitions="NDEBUG;UNICODE;WIN32;_CONSOLE;_AFXDLL;_USE_NON_INTEL_COMPILER"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)/SubstSvc.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -41,11 +41,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile=".\ReleaseA/WinSubst.exe"
+				OutputFile="$(OutDir)/SubstSvc.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				SubSystem="2"
+				SubSystem="1"
 				OptimizeReferences="2"
 				TargetMachine="1"/>
 			<Tool
@@ -74,25 +74,25 @@
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Unicode Release|Win32"
-			OutputDirectory="Output\x86\Release\Unicode"
-			IntermediateDirectory="Output\x86\Release\Unicode\OBJ"
+			Name="MBCS Release|Win32"
+			OutputDirectory="Output.2003\x86\Release\MBCS"
+			IntermediateDirectory="Output.2003\x86\Release\MBCS\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="1">
+			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				PreprocessorDefinitions="NDEBUG;UNICODE;WIN32;_WINDOWS;_AFXDLL;_USE_NON_INTEL_COMPILER"
+				PreprocessorDefinitions="NDEBUG;WIN32;_CONSOLE;_AFXDLL;_USE_NON_INTEL_COMPILER"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				StructMemberAlignment="3"
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)/SubstSvc.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -103,11 +103,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="$(OutDir)/WinSubst.exe"
+				OutputFile="$(OutDir)/SubstSvc.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				SubSystem="2"
+				SubSystem="1"
 				OptimizeReferences="2"
 				TargetMachine="1"/>
 			<Tool
@@ -137,8 +137,8 @@
 		</Configuration>
 		<Configuration
 			Name="MBCS Debug|Win32"
-			OutputDirectory="Output\x86\Debug\MBCS"
-			IntermediateDirectory="Output\x86\Debug\MBCS\OBJ"
+			OutputDirectory="Output.2003\x86\Debug\MBCS"
+			IntermediateDirectory="Output.2003\x86\Debug\MBCS\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -147,7 +147,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				InlineFunctionExpansion="1"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_AFXDLL;_USE_NON_INTEL_COMPILER"
+				PreprocessorDefinitions="_DEBUG;WIN32;_CONSOLE;_AFXDLL;_USE_NON_INTEL_COMPILER"
 				StringPooling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -155,7 +155,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)/SubstSvc.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -167,13 +167,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="$(OutDir)/WinSubst.exe"
+				OutputFile="$(OutDir)/SubstSvc.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/WinSubst.pdb"
-				SubSystem="2"
+				ProgramDatabaseFile="$(OutDir)/SubstSvc.pdb"
+				SubSystem="1"
 				OptimizeReferences="2"
 				TargetMachine="1"/>
 			<Tool
@@ -203,8 +203,8 @@
 		</Configuration>
 		<Configuration
 			Name="Unicode Debug|Win32"
-			OutputDirectory="Output\x86\Debug\Unicode"
-			IntermediateDirectory="Output\x86\Debug\Unicode\OBJ"
+			OutputDirectory="Output.2003\x86\Debug\Unicode"
+			IntermediateDirectory="Output.2003\x86\Debug\Unicode\OBJ"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -213,7 +213,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				InlineFunctionExpansion="1"
-				PreprocessorDefinitions="_DEBUG;UNICODE;WIN32;_WINDOWS;_AFXDLL;_USE_NON_INTEL_COMPILER"
+				PreprocessorDefinitions="_DEBUG;UNICODE;WIN32;_CONSOLE;_AFXDLL;_USE_NON_INTEL_COMPILER"
 				StringPooling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -221,7 +221,7 @@
 				EnableFunctionLevelLinking="TRUE"
 				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
-				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)/SubstSvc.pch"
 				AssemblerListingLocation=""
 				ObjectFile="$(IntDir)/"
 				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
@@ -233,13 +233,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/OPT:NOWIN98 /IGNORE:4089"
-				OutputFile="$(OutDir)/WinSubst.exe"
+				OutputFile="$(OutDir)/SubstSvc.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/WinSubst.pdb"
-				SubSystem="2"
+				ProgramDatabaseFile="$(OutDir)/SubstSvc.pdb"
+				SubSystem="1"
 				OptimizeReferences="2"
 				TargetMachine="1"/>
 			<Tool
@@ -275,9 +275,9 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath="Source\AboutDialog.cpp">
+				RelativePath="Source\EntryPoint.cpp">
 				<FileConfiguration
-					Name="MBCS Release|Win32">
+					Name="Unicode Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -286,7 +286,7 @@
 						PrecompiledHeaderThrough="stdafx.h"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Unicode Release|Win32">
+					Name="MBCS Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -316,7 +316,16 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Source\MainDialog.cpp">
+				RelativePath="Source\ExecLogging.cpp">
+				<FileConfiguration
+					Name="Unicode Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="3"
+						PrecompiledHeaderThrough="stdafx.h"/>
+				</FileConfiguration>
 				<FileConfiguration
 					Name="MBCS Release|Win32">
 					<Tool
@@ -327,7 +336,39 @@
 						PrecompiledHeaderThrough="stdafx.h"/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="MBCS Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="3"
+						PrecompiledHeaderThrough="stdafx.h"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="3"
+						PrecompiledHeaderThrough="stdafx.h"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Source\ServiceCore.cpp">
+				<FileConfiguration
 					Name="Unicode Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="3"
+						PrecompiledHeaderThrough="stdafx.h"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="MBCS Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -359,7 +400,7 @@
 			<File
 				RelativePath="Source\stdafx.cpp">
 				<FileConfiguration
-					Name="MBCS Release|Win32">
+					Name="Unicode Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -368,7 +409,7 @@
 						PrecompiledHeaderThrough="stdafx.h"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Unicode Release|Win32">
+					Name="MBCS Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -398,16 +439,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Source\SubstDialog.cpp">
-				<FileConfiguration
-					Name="MBCS Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="3"
-						PrecompiledHeaderThrough="stdafx.h"/>
-				</FileConfiguration>
+				RelativePath="Source\SubstSvcApp.cpp">
 				<FileConfiguration
 					Name="Unicode Release|Win32">
 					<Tool
@@ -418,80 +450,7 @@
 						PrecompiledHeaderThrough="stdafx.h"/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="MBCS Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-						UsePrecompiledHeader="3"
-						PrecompiledHeaderThrough="stdafx.h"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-						UsePrecompiledHeader="3"
-						PrecompiledHeaderThrough="stdafx.h"/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="Source\SubstsList.cpp">
-				<FileConfiguration
 					Name="MBCS Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="3"
-						PrecompiledHeaderThrough="stdafx.h"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="3"
-						PrecompiledHeaderThrough="stdafx.h"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="MBCS Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-						UsePrecompiledHeader="3"
-						PrecompiledHeaderThrough="stdafx.h"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-						UsePrecompiledHeader="3"
-						PrecompiledHeaderThrough="stdafx.h"/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="Source\WinSubstApp.cpp">
-				<FileConfiguration
-					Name="MBCS Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="3"
-						PrecompiledHeaderThrough="stdafx.h"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="1"
@@ -525,25 +484,19 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="Source\AboutDialog.h">
-			</File>
-			<File
-				RelativePath="Source\MainDialog.h">
+				RelativePath="Source\ExecLogging.h">
 			</File>
 			<File
 				RelativePath="Source\Resource.h">
 			</File>
 			<File
+				RelativePath="Source\ServiceInterop.h">
+			</File>
+			<File
 				RelativePath="Source\stdafx.h">
 			</File>
 			<File
-				RelativePath="Source\SubstDialog.h">
-			</File>
-			<File
-				RelativePath="Source\SubstsList.h">
-			</File>
-			<File
-				RelativePath="Source\WinSubstApp.h">
+				RelativePath="Source\SubstSvcApp.h">
 			</File>
 		</Filter>
 		<Filter
@@ -553,22 +506,19 @@
 				RelativePath="Source\BinRes\AppIcon.ico">
 			</File>
 			<File
-				RelativePath="Source\BinRes\DriveIcon.ico">
-			</File>
-			<File
-				RelativePath="Source\WinSubst.rc">
-				<FileConfiguration
-					Name="MBCS Release|Win32">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Source"/>
-				</FileConfiguration>
+				RelativePath="Source\SubstSvc.rc">
 				<FileConfiguration
 					Name="Unicode Release|Win32">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						AdditionalIncludeDirectories="Source"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="MBCS Release|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Source"/>
 				</FileConfiguration>
 				<FileConfiguration

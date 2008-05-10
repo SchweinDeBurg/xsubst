@@ -1,17 +1,17 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AfxGadgets", "..\Repository\AfxGadgets\AfxGadgets71.vcproj", "{6B7749EE-74DF-496C-9EBE-0E6C73CAA50B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AfxGadgets", "..\Repository\AfxGadgets\AfxGadgets.2003.vcproj", "{6B7749EE-74DF-496C-9EBE-0E6C73CAA50B}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeProject", "..\Repository\CodeProject\CodeProject71.vcproj", "{55F49127-D37F-4C01-861A-55ACC3A71242}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeProject", "..\Repository\CodeProject\CodeProject.2003.vcproj", "{55F49127-D37F-4C01-861A-55ACC3A71242}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SubstSvc", "SubstSvc\SubstSvc71.vcproj", "{2399102F-9EA3-4FCE-9A51-98B361A9E8C9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SubstSvc", "SubstSvc\SubstSvc.2003.vcproj", "{2399102F-9EA3-4FCE-9A51-98B361A9E8C9}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinSubst", "WinSubst\WinSubst71.vcproj", "{BB18E23B-EED9-4DFD-A55E-72F9F43AEA9E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinSubst", "WinSubst\WinSubst.2003.vcproj", "{BB18E23B-EED9-4DFD-A55E-72F9F43AEA9E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{55F49127-D37F-4C01-861A-55ACC3A71242} = {55F49127-D37F-4C01-861A-55ACC3A71242}
 		{2399102F-9EA3-4FCE-9A51-98B361A9E8C9} = {2399102F-9EA3-4FCE-9A51-98B361A9E8C9}
