@@ -70,19 +70,22 @@ begin
 end;
 
 [Files]
-Source: ".\WinSubst\Output\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"; Components: core
-Source: ".\SubstSvc\Output\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Components: core; Check: StopService
+Source: ".\WinSubst\Output.2003\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"; Components: core
+Source: ".\SubstSvc\Output.2003\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Components: core; Check: StopService
 Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Components: core; Flags: ignoreversion
+
 Source: ".\Redist\mfc71u.dll"; DestDir: "{app}"; Components: runtimes
+Source: "..\Redist\mfc71enu.dll"; DestDir: "{app}"; Components: runtimes; Flags: ignoreversion
 Source: ".\Redist\msvcr71.dll"; DestDir: "{app}"; Components: runtimes
-Source: "..\Repository\AfxGadgets\AfxGadgets71.vcproj"; DestDir: "{app}\Sources\Repository\AfxGadgets"; Components: sources; Flags: ignoreversion
+
+Source: "..\Repository\AfxGadgets\AfxGadgets.2003.vcproj"; DestDir: "{app}\Sources\Repository\AfxGadgets"; Components: sources; Flags: ignoreversion
 Source: "..\Repository\AfxGadgets\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\Repository\AfxGadgets\Source"; Components: sources; Flags: ignoreversion
-Source: "..\Repository\CodeProject\CodeProject71.vcproj"; DestDir: "{app}\Sources\Repository\CodeProject"; Components: sources; Flags: ignoreversion
+Source: "..\Repository\CodeProject\CodeProject.2003.vcproj"; DestDir: "{app}\Sources\Repository\CodeProject"; Components: sources; Flags: ignoreversion
 Source: "..\Repository\CodeProject\Help\*"; Excludes: ".svn"; DestDir: "{app}\Sources\Repository\CodeProject\Help"; Components: sources; Flags: ignoreversion
 Source: "..\Repository\CodeProject\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\Repository\CodeProject\Source"; Components: sources; Flags: ignoreversion
-Source: ".\SubstSvc\SubstSvc71.vcproj"; DestDir: "{app}\Sources\xsubst\SubstSvc"; Components: sources; Flags: ignoreversion
+Source: ".\SubstSvc\SubstSvc.2003.vcproj"; DestDir: "{app}\Sources\xsubst\SubstSvc"; Components: sources; Flags: ignoreversion
 Source: ".\SubstSvc\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\SubstSvc\Source"; Components: sources; Flags: ignoreversion recursesubdirs
-Source: ".\WinSubst\WinSubst71.vcproj"; DestDir: "{app}\Sources\xsubst\WinSubst"; Components: sources; Flags: ignoreversion
+Source: ".\WinSubst\WinSubst.2003.vcproj"; DestDir: "{app}\Sources\xsubst\WinSubst"; Components: sources; Flags: ignoreversion
 Source: ".\WinSubst\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Source"; Components: sources; Flags: ignoreversion recursesubdirs
 Source: ".\xsubst71.sln"; DestDir: "{app}\Sources\xsubst"; Components: sources; Flags: ignoreversion
 

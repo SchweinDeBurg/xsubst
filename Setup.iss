@@ -59,10 +59,11 @@ begin
 end;
 
 [Files]
-Source: ".\WinSubst\Output\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"
-Source: ".\SubstSvc\Output\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Check: StopService
+Source: ".\WinSubst\Output.2003\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"
+Source: ".\SubstSvc\Output.2003\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Check: StopService
 Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\Redist\mfc71u.dll"; DestDir: "{app}"
+Source: "..\Redist\mfc71enu.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\Redist\msvcr71.dll"; DestDir: "{app}"
 
 [Icons]
