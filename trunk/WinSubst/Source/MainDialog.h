@@ -1,5 +1,5 @@
 // WinSubst application.
-// Copyright (c) 2004-2007 by Elijah Zarezky,
+// Copyright (c) 2004-2008 by Elijah Zarezky,
 // All rights reserved.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@
 
 #if defined(_MSC_VER) && (_MSC_VER > 1000)
 #pragma once
-#endif	// _MSC_VER
+#endif   // _MSC_VER
 
 class CMainDialog: public CDialog
 {
@@ -77,6 +77,6 @@ public:
 #endif
 };
 
-#endif	// __MainDialog_h
+#endif   // __MainDialog_h
 
 // end of file

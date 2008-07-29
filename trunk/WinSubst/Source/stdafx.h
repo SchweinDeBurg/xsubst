@@ -1,5 +1,5 @@
 // WinSubst application.
-// Copyright (c) 2004-2007 by Elijah Zarezky,
+// Copyright (c) 2004-2008 by Elijah Zarezky,
 // All rights reserved.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,10 @@
 
 #if defined(_MSC_VER) && (_MSC_VER > 1000)
 #pragma once
-#endif	// _MSC_VER
+#endif   // _MSC_VER
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// unwanted warnings
 
 // unreferenced inline/local function has been removed
 #pragma warning(disable: 4514)
@@ -33,37 +36,56 @@
 // identifier was truncated in the debug information
 #pragma warning(disable: 4786)
 
-#define WINVER 0x0500
-#define _WIN32_WINNT 0x0500
+// C4996: function or variable may be unsafe
+#define _CRT_SECURE_NO_WARNINGS
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// use WinXP/IE6 features
+
+#define WINVER 0x0501
+#define _WIN32_WINDOWS 0x0500
+#define _WIN32_IE 0x0600
+#define _WIN32_WINNT 0x0501
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// MFC headers
 
 #if (_MSC_VER >= 1300)
 #define _ATL_DISABLE_DEPRECATED
-#endif	// _MSC_VER
+#endif   // _MSC_VER
 
-// MFC headers
-#include <afxwin.h>			// MFC core and standard components
-#include <afxcmn.h>			// MFC common control classes
+#include <afxwin.h>        // MFC core and standard components
+#include <afxcmn.h>        // MFC common control classes
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 // ATL headers
+
 #include <atlbase.h>
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 // PSDK headers
-#include <shlobj.h>
-#include <shlwapi.h>			// light-weight utility APIs
 
+#include <shlobj.h>
+#include <shlwapi.h>       // light-weight utility APIs
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 // additional headers
+
 #include "../../SubstSvc/Source/ServiceInterop.h"
 #include "../../../Repository/AfxGadgets/Source/SortingListCtrl.h"
 #include "../../../Repository/AfxGadgets/Source/Win32Error.h"
 #include "../../../Repository/CodeProject/Source/FolderDlg.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// some tricks
 
 // force ISO/IEC 14882 conformance in for loop scope
 #if (_MSC_VER < 1300)
 #define for if (false); else for
 #else
 #pragma conform(forScope, on)
-#endif	// _MSC_VER
+#endif   // _MSC_VER
 
-#endif	// __stdafx_h
+#endif   // __stdafx_h
 
 // end of file

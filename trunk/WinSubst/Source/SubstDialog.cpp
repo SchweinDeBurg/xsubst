@@ -1,5 +1,5 @@
 // WinSubst application.
-// Copyright (c) 2004-2007 by Elijah Zarezky,
+// Copyright (c) 2004-2008 by Elijah Zarezky,
 // All rights reserved.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,25 +16,46 @@
 
 // SubstDialog.cpp - implementation of the CSubstDialog class
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// PCH includes
+
 #include "stdafx.h"
-#include "SubstDialog.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// resource includes
+
 #include "Resource.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// other includes
+
+#include "SubstDialog.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// debugging support
 
 #if defined(_DEBUG)
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
-#endif	// _DEBUG
+#endif   // _DEBUG
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 // object model
+
 IMPLEMENT_DYNAMIC(CSubstDialog, CDialog)
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 // message map
+
 BEGIN_MESSAGE_MAP(CSubstDialog, CDialog)
 	ON_WM_CTLCOLOR()
 	ON_EN_CHANGE(IDC_EDIT_PATH, OnEditPathChange)
 	ON_BN_CLICKED(IDC_BUTTON_BROWSE, OnButtonBrowse)
 END_MESSAGE_MAP()
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// construction/destruction
 
 CSubstDialog::CSubstDialog(CWnd* pParentWnd):
 CDialog(IDD_SUBST, pParentWnd)
@@ -46,6 +67,9 @@ CDialog(IDD_SUBST, pParentWnd)
 CSubstDialog::~CSubstDialog(void)
 {
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// overridables
 
 BOOL CSubstDialog::OnInitDialog(void)
 {
@@ -109,6 +133,9 @@ void CSubstDialog::OnOK(void)
 	CDialog::OnOK();
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// message map functions
+
 HBRUSH CSubstDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT uCtlColor)
 {
 	HBRUSH hbr;
@@ -148,12 +175,16 @@ void CSubstDialog::OnButtonBrowse(void)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// diagnostic services
+
 #if defined(_DEBUG)
 
 void CSubstDialog::AssertValid(void) const
 {
 	// first perform inherited validity check...
 	CDialog::AssertValid();
+
 	// ...and then verify our own state as well
 	ASSERT_VALID(&m_comboDrive);
 	ASSERT_VALID(&m_editPath);
@@ -165,6 +196,7 @@ void CSubstDialog::Dump(CDumpContext& dumpCtx) const
 	{
 		// first invoke inherited dumper...
 		CDialog::Dump(dumpCtx);
+
 		// ...and then dump own unique members
 		dumpCtx << "m_szDrive = " << m_szDrive;
 		dumpCtx << "\nm_comboDrive = " << m_comboDrive;
@@ -178,6 +210,6 @@ void CSubstDialog::Dump(CDumpContext& dumpCtx) const
 	}
 }
 
-#endif	// _DEBUG
+#endif   // _DEBUG
 
 // end of file

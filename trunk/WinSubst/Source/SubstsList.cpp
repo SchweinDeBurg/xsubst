@@ -1,5 +1,5 @@
 // WinSubst application.
-// Copyright (c) 2004-2007 by Elijah Zarezky,
+// Copyright (c) 2004-2008 by Elijah Zarezky,
 // All rights reserved.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,23 +16,44 @@
 
 // SubstsList.cpp - implementation of the CSubstsList class
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// PCH includes
+
 #include "stdafx.h"
-#include "SubstsList.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// resource includes
+
 #include "Resource.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// other includes
+
+#include "SubstsList.h"
 #include "MainDialog.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// debugging support
 
 #if defined(_DEBUG)
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
-#endif	// _DEBUG
+#endif   // _DEBUG
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 // object model
+
 IMPLEMENT_DYNAMIC(CSubstsList, CSortingListCtrl)
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 // message map
+
 BEGIN_MESSAGE_MAP(CSubstsList, CSortingListCtrl)
 END_MESSAGE_MAP()
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// construction/destruction
 
 CSubstsList::CSubstsList(void)
 {
@@ -41,6 +62,9 @@ CSubstsList::CSubstsList(void)
 CSubstsList::~CSubstsList(void)
 {
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// operations
 
 void CSubstsList::InsertColumns(void)
 {
@@ -147,6 +171,9 @@ void CSubstsList::InsertRegItems(void)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// overridables
+
 int CSubstsList::CompareItems(int iItemLhs, int iItemRhs)
 {
 	CString strTextLhs;
@@ -164,12 +191,16 @@ int CSubstsList::CompareItems(int iItemLhs, int iItemRhs)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// diagnostic services
+
 #if defined(_DEBUG)
 
 void CSubstsList::AssertValid(void) const
 {
 	// first perform inherited validity check...
 	CSortingListCtrl::AssertValid();
+
 	// ...and then verify our own state as well
 }
 
@@ -179,6 +210,7 @@ void CSubstsList::Dump(CDumpContext& dumpCtx) const
 	{
 		// first invoke inherited dumper...
 		CSortingListCtrl::Dump(dumpCtx);
+
 		// ...and then dump own unique members
 	}
 	catch (CFileException* pXcpt)
@@ -188,6 +220,6 @@ void CSubstsList::Dump(CDumpContext& dumpCtx) const
 	}
 }
 
-#endif	// _DEBUG
+#endif   // _DEBUG
 
 // end of file

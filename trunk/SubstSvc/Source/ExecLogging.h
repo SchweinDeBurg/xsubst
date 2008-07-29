@@ -1,5 +1,5 @@
 // SubstSvc NT service.
-// Copyright (c) 2004-2007 by Elijah Zarezky,
+// Copyright (c) 2004-2008 by Elijah Zarezky,
 // All rights reserved.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,9 +24,11 @@
 
 #if defined(_MSC_VER) && (_MSC_VER > 1000)
 #pragma once
-#endif	// _MSC_VER
+#endif   // _MSC_VER
 
-// logging level
+//////////////////////////////////////////////////////////////////////////////////////////////
+// logging levels
+
 enum LOG_LEVEL
 {
 	LL_NONE		= 0,
@@ -35,11 +37,14 @@ enum LOG_LEVEL
 	LL_VERBOSE	= 3
 };
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// logging functions
+
 void LogFile_Create(LPCTSTR pszFileName);
 void LogFile_WriteEntry(LOG_LEVEL eLevel, LPCTSTR pszFormat, ...);
 void LogFile_WriteEntry(LOG_LEVEL eLevel, UINT idsFormat, ...);
 int LogFile_WriteDbgRpt(int fnType, char* pszMessage, int* pnRetVal);
 
-#endif	// __ExecLogging_h
+#endif   // __ExecLogging_h
 
 // end of file
