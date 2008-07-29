@@ -1,5 +1,5 @@
 // WinSubst application.
-// Copyright (c) 2004-2007 by Elijah Zarezky,
+// Copyright (c) 2004-2008 by Elijah Zarezky,
 // All rights reserved.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,23 +16,44 @@
 
 // AboutDialog.cpp - implementation of the CAboutDialog class
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// PCH includes
+
 #include "stdafx.h"
-#include "AboutDialog.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// resource includes
+
 #include "Resource.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// other includes
+
+#include "AboutDialog.h"
 #include "WinSubstApp.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// debugging support
 
 #if defined(_DEBUG)
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #define new DEBUG_NEW
-#endif	// _DEBUG
+#endif   // _DEBUG
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 // object model
+
 IMPLEMENT_DYNAMIC(CAboutDialog, CDialog)
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 // message map
+
 BEGIN_MESSAGE_MAP(CAboutDialog, CDialog)
 END_MESSAGE_MAP()
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// construction/destruction
 
 CAboutDialog::CAboutDialog(CWnd* pParentWnd):
 CDialog(IDD_ABOUT, pParentWnd)
@@ -42,6 +63,9 @@ CDialog(IDD_ABOUT, pParentWnd)
 CAboutDialog::~CAboutDialog(void)
 {
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// overridables
 
 BOOL CAboutDialog::OnInitDialog(void)
 {
@@ -61,12 +85,16 @@ BOOL CAboutDialog::OnInitDialog(void)
 	return (TRUE);
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// diagnostic services
+
 #if defined(_DEBUG)
 
 void CAboutDialog::AssertValid(void) const
 {
 	// first perform inherited validity check...
 	CDialog::AssertValid();
+
 	// ...and then verify our own state as well
 }
 
@@ -76,6 +104,7 @@ void CAboutDialog::Dump(CDumpContext& dumpCtx) const
 	{
 		// first invoke inherited dumper...
 		CDialog::Dump(dumpCtx);
+
 		// ...and then dump own unique members
 	}
 	catch (CFileException* pXcpt)
@@ -85,6 +114,6 @@ void CAboutDialog::Dump(CDumpContext& dumpCtx) const
 	}
 }
 
-#endif	// _DEBUG
+#endif   // _DEBUG
 
 // end of file
