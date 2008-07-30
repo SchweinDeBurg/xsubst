@@ -1,0 +1,365 @@
+<?xml version="1.0"?>
+
+<!--
+
+xsubst utility.
+Copyright (c) 2004-2008 by Elijah Zarezky,
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+xsubst.2008.build - NAnt script to build release
+
+-->
+
+<project
+	name="xsubst"
+	default="rebuild-all"
+	basedir=".\">
+
+	<description>xsubst application build script.</description>
+
+	<!-- GLOBAL PROJECT PROPERTIES -->
+
+	<!-- default build configuration -->
+
+	<property
+		name="CharacterSet"
+		value="Unicode"
+		overwrite="false"/>
+	<property
+		name="BuildType"
+		value="Release"
+		overwrite="false"/>
+	<property
+		name="TargetPlatform"
+		value="Win32"/>
+	<property
+		name="SolutionConfig"
+		value="${CharacterSet} ${BuildType}|${TargetPlatform}"/>
+
+	<!-- version numbers and names -->
+
+	<property
+		name="VerMajor"
+		value="0"
+		overwrite="false"/>
+	<property
+		name="VerMinor"
+		value="0"
+		overwrite="false"/>
+	<property
+		name="VerBuild"
+		value="0"
+		overwrite="false"/>
+	<property
+		name="SvnRev"
+		value="0"
+		overwrite="false"/>
+
+	<!-- TARGETS -->
+
+	<!-- 'verify-ver' target -->
+
+	<target
+		name="verify-ver"
+		description="Verify version numbers and names.">
+		<echo message="Verifying version numbers and names..."/>
+		<echo/>
+		<if test="${VerMajor == '0'}">
+			<fail message="Major version number isn't specified."/>
+		</if>
+		<if test="${VerMinor == '0'}">
+			<fail message="Minor version number isn't specified."/>
+		</if>
+		<if test="${VerBuild == '0'}">
+			<fail message="Build number isn't specified."/>
+		</if>
+		<if test="${SvnRev == '0'}">
+			<fail message="Revision number isn't specified."/>
+		</if>
+		<echo message="Version is: ${VerMajor}.${VerMinor}.${VerBuild}.${SvnRev}"/>
+	</target>
+
+	<!-- 'stamp-ver' target -->
+
+	<target
+		name="stamp-ver"
+		description="Stamp version numbers."
+		depends="verify-ver">
+		
+		<echo message="Writing version numbers..."/>
+		<echo/>
+
+		<!-- manifests -->
+
+		<copy
+			file="SubstSvc\Source\Manifest.xml.nant"
+			tofile="SubstSvc\Source\Manifest.xml"
+			overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="VER_MAJOR" value="${VerMajor}"/>
+					<token key="VER_MINOR" value="${VerMinor}"/>
+					<token key="VER_BUILD" value="${VerBuild}"/>
+					<token key="SVN_REV" value="${SvnRev}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+
+		<copy
+			file="WinSubst\Source\Manifest.xml.nant"
+			tofile="WinSubst\Source\Manifest.xml"
+			overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="VER_MAJOR" value="${VerMajor}"/>
+					<token key="VER_MINOR" value="${VerMinor}"/>
+					<token key="VER_BUILD" value="${VerBuild}"/>
+					<token key="SVN_REV" value="${SvnRev}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+
+		<!-- VERSIONINFOs -->
+
+		<copy
+			file="SubstSvc\Source\VersionInfo.rc.nant"
+			tofile="SubstSvc\Source\VersionInfo.rc"
+			overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="VER_MAJOR" value="${VerMajor}"/>
+					<token key="VER_MINOR" value="${VerMinor}"/>
+					<token key="VER_BUILD" value="${VerBuild}"/>
+					<token key="SVN_REV" value="${SvnRev}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+		
+		<touch
+			file="SubstSvc\Source\SubstSvc.rc"
+			datetime="${datetime::now()}"/>
+
+		<copy
+			file="WinSubst\Source\VersionInfo.rc.nant"
+			tofile="WinSubst\Source\VersionInfo.rc"
+			overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="VER_MAJOR" value="${VerMajor}"/>
+					<token key="VER_MINOR" value="${VerMinor}"/>
+					<token key="VER_BUILD" value="${VerBuild}"/>
+					<token key="SVN_REV" value="${SvnRev}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+
+		<touch
+			file="WinSubst\Source\WinSubst.rc"
+			datetime="${datetime::now()}"/>
+
+		<!-- Inno Setup scripts -->
+
+		<copy
+			file="Setup.iss.nant"
+			tofile="Setup.iss"
+			overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="VER_MAJOR" value="${VerMajor}"/>
+					<token key="VER_MINOR" value="${VerMinor}"/>
+					<token key="VER_BUILD" value="${VerBuild}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+		
+		<copy
+			file="SetupUniversal.iss.nant"
+			tofile="SetupUniversal.iss"
+			overwrite="true">
+			<filterchain>
+				<replacetokens>
+					<token key="VER_MAJOR" value="${VerMajor}"/>
+					<token key="VER_MINOR" value="${VerMinor}"/>
+					<token key="VER_BUILD" value="${VerBuild}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+	
+	</target>
+		
+	<!-- 'build-sln' target -->
+
+	<target
+		name="build-sln"
+		description="Build xsubst solution."
+		depends="stamp-ver">
+		<exec
+			program="vcbuild.exe"
+			commandline="xsubst.2008.sln &quot;${SolutionConfig}&quot;">
+		</exec>
+	</target>
+
+	<!-- 'rebuild-sln' target -->
+
+	<target
+		name="rebuild-sln"
+		description="Rebuild xsubst solution."
+		depends="clean-sln,build-sln">
+		<echo message="xsubst solution rebuilt."/>
+	</target>
+
+	<!-- 'create-distr' target -->
+
+	<target
+		name="create-distr"
+		description="Create setup packages."
+		depends="build-sln,clean-distr">
+		<mkdir
+			dir="Setup"
+			if="${not directory::exists('Setup')}"/>
+		<echo message="Creating standard installer."/>
+		<echo/>
+		<exec
+			program="iscc.exe"
+			commandline="Setup.iss">
+		</exec>
+		<echo/>
+		<echo/>
+		<echo message="Creating universal installer."/>
+		<echo/>
+		<exec
+			program="iscc.exe"
+			commandline="SetupUniversal.iss">
+		</exec>
+	</target>
+
+	<!-- 'zip-distr' target -->
+
+	<target
+		name="zip-distr"
+		description="Create ZIPped setup packages."
+		depends="create-distr,clean-zip">
+		<exec
+			program="7z.exe"
+			workingdir="Setup">
+			<arg line="a -tzip -mm=Deflate -mx7 -bd"/>
+			<arg value="xsubst-${VerMajor}.${VerMinor}.${VerBuild}-setup.zip"/>
+			<arg value="xsubst-${VerMajor}.${VerMinor}.${VerBuild}-setup.exe"/>
+		</exec>
+		<exec
+			program="7z.exe"
+			workingdir="Setup">
+			<arg line="a -tzip -mm=Deflate -mx7 -bd"/>
+			<arg value="xsubst-${VerMajor}.${VerMinor}.${VerBuild}-setup-universal.zip"/>
+			<arg value="xsubst-${VerMajor}.${VerMinor}.${VerBuild}-setup-universal.exe"/>
+		</exec>
+	</target>
+
+	<!-- 'commit-src' target -->
+
+	<target
+		name="commit-src"
+		description="Commit sources to the SVN repository.">
+		<if test="${property::exists('CommitMsg')}">
+			<exec
+				program="svn.exe"
+				commandline="commit --message &quot;${CommitMsg}&quot;">
+			</exec>
+		</if>
+	</target>
+
+	<!-- 'export-src' target -->
+
+	<target
+		name="export-src"
+		description="Export sources from the working copy.">
+		<if test="${property::exists('ExportDir')}">
+			<exec
+				program="svn.exe"
+				commandline="export .\ &quot;${ExportDir}\xsubst&quot;">
+			</exec>
+			<exec
+				program="7z.exe"
+				workingdir="${ExportDir}">
+				<arg line="a -tzip -mm=Deflate -mx7 -bd"/>
+				<arg value="xsubst.zip"/>
+				<arg value="xsubst"/>
+			</exec>
+			<delete dir="${ExportDir}\xsubst"/>
+		</if>
+	</target>
+
+	<!-- 'build-all' target -->
+
+	<target
+		name="build-all"
+		description="Build entire xsubst project."
+		depends="build-sln,create-distr,zip-distr">
+	</target>
+
+	<!-- 'rebuild-all' target -->
+
+	<target
+		name="rebuild-all"
+		description="Rebuild entire xsubst project."
+		depends="rebuild-sln,create-distr,zip-distr">
+	</target>
+
+	<!-- 'clean-sln' target -->
+
+	<target
+		name="clean-sln"
+		description="Clean xsubst solution.">
+		<exec
+			program="vcbuild.exe"
+			commandline="xsubst.2008.sln /clean &quot;${SolutionConfig}&quot;">
+		</exec>
+	</target>
+
+	<!-- 'clean-distr' target -->
+
+	<target
+		name="clean-distr"
+		description="Delete setup packages.">
+		<delete
+			if="${directory::exists('Setup')}">
+			<fileset>
+				<include name="Setup\*.exe"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- 'clean-zip' target -->
+
+	<target
+		name="clean-zip"
+		description="Delete ZIPped setup packages.">
+		<delete
+			if="${directory::exists('Setup')}">
+			<fileset>
+				<include name="Setup\*.zip"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- 'clean-all' target -->
+
+	<target
+		name="clean-all"
+		description="Delete all built files."
+		depends="clean-sln,clean-distr,clean-zip">
+	</target>
+
+</project>

@@ -1,5 +1,5 @@
 ;; xsubst utility.
-;; Copyright (c) 2004-2005 by Elijah Zarezky,
+;; Copyright (c) 2004-2008 by Elijah Zarezky,
 ;; All rights reserved.
 
 ;; Licensed under the Apache License, Version 2.0 (the "License");
@@ -74,11 +74,11 @@ Source: ".\Redist\Microsoft.VC90.CRT\msvcp90.dll"; DestDir: "{app}\Microsoft.VC9
 Source: ".\Redist\Microsoft.VC90.CRT\msvcm90.dll"; DestDir: "{app}\Microsoft.VC90.CRT"; MinVersion: 0,5.01.2600
 Source: ".\Redist\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest"; DestDir: "{app}\Microsoft.VC90.CRT"; MinVersion: 0,5.01.2600
 
-Source: ".\Redist\Microsoft.VC90.MFC\mfc90.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
-Source: ".\Redist\Microsoft.VC90.MFC\mfcm90.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
+Source: ".\Redist\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
+Source: ".\Redist\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
 
-Source: ".\Redist\Microsoft.VC90.MFC\mfc90.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
-Source: ".\Redist\Microsoft.VC90.MFC\mfcm90.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
+Source: ".\Redist\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
+Source: ".\Redist\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
 Source: ".\Redist\Microsoft.VC90.MFC\Microsoft.VC90.MFC.manifest"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
 
 Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90enu.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion

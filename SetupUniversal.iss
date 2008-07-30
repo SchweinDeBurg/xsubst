@@ -1,5 +1,5 @@
 ;; xsubst utility.
-;; Copyright (c) 2004-2005 by Elijah Zarezky,
+;; Copyright (c) 2004-2008 by Elijah Zarezky,
 ;; All rights reserved.
 
 ;; Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,21 +19,21 @@
 
 [Setup]
 AppName=xsubst
-AppVerName=xsubst 1.0.3839
+AppVerName=xsubst 1.1.4350
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
 AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
-AppVersion=1.0.3839
+AppVersion=1.1.4350
 DefaultDirName={pf}\PowerGadgets\xsubst
 DefaultGroupName=PowerGadgets\xsubst
 AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
 OutputDir=.\Setup
-OutputBaseFilename=xsubst-1.0.3839-setup-universal
-VersionInfoVersion=1.0.3839
+OutputBaseFilename=xsubst-1.1.4350-setup-universal
+VersionInfoVersion=1.1.4350
 MinVersion=0,5.0.2195
 PrivilegesRequired=admin
 WizardImageFile=compiler:WizModernImage-IS.bmp
@@ -85,11 +85,11 @@ Source: ".\Redist\Microsoft.VC90.CRT\msvcp90.dll"; DestDir: "{app}\Microsoft.VC9
 Source: ".\Redist\Microsoft.VC90.CRT\msvcm90.dll"; DestDir: "{app}\Microsoft.VC90.CRT"; MinVersion: 0,5.01.2600
 Source: ".\Redist\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest"; DestDir: "{app}\Microsoft.VC90.CRT"; MinVersion: 0,5.01.2600
 
-Source: ".\Redist\Microsoft.VC90.MFC\mfc90.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
-Source: ".\Redist\Microsoft.VC90.MFC\mfcm90.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
+Source: ".\Redist\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
+Source: ".\Redist\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
 
-Source: ".\Redist\Microsoft.VC90.MFC\mfc90.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
-Source: ".\Redist\Microsoft.VC90.MFC\mfcm90.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
+Source: ".\Redist\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
+Source: ".\Redist\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
 Source: ".\Redist\Microsoft.VC90.MFC\Microsoft.VC90.MFC.manifest"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
 
 Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90enu.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
@@ -115,6 +115,7 @@ Source: ".\WinSubst\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\
 Source: ".\Redist\*"; Excludes: ".svn"; DestDir: "{app}\Sources\xsubst\Redist"; Components: sources; Flags: ignoreversion recursesubdirs
 
 Source: ".\xsubst.2008.sln"; DestDir: "{app}\Sources\xsubst"; Components: sources; Flags: ignoreversion
+Source: ".\xsubst.2008.build"; DestDir: "{app}\Sources\xsubst"; Components: sources; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"

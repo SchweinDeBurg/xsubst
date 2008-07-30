@@ -102,7 +102,7 @@ FONT 8, "Tahoma", 0, 0, 0x0
 BEGIN
     ICON            IDI_APP_ICON,IDC_STATIC,4,4,20,20
     LTEXT           "",IDC_STATIC_TITLE,32,4,136,10
-    LTEXT           "Copyright © 2004-2007 by Elijah Zarezky\nAll rights reserved",
+    LTEXT           "Copyright © 2004-2008 by Elijah Zarezky\nAll rights reserved",
                     IDC_STATIC,32,14,136,18
     DEFPUSHBUTTON   "Close",IDOK,124,54,44,16
 END
