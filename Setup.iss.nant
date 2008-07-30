@@ -14,26 +14,26 @@
 ;; See the License for the specific language governing permissions and
 ;; limitations under the License.
 
-;; SetupUniversal.iss - setup script for Inno Setup compiler
+;; Setup.iss - setup script for Inno Setup compiler
 ;; NOTE that this file is generated automatically by NAnt.exe
 
 [Setup]
 AppName=xsubst
-AppVerName=xsubst 1.0.3839
+AppVerName=xsubst @VER_MAJOR@.@VER_MINOR@.@VER_BUILD@
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
 AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
-AppVersion=1.0.3839
+AppVersion=@VER_MAJOR@.@VER_MINOR@.@VER_BUILD@
 DefaultDirName={pf}\PowerGadgets\xsubst
 DefaultGroupName=PowerGadgets\xsubst
 AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
 OutputDir=.\Setup
-OutputBaseFilename=xsubst-1.0.3839-setup-universal
-VersionInfoVersion=1.0.3839
+OutputBaseFilename=xsubst-@VER_MAJOR@.@VER_MINOR@.@VER_BUILD@-setup
+VersionInfoVersion=@VER_MAJOR@.@VER_MINOR@.@VER_BUILD@
 MinVersion=0,5.0.2195
 PrivilegesRequired=admin
 WizardImageFile=compiler:WizModernImage-IS.bmp
@@ -43,17 +43,6 @@ LicenseFile=ApacheLicense.rtf
 [LangOptions]
 DialogFontName=Tahoma
 DialogFontSize=8
-
-[Types]
-Name: "typical"; Description: "Typical Installation"
-Name: "compact"; Description: "Compact Installation"
-Name: "full"; Description: "Full Installation"
-Name: "custom"; Description: "Custom Installation"; Flags: iscustom
-
-[Components]
-Name: "core"; Description: "xsubst Core Files"; Types: compact typical full custom; Flags: fixed
-Name: "runtimes"; Description: "Application Runtimes"; Types: typical full custom
-Name: "sources"; Description: "Source Code"; Types: full custom
 
 [Code]
 procedure CleanupHKCU();
@@ -71,10 +60,10 @@ begin
 end;
 
 [Files]
-Source: ".\WinSubst\Output.2008\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"; Components: core
-Source: ".\SubstSvc\Output.2008\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Components: core; Check: StopService
+Source: ".\WinSubst\Output.2008\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"
+Source: ".\SubstSvc\Output.2008\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Check: StopService
 
-Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Components: core; Flags: ignoreversion
+Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: ".\Redist\Microsoft.VC90.CRT\msvcr90.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
 Source: ".\Redist\Microsoft.VC90.CRT\msvcp90.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
@@ -99,27 +88,9 @@ Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90enu.dll"; DestDir: "{app}\Microsoft
 Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90rus.dll"; DestDir: "{app}\Microsoft.VC90.MFC\Microsoft.VC90.MFCLOC"; MinVersion: 0,5.01.2600
 Source: ".\Redist\Microsoft.VC90.MFCLOC\Microsoft.VC90.MFCLOC.manifest"; DestDir: "{app}\Microsoft.VC90.MFC\Microsoft.VC90.MFCLOC"; MinVersion: 0,5.01.2600
 
-Source: "..\Repository\AfxGadgets\AfxGadgets.2008.vcproj"; DestDir: "{app}\Sources\Repository\AfxGadgets"; Components: sources; Flags: ignoreversion
-Source: "..\Repository\AfxGadgets\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\Repository\AfxGadgets\Source"; Components: sources; Flags: ignoreversion
-
-Source: "..\Repository\CodeProject\CodeProject.2008.vcproj"; DestDir: "{app}\Sources\Repository\CodeProject"; Components: sources; Flags: ignoreversion
-Source: "..\Repository\CodeProject\Help\*"; Excludes: ".svn"; DestDir: "{app}\Sources\Repository\CodeProject\Help"; Components: sources; Flags: ignoreversion
-Source: "..\Repository\CodeProject\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\Repository\CodeProject\Source"; Components: sources; Flags: ignoreversion
-
-Source: ".\SubstSvc\SubstSvc.2008.vcproj"; DestDir: "{app}\Sources\xsubst\SubstSvc"; Components: sources; Flags: ignoreversion
-Source: ".\SubstSvc\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\SubstSvc\Source"; Components: sources; Flags: ignoreversion recursesubdirs
-
-Source: ".\WinSubst\WinSubst.2008.vcproj"; DestDir: "{app}\Sources\xsubst\WinSubst"; Components: sources; Flags: ignoreversion
-Source: ".\WinSubst\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Source"; Components: sources; Flags: ignoreversion recursesubdirs
-
-Source: ".\Redist\*"; Excludes: ".svn"; DestDir: "{app}\Sources\xsubst\Redist"; Components: sources; Flags: ignoreversion recursesubdirs
-
-Source: ".\xsubst.2008.sln"; DestDir: "{app}\Sources\xsubst"; Components: sources; Flags: ignoreversion
-
 [Icons]
 Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"
 Name: "{group}\xsubst on the Web"; Filename: "{app}\xsubst.url"
-Name: "{group}\Build xsubst"; FileName: "{app}\Sources\xsubst\xsubst.2008.sln"; Components: sources
 Name: "{group}\xsubst License"; Filename: "{app}\ApacheLicense.rtf"
 Name: "{group}\Uninstall xsubst"; Filename: "{uninstallexe}"
 Name: "{userdesktop}\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: desktopicon

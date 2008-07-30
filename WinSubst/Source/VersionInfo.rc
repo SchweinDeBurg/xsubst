@@ -15,7 +15,7 @@
 // limitations under the License.
 
 // VersionInfo.rc - version information resource
-// NOTE that this file is generated automatically by munge.exe
+// NOTE that this file is generated automatically by NAnt.exe
 
 #include <winver.h>
 
