@@ -19,26 +19,27 @@
 
 [Setup]
 AppName=xsubst
-AppVerName=xsubst 1.1.4350
+AppVerName=xsubst 1.1.4387
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
 AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
-AppVersion=1.1.4350
+AppVersion=1.1.4387
 DefaultDirName={pf}\PowerGadgets\xsubst
 DefaultGroupName=PowerGadgets\xsubst
 AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
 OutputDir=.\Setup
-OutputBaseFilename=xsubst-1.1.4350-setup-universal
-VersionInfoVersion=1.1.4350
+OutputBaseFilename=xsubst-1.1.4387-setup-universal
+VersionInfoVersion=1.1.4387
 MinVersion=0,5.0.2195
 PrivilegesRequired=admin
 WizardImageFile=compiler:WizModernImage-IS.bmp
 WizardSmallImageFile=compiler:WizModernSmallImage-IS.bmp
 LicenseFile=ApacheLicense.rtf
+AppMutex=WinSubst.Instance.326F8F0D-E321-4832-B29F-08542F06BCB9
 
 [LangOptions]
 DialogFontName=Tahoma
@@ -121,7 +122,7 @@ Source: ".\xsubst.2008.build"; DestDir: "{app}\Sources\xsubst"; Components: sour
 Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"
 Name: "{group}\xsubst on the Web"; Filename: "{app}\xsubst.url"
 Name: "{group}\Build xsubst"; FileName: "{app}\Sources\xsubst\xsubst.2008.sln"; Components: sources
-Name: "{group}\xsubst License"; Filename: "{app}\ApacheLicense.rtf"
+Name: "{group}\License Agreement"; Filename: "{app}\ApacheLicense.rtf"
 Name: "{group}\Uninstall xsubst"; Filename: "{uninstallexe}"
 Name: "{userdesktop}\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: quicklaunchicon

@@ -39,6 +39,7 @@ PrivilegesRequired=admin
 WizardImageFile=compiler:WizModernImage-IS.bmp
 WizardSmallImageFile=compiler:WizModernSmallImage-IS.bmp
 LicenseFile=ApacheLicense.rtf
+AppMutex=WinSubst.Instance.326F8F0D-E321-4832-B29F-08542F06BCB9
 
 [LangOptions]
 DialogFontName=Tahoma
@@ -91,7 +92,7 @@ Source: ".\Redist\Microsoft.VC90.MFCLOC\Microsoft.VC90.MFCLOC.manifest"; DestDir
 [Icons]
 Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"
 Name: "{group}\xsubst on the Web"; Filename: "{app}\xsubst.url"
-Name: "{group}\xsubst License"; Filename: "{app}\ApacheLicense.rtf"
+Name: "{group}\License Agreement"; Filename: "{app}\ApacheLicense.rtf"
 Name: "{group}\Uninstall xsubst"; Filename: "{uninstallexe}"
 Name: "{userdesktop}\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: quicklaunchicon

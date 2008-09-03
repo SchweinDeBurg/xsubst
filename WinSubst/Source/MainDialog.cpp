@@ -90,6 +90,9 @@ m_dwSvcState(0)
 	HICON hIcon = pApp->LoadSmIcon(MAKEINTRESOURCE(IDI_DRIVE_ICON));
 	m_iDefIcon = m_imageList.Add(hIcon);
 	::DestroyIcon(hIcon);
+
+	// register our custom dialog-box window class
+	VERIFY(RegisterWindowClass() != NULL);
 }
 
 CMainDialog::~CMainDialog(void)
@@ -97,6 +100,17 @@ CMainDialog::~CMainDialog(void)
 	m_imageList.DeleteImageList();
 	::DestroyIcon(m_hSmIcon);
 	::DestroyIcon(m_hIcon);
+
+	UnregisterWindowClass();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// operations
+
+LPCTSTR CMainDialog::GetWindowClassName(void)
+{
+	static const TCHAR szClassName[] = _T("WinSubst_MainDialogClass_6E1A328F-F808-4861-8C67-04E6C89B954A");
+	return (szClassName);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -477,6 +491,28 @@ void CMainDialog::ControlService(DWORD dwCode)
 	}
 	::CloseServiceHandle(schService);
 	::CloseServiceHandle(schManager);
+}
+
+LRESULT CALLBACK CMainDialog::WindowClassProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	return (::DefDlgProc(hDlg, uMsg, wParam, lParam));
+}
+
+ATOM CMainDialog::RegisterWindowClass(void)
+{
+	WNDCLASS wcDialog = { 0 };
+	::GetClassInfo(NULL, _T("#32770"), &wcDialog);
+
+	wcDialog.lpfnWndProc = &CMainDialog::WindowClassProc;
+	wcDialog.hInstance = AfxGetInstanceHandle();
+	wcDialog.lpszClassName = GetWindowClassName();
+
+	return (::RegisterClass(&wcDialog));
+}
+
+BOOL CMainDialog::UnregisterWindowClass(void)
+{
+	return (::UnregisterClass(GetWindowClassName(), AfxGetInstanceHandle()));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////

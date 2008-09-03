@@ -20,7 +20,7 @@
 #include <winver.h>
 
 VS_VERSION_INFO VERSIONINFO
-   FILEVERSION 1,1,4350,36
+   FILEVERSION 1,1,4387,38
    PRODUCTVERSION 1,1,0,0
    FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
 #if defined(_DEBUG)
@@ -39,7 +39,7 @@ VS_VERSION_INFO VERSIONINFO
             VALUE "Comments", "none"
             VALUE "CompanyName", "Elijah Zarezky"
             VALUE "FileDescription", "SubstSvc executable module"
-            VALUE "FileVersion", "1.1.4350"
+            VALUE "FileVersion", "1.1.4387"
             VALUE "InternalName", "SubstSvc"
             VALUE "LegalCopyright", "Copyright © 2004–2008 by Elijah Zarezky"
             VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation"

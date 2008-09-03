@@ -34,8 +34,7 @@ END
 
 2 TEXTINCLUDE 
 BEGIN
-    "#include ""afxres.h""\r\n"
-    "\0"
+    "#include ""afxres.h""\r\0"
 END
 
 3 TEXTINCLUDE 
@@ -54,7 +53,7 @@ BEGIN
     "\r\n"
     "#include ""VersionInfo.rc""\r\n"
     "\r\n"
-    "#endif    // English (U.S.) resources\r\0"
+    "#endif    // English (U.S.) resource\0"
 END
 
 #endif    // APSTUDIO_INVOKED
@@ -78,20 +77,15 @@ IDI_DRIVE_ICON          ICON                    "BinRes\\DriveIcon.ico"
 IDD_MAIN DIALOGEX 0, 0, 306, 178
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "WinSubst"
+CLASS "WinSubst_MainDialogClass_6E1A328F-F808-4861-8C67-04E6C89B954A"
 FONT 8, "Tahoma", 0, 0, 0x1
 BEGIN
     GROUPBOX        "&Substitutions",IDC_STATIC,4,4,298,142,WS_GROUP
-    CONTROL         "List1",IDC_LIST_SUBSTS,"SysListView32",LVS_REPORT | 
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_GROUP | 
-                    WS_TABSTOP,10,16,286,102,WS_EX_CLIENTEDGE
-    PUSHBUTTON      "&New substitution...",IDC_BUTTON_NEW_SUBST,10,124,84,16,
-                    WS_GROUP
-    PUSHBUTTON      "&Change substitution...",IDC_BUTTON_CHANGE_SUBST,110,
-                    124,86,16
-    PUSHBUTTON      "&Delete substitution",IDC_BUTTON_DELETE_SUBST,212,124,
-                    84,16
-    CTEXT           "",IDC_TEXT_STATUS,4,158,240,16,SS_CENTERIMAGE | 
-                    SS_SUNKEN
+    CONTROL         "List1",IDC_LIST_SUBSTS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_GROUP | WS_TABSTOP,10,16,286,102,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "&New substitution...",IDC_BUTTON_NEW_SUBST,10,124,84,16,WS_GROUP
+    PUSHBUTTON      "&Change substitution...",IDC_BUTTON_CHANGE_SUBST,110,124,86,16
+    PUSHBUTTON      "&Delete substitution",IDC_BUTTON_DELETE_SUBST,212,124,84,16
+    CTEXT           "",IDC_TEXT_STATUS,4,158,240,16,SS_CENTERIMAGE | SS_SUNKEN
     PUSHBUTTON      "E&xit",IDC_BUTTON_EXIT,254,158,48,16,WS_GROUP
 END
 
@@ -102,8 +96,7 @@ FONT 8, "Tahoma", 0, 0, 0x0
 BEGIN
     ICON            IDI_APP_ICON,IDC_STATIC,4,4,20,20
     LTEXT           "",IDC_STATIC_TITLE,32,4,136,10
-    LTEXT           "Copyright © 2004-2008 by Elijah Zarezky\nAll rights reserved",
-                    IDC_STATIC,32,14,136,18
+    LTEXT           "Copyright © 2004-2008 by Elijah Zarezky\nAll rights reserved",IDC_STATIC,32,14,136,18
     DEFPUSHBUTTON   "Close",IDOK,124,54,44,16
 END
 
@@ -112,8 +105,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 FONT 8, "Tahoma"
 BEGIN
     RTEXT           "&Drive:",IDC_STATIC,4,8,22,12,SS_CENTERIMAGE
-    COMBOBOX        IDC_COMBO_DRIVE,28,8,34,64,CBS_DROPDOWNLIST | CBS_SORT | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_DRIVE,28,8,34,64,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     RTEXT           "&Path:",IDC_STATIC,4,26,22,12,SS_CENTERIMAGE
     EDITTEXT        IDC_EDIT_PATH,28,26,186,12,ES_AUTOHSCROLL | ES_READONLY
     PUSHBUTTON      "...",IDC_BUTTON_BROWSE,216,26,14,12,WS_GROUP
@@ -190,6 +182,7 @@ BEGIN
     IDS_NO_FREE_DRIVES      "No free drive letters found."
     IDS_CHOOSE_PATH         "Choose the folder:"
     IDS_DELETE_CONFIRM      "Are You sure You wish to delete this substitution?"
+    IDS_APP_INIT_FAILED     "Failed to initialize application.\nPlease contact to the developer."
 END
 
 #endif    // English (U.S.) resources
@@ -216,8 +209,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 #include "VersionInfo.rc"
 
-#endif    // English (U.S.) resources
-
+#endif    // English (U.S.) resource
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
 

@@ -37,6 +37,11 @@
 #include "MainDialog.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+// misc defines
+
+#define SZ_MUTEX_APP_INST_NAME _T("WinSubst.Instance.326F8F0D-E321-4832-B29F-08542F06BCB9")
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 // debugging support
 
 #if defined(_DEBUG)
@@ -59,7 +64,8 @@ END_MESSAGE_MAP()
 //////////////////////////////////////////////////////////////////////////////////////////////
 // construction/destruction
 
-CWinSubstApp::CWinSubstApp(void)
+CWinSubstApp::CWinSubstApp(void):
+m_hMutexAppInst(NULL)
 {
 }
 
@@ -103,9 +109,28 @@ void CWinSubstApp::GetVersionString(CString& strDest)
 
 BOOL CWinSubstApp::InitInstance(void)
 {
+	m_hMutexAppInst = ::CreateMutex(NULL, TRUE, SZ_MUTEX_APP_INST_NAME);
+	if (m_hMutexAppInst == NULL)
+	{
+		AfxMessageBox(IDS_APP_INIT_FAILED, MB_OK | MB_ICONSTOP);
+		return (FALSE);
+	}
+	else if (::GetLastError() == ERROR_ALREADY_EXISTS)
+	{
+		HWND hMainDialog = ::FindWindow(CMainDialog::GetWindowClassName(), NULL);
+		ASSERT(::IsWindow(hMainDialog));
+		::SetForegroundWindow(hMainDialog);
+		::CloseHandle(m_hMutexAppInst);
+		return (FALSE);
+	}
+
 	CMainDialog dlgMain;
 	m_pMainWnd = &dlgMain;
 	dlgMain.DoModal();
+	
+	::CloseHandle(m_hMutexAppInst);
+	m_hMutexAppInst = NULL;
+
 	return (FALSE);
 }
 
