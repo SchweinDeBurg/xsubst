@@ -24,6 +24,7 @@
 #define IDS_NO_FREE_DRIVES              18
 #define IDS_CHOOSE_PATH                 19
 #define IDS_DELETE_CONFIRM              20
+#define IDS_APP_INIT_FAILED             21
 #define IDD_MAIN                        101
 #define IDI_DRIVE_ICON                  102
 #define IDD_ABOUT                       103

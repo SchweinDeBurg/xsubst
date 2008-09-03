@@ -36,6 +36,10 @@ public:
 	CMainDialog(CWnd* pParentWnd = NULL);
 	virtual ~CMainDialog(void);
 
+// operations
+public:
+	static LPCTSTR GetWindowClassName(void);
+
 // overridables
 public:
 	virtual BOOL OnInitDialog(void);
@@ -68,6 +72,9 @@ public:
 private:
 	void GetSvcStateText(CString& strDest);
 	void ControlService(DWORD dwCode);
+	static LRESULT CALLBACK WindowClassProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
+	ATOM RegisterWindowClass(void);
+	BOOL UnregisterWindowClass(void);
 
 // diagnostic services
 #if defined(_DEBUG)

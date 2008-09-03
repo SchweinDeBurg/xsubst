@@ -45,6 +45,10 @@ public:
 public:
 	virtual BOOL InitInstance(void);
 
+// attributes
+public:
+	HANDLE m_hMutexAppInst;
+
 // diagnostic services
 #if defined(_DEBUG)
 public:
