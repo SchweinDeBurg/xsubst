@@ -1,5 +1,5 @@
 // WinSubst application.
-// Copyright (c) 2004-2008 by Elijah Zarezky,
+// Copyright (c) 2004-2009 by Elijah Zarezky,
 // All rights reserved.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -41,7 +41,7 @@ VS_VERSION_INFO VERSIONINFO
             VALUE "FileDescription", "WinSubst executable module"
             VALUE "FileVersion", "1.1.4387"
             VALUE "InternalName", "WinSubst"
-            VALUE "LegalCopyright", "Copyright © 2004–2008 by Elijah Zarezky"
+            VALUE "LegalCopyright", "Copyright © 2004–2009 by Elijah Zarezky"
             VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation"
             VALUE "OriginalFilename", "WinSubst.exe"
             VALUE "ProductName", "xsubst"
