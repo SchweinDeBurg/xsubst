@@ -19,7 +19,6 @@
 			OutputDirectory="Output.2008\x86\Release\MBCS"
 			IntermediateDirectory="Output.2008\x86\Release\MBCS\OBJ"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -52,10 +51,10 @@
 				EnableFunctionLevelLinking="true"
 				ForceConformanceInForLoopScope="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)\WinSubst.pch"
 				AssemblerListingLocation=""
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\vc70.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 			/>
@@ -112,7 +111,6 @@
 			OutputDirectory="Output.2008\x86\Release\Unicode"
 			IntermediateDirectory="Output.2008\x86\Release\Unicode\OBJ"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="1"
@@ -145,10 +143,10 @@
 				EnableFunctionLevelLinking="true"
 				ForceConformanceInForLoopScope="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)\WinSubst.pch"
 				AssemblerListingLocation=""
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\vc70.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 			/>
@@ -166,7 +164,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/IGNORE:4089"
-				OutputFile="$(OutDir)/WinSubst.exe"
+				OutputFile="$(OutDir)\WinSubst.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -205,7 +203,6 @@
 			OutputDirectory="Output.2008\x86\Debug\MBCS"
 			IntermediateDirectory="Output.2008\x86\Debug\MBCS\OBJ"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -239,10 +236,10 @@
 				EnableFunctionLevelLinking="true"
 				ForceConformanceInForLoopScope="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)\WinSubst.pch"
 				AssemblerListingLocation=""
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\vc70.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -261,12 +258,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/IGNORE:4089"
-				OutputFile="$(OutDir)/WinSubst.exe"
+				OutputFile="$(OutDir)\WinSubst.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/WinSubst.pdb"
+				ProgramDatabaseFile="$(OutDir)\WinSubst.pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -302,7 +299,6 @@
 			OutputDirectory="Output.2008\x86\Debug\Unicode"
 			IntermediateDirectory="Output.2008\x86\Debug\Unicode\OBJ"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="1"
@@ -336,10 +332,10 @@
 				EnableFunctionLevelLinking="true"
 				ForceConformanceInForLoopScope="true"
 				RuntimeTypeInfo="true"
-				PrecompiledHeaderFile="$(IntDir)/WinSubst.pch"
+				PrecompiledHeaderFile="$(IntDir)\WinSubst.pch"
 				AssemblerListingLocation=""
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/vc70.pdb"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\vc70.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -358,12 +354,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/IGNORE:4089"
-				OutputFile="$(OutDir)/WinSubst.exe"
+				OutputFile="$(OutDir)\WinSubst.exe"
 				Version="1.0"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/WinSubst.pdb"
+				ProgramDatabaseFile="$(OutDir)\WinSubst.pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -401,9 +397,10 @@
 		<Filter
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;r;odl;idl;hpj;bat"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="Source\AboutDialog.cpp"
+				RelativePath=".\Source\AboutDialog.cpp"
 				>
 				<FileConfiguration
 					Name="MBCS Release|Win32"
@@ -453,7 +450,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Source\MainDialog.cpp"
+				RelativePath=".\Source\MainDialog.cpp"
 				>
 				<FileConfiguration
 					Name="MBCS Release|Win32"
@@ -503,7 +500,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Source\stdafx.cpp"
+				RelativePath=".\Source\stdafx.cpp"
 				>
 				<FileConfiguration
 					Name="MBCS Release|Win32"
@@ -553,7 +550,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Source\SubstDialog.cpp"
+				RelativePath=".\Source\SubstDialog.cpp"
 				>
 				<FileConfiguration
 					Name="MBCS Release|Win32"
@@ -603,7 +600,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Source\SubstsList.cpp"
+				RelativePath=".\Source\SubstsList.cpp"
 				>
 				<FileConfiguration
 					Name="MBCS Release|Win32"
@@ -653,7 +650,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Source\WinSubstApp.cpp"
+				RelativePath=".\Source\WinSubstApp.cpp"
 				>
 				<FileConfiguration
 					Name="MBCS Release|Win32"
@@ -706,50 +703,52 @@
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="Source\AboutDialog.h"
+				RelativePath=".\Source\AboutDialog.h"
 				>
 			</File>
 			<File
-				RelativePath="Source\MainDialog.h"
+				RelativePath=".\Source\MainDialog.h"
 				>
 			</File>
 			<File
-				RelativePath="Source\Resource.h"
+				RelativePath=".\Source\Resource.h"
 				>
 			</File>
 			<File
-				RelativePath="Source\stdafx.h"
+				RelativePath=".\Source\stdafx.h"
 				>
 			</File>
 			<File
-				RelativePath="Source\SubstDialog.h"
+				RelativePath=".\Source\SubstDialog.h"
 				>
 			</File>
 			<File
-				RelativePath="Source\SubstsList.h"
+				RelativePath=".\Source\SubstsList.h"
 				>
 			</File>
 			<File
-				RelativePath="Source\WinSubstApp.h"
+				RelativePath=".\Source\WinSubstApp.h"
 				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath="Source\BinRes\AppIcon.ico"
+				RelativePath=".\Source\BinRes\AppIcon.ico"
 				>
 			</File>
 			<File
-				RelativePath="Source\BinRes\DriveIcon.ico"
+				RelativePath=".\Source\BinRes\DriveIcon.ico"
 				>
 			</File>
 			<File
-				RelativePath="Source\WinSubst.rc"
+				RelativePath=".\Source\WinSubst.rc"
 				>
 				<FileConfiguration
 					Name="MBCS Release|Win32"
