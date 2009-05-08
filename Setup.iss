@@ -26,8 +26,8 @@ AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
 AppVersion=1.1.4648
-DefaultDirName={pf}\PowerGadgets\xsubst
-DefaultGroupName=PowerGadgets\xsubst
+DefaultDirName={pf}\Elijah Zarezky\xsubst
+DefaultGroupName=Elijah Zarezky\xsubst
 AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
@@ -42,7 +42,7 @@ LicenseFile=ApacheLicense.rtf
 AppMutex=WinSubst.Instance.326F8F0D-E321-4832-B29F-08542F06BCB9
 
 [LangOptions]
-DialogFontName=Tahoma
+DialogFontName=Verdana
 DialogFontSize=8
 
 [Code]
@@ -60,34 +60,35 @@ begin
 	Result := true;
 end;
 
+[InstallDelete]
+;; from 1.0 release
+Type: files; Name: "{app}\msvcr71.dll"
+Type: files; Name: "{app}\mfc71u.dll"
+;; from 1.1 pre-release
+Type: filesandordirs; Name: "{app}\Microsoft.VC90.CRT"
+Type: filesandordirs; Name: "{app}\Microsoft.VC90.MFC"
+
 [Files]
+;; core application files
 Source: ".\WinSubst\Output.2008\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"
 Source: ".\SubstSvc\Output.2008\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Check: StopService
-
 Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: ".\Redist\Microsoft.VC90.CRT\msvcr90.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
-Source: ".\Redist\Microsoft.VC90.CRT\msvcp90.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
-Source: ".\Redist\Microsoft.VC90.CRT\msvcm90.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
+;; CRT redistributables
+Source: ".\Redist\Microsoft.VC90.CRT\msvcr90.dll"; DestDir: "{app}";
+Source: ".\Redist\Microsoft.VC90.CRT\msvcp90.dll"; DestDir: "{app}";
+Source: ".\Redist\Microsoft.VC90.CRT\msvcm90.dll"; DestDir: "{app}";
+Source: ".\Redist\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
 
-Source: ".\Redist\Microsoft.VC90.CRT\msvcr90.dll"; DestDir: "{app}\Microsoft.VC90.CRT"; MinVersion: 0,5.01.2600
-Source: ".\Redist\Microsoft.VC90.CRT\msvcp90.dll"; DestDir: "{app}\Microsoft.VC90.CRT"; MinVersion: 0,5.01.2600
-Source: ".\Redist\Microsoft.VC90.CRT\msvcm90.dll"; DestDir: "{app}\Microsoft.VC90.CRT"; MinVersion: 0,5.01.2600
-Source: ".\Redist\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest"; DestDir: "{app}\Microsoft.VC90.CRT"; MinVersion: 0,5.01.2600
+;; MFC library redistributables
+Source: ".\Redist\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}";
+Source: ".\Redist\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}";
+Source: ".\Redist\Microsoft.VC90.MFC\Microsoft.VC90.MFC.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
 
-Source: ".\Redist\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
-Source: ".\Redist\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
-
-Source: ".\Redist\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
-Source: ".\Redist\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
-Source: ".\Redist\Microsoft.VC90.MFC\Microsoft.VC90.MFC.manifest"; DestDir: "{app}\Microsoft.VC90.MFC"; MinVersion: 0,5.01.2600
-
-Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90enu.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
-Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90rus.dll"; DestDir: "{app}"; OnlyBelowVersion: 0,5.01.2600; Flags: ignoreversion
-
-Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90enu.dll"; DestDir: "{app}\Microsoft.VC90.MFC\Microsoft.VC90.MFCLOC"; MinVersion: 0,5.01.2600
-Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90rus.dll"; DestDir: "{app}\Microsoft.VC90.MFC\Microsoft.VC90.MFCLOC"; MinVersion: 0,5.01.2600
-Source: ".\Redist\Microsoft.VC90.MFCLOC\Microsoft.VC90.MFCLOC.manifest"; DestDir: "{app}\Microsoft.VC90.MFC\Microsoft.VC90.MFCLOC"; MinVersion: 0,5.01.2600
+;; MFC library localizations
+Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90enu.dll"; DestDir: "{app}";
+Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90rus.dll"; DestDir: "{app}";
+Source: ".\Redist\Microsoft.VC90.MFCLOC\Microsoft.VC90.MFCLOC.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
 
 [Icons]
 Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"
