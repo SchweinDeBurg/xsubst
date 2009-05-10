@@ -42,7 +42,7 @@ LicenseFile=ApacheLicense.rtf
 AppMutex=WinSubst.Instance.326F8F0D-E321-4832-B29F-08542F06BCB9
 
 [LangOptions]
-DialogFontName=Verdana
+DialogFontName=MS Shell Dlg 2
 DialogFontSize=8
 
 [Code]

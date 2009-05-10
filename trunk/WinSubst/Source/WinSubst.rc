@@ -7,8 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
-
+#include "afxres.h"
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
@@ -78,7 +77,7 @@ IDD_MAIN DIALOGEX 0, 0, 306, 178
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "WinSubst"
 CLASS "WinSubst_MainDialogClass_6E1A328F-F808-4861-8C67-04E6C89B954A"
-FONT 8, "Tahoma", 0, 0, 0x1
+FONT 8, "MS Shell Dlg 2", 0, 0, 0x1
 BEGIN
     GROUPBOX        "&Substitutions",IDC_STATIC,4,4,298,142,WS_GROUP
     CONTROL         "List1",IDC_LIST_SUBSTS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_GROUP | WS_TABSTOP,10,16,286,102,WS_EX_CLIENTEDGE
@@ -89,20 +88,20 @@ BEGIN
     PUSHBUTTON      "E&xit",IDC_BUTTON_EXIT,254,158,48,16,WS_GROUP
 END
 
-IDD_ABOUT DIALOGEX 0, 0, 172, 74
+IDD_ABOUT DIALOGEX 0, 0, 182, 74
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About"
-FONT 8, "Tahoma", 0, 0, 0x0
+FONT 8, "MS Shell Dlg 2", 0, 0, 0x0
 BEGIN
     ICON            IDI_APP_ICON,IDC_STATIC,4,4,20,20
-    LTEXT           "",IDC_STATIC_TITLE,32,4,136,10
-    LTEXT           "Copyright © 2004–2009 by Elijah Zarezky\nAll rights reserved",IDC_STATIC,32,14,136,18
-    DEFPUSHBUTTON   "Close",IDOK,124,54,44,16
+    LTEXT           "",IDC_STATIC_TITLE,32,4,144,10
+    LTEXT           "Copyright © 2004–2009 by Elijah Zarezky\nAll rights reserved",IDC_STATIC,32,14,144,18
+    DEFPUSHBUTTON   "Close",IDOK,134,54,44,16
 END
 
 IDD_SUBST DIALOG  0, 0, 234, 74
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-FONT 8, "Tahoma"
+FONT 8, "MS Shell Dlg 2"
 BEGIN
     RTEXT           "&Drive:",IDC_STATIC,4,8,22,12,SS_CENTERIMAGE
     COMBOBOX        IDC_COMBO_DRIVE,28,8,34,64,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
@@ -133,7 +132,7 @@ BEGIN
     IDD_ABOUT, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 165
+        RIGHTMARGIN, 175
         TOPMARGIN, 7
         BOTTOMMARGIN, 67
     END
