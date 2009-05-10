@@ -3,7 +3,7 @@
 <assemblyIdentity 
     version="@VER_MAJOR@.@VER_MINOR@.@VER_BUILD@.@SVN_REV@" 
     processorArchitecture="X86" 
-    name="Microsoft.Windows.WinSubst"
+    name="Elijah.Zarezky.WinSubst"
     type="win32" 
 /> 
 <description>WinSubst Application (part of the Power Gadgets collection)</description> 
