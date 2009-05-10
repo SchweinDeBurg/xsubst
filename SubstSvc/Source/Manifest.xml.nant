@@ -3,7 +3,7 @@
 <assemblyIdentity 
     version="@VER_MAJOR@.@VER_MINOR@.@VER_BUILD@.@SVN_REV@" 
     processorArchitecture="X86" 
-    name="Microsoft.Windows.SubstSvc"
+    name="Elijah.Zarezky.SubstSvc"
     type="win32" 
 /> 
 <description>SubstSvc NT service (part of the Power Gadgets collection)</description> 
