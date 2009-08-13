@@ -103,7 +103,7 @@ xsubst.2008.build - NAnt script to build release
 		<!-- manifests -->
 
 		<copy
-			file="SubstSvc\Source\Manifest.xml.nant"
+			file="SubstSvc\Templates\Manifest.xml"
 			tofile="SubstSvc\Source\Manifest.xml"
 			overwrite="true">
 			<filterchain>
@@ -117,7 +117,7 @@ xsubst.2008.build - NAnt script to build release
 		</copy>
 
 		<copy
-			file="WinSubst\Source\Manifest.xml.nant"
+			file="WinSubst\Templates\Manifest.xml"
 			tofile="WinSubst\Source\Manifest.xml"
 			overwrite="true">
 			<filterchain>
@@ -133,7 +133,7 @@ xsubst.2008.build - NAnt script to build release
 		<!-- VERSIONINFOs -->
 
 		<copy
-			file="SubstSvc\Source\VersionInfo.rc.nant"
+			file="SubstSvc\Templates\VersionInfo.rc"
 			tofile="SubstSvc\Source\VersionInfo.rc"
 			overwrite="true">
 			<filterchain>
@@ -151,7 +151,7 @@ xsubst.2008.build - NAnt script to build release
 			datetime="${datetime::now()}"/>
 
 		<copy
-			file="WinSubst\Source\VersionInfo.rc.nant"
+			file="WinSubst\Templates\VersionInfo.rc"
 			tofile="WinSubst\Source\VersionInfo.rc"
 			overwrite="true">
 			<filterchain>
@@ -171,8 +171,8 @@ xsubst.2008.build - NAnt script to build release
 		<!-- Inno Setup scripts -->
 
 		<copy
-			file="Setup.iss.nant"
-			tofile="Setup.iss"
+			file=".\Common\Templates\Setup.iss"
+			tofile=".\Common\Setup.iss"
 			overwrite="true">
 			<filterchain>
 				<replacetokens>
@@ -184,8 +184,8 @@ xsubst.2008.build - NAnt script to build release
 		</copy>
 		
 		<copy
-			file="SetupUniversal.iss.nant"
-			tofile="SetupUniversal.iss"
+			file=".\Common\Templates\SetupUniversal.iss"
+			tofile=".\Common\SetupUniversal.iss"
 			overwrite="true">
 			<filterchain>
 				<replacetokens>
