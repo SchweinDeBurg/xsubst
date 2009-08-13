@@ -19,21 +19,21 @@
 
 [Setup]
 AppName=xsubst
-AppVerName=xsubst 1.1.4778
+AppVerName=xsubst 1.1.4877
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
 AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
-AppVersion=1.1.4778
+AppVersion=1.1.4877
 DefaultDirName={pf}\Elijah Zarezky\xsubst
 DefaultGroupName=Elijah Zarezky\xsubst
 AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
-OutputDir=.\Setup
-OutputBaseFilename=xsubst-1.1.4778-setup
-VersionInfoVersion=1.1.4778
+OutputDir=..\Setup
+OutputBaseFilename=xsubst-1.1.4877-setup
+VersionInfoVersion=1.1.4877
 MinVersion=0,5.0.2195
 PrivilegesRequired=admin
 WizardImageFile=compiler:WizModernImage-IS.bmp
@@ -70,25 +70,25 @@ Type: filesandordirs; Name: "{app}\Microsoft.VC90.MFC"
 
 [Files]
 ;; core application files
-Source: ".\WinSubst\Output.2008\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"
-Source: ".\SubstSvc\Output.2008\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Check: StopService
+Source: "..\WinSubst\Output.2008\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"
+Source: "..\SubstSvc\Output.2008\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Check: StopService
 Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
 ;; CRT redistributables
-Source: ".\Redist\Microsoft.VC90.CRT\msvcr90.dll"; DestDir: "{app}";
-Source: ".\Redist\Microsoft.VC90.CRT\msvcp90.dll"; DestDir: "{app}";
-Source: ".\Redist\Microsoft.VC90.CRT\msvcm90.dll"; DestDir: "{app}";
-Source: ".\Redist\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
+Source: "..\Redist\Microsoft.VC90.CRT\msvcr90.dll"; DestDir: "{app}";
+Source: "..\Redist\Microsoft.VC90.CRT\msvcp90.dll"; DestDir: "{app}";
+Source: "..\Redist\Microsoft.VC90.CRT\msvcm90.dll"; DestDir: "{app}";
+Source: "..\Redist\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
 
 ;; MFC library redistributables
-Source: ".\Redist\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}";
-Source: ".\Redist\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}";
-Source: ".\Redist\Microsoft.VC90.MFC\Microsoft.VC90.MFC.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
+Source: "..\Redist\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}";
+Source: "..\Redist\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}";
+Source: "..\Redist\Microsoft.VC90.MFC\Microsoft.VC90.MFC.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
 
 ;; MFC library localizations
-Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90enu.dll"; DestDir: "{app}";
-Source: ".\Redist\Microsoft.VC90.MFCLOC\mfc90rus.dll"; DestDir: "{app}";
-Source: ".\Redist\Microsoft.VC90.MFCLOC\Microsoft.VC90.MFCLOC.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
+Source: "..\Redist\Microsoft.VC90.MFCLOC\mfc90enu.dll"; DestDir: "{app}";
+Source: "..\Redist\Microsoft.VC90.MFCLOC\mfc90rus.dll"; DestDir: "{app}";
+Source: "..\Redist\Microsoft.VC90.MFCLOC\Microsoft.VC90.MFCLOC.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
 
 [Icons]
 Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"

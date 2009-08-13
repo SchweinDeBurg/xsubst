@@ -232,7 +232,7 @@ xsubst.2008.build - NAnt script to build release
 		<echo/>
 		<exec
 			program="iscc.exe"
-			commandline="Setup.iss">
+			commandline=".\Common\Setup.iss">
 		</exec>
 		<echo/>
 		<echo/>
@@ -240,7 +240,7 @@ xsubst.2008.build - NAnt script to build release
 		<echo/>
 		<exec
 			program="iscc.exe"
-			commandline="SetupUniversal.iss">
+			commandline=".\Common\SetupUniversal.iss">
 		</exec>
 	</target>
 
@@ -306,6 +306,7 @@ xsubst.2008.build - NAnt script to build release
 		name="build-all"
 		description="Build entire xsubst project."
 		depends="build-sln,create-distr,zip-distr">
+		<echo message="xsubst all built."/>
 	</target>
 
 	<!-- 'rebuild-all' target -->
@@ -314,6 +315,7 @@ xsubst.2008.build - NAnt script to build release
 		name="rebuild-all"
 		description="Rebuild entire xsubst project."
 		depends="rebuild-sln,create-distr,zip-distr">
+		<echo message="xsubst all rebuilt."/>
 	</target>
 
 	<!-- 'clean-sln' target -->
