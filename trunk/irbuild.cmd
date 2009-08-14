@@ -16,6 +16,6 @@ REM WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 REM See the License for the specific language governing permissions and
 REM limitations under the License.
 
-REM rbuild.cmd - NT command script to perform full release build
+REM irbuild.cmd - NT command script to perform incremental release build
 
-nant.exe -f:xsubst.2008.build @NAntSettings.txt rebuild-all
+nant.exe -f:xsubst.2008.build @NAntSettings.txt build-all

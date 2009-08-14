@@ -113,15 +113,18 @@ Source: "..\..\Repository\CodeProject\Source\*"; Excludes: ".svn, *.aps"; DestDi
 ;; SubstSvc NT service sources
 Source: "..\SubstSvc\SubstSvc.2008.vcproj"; DestDir: "{app}\Sources\xsubst\SubstSvc"; Components: sources; Flags: ignoreversion
 Source: "..\SubstSvc\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\SubstSvc\Source"; Components: sources; Flags: ignoreversion recursesubdirs
+Source: "..\SubstSvc\Templates\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\SubstSvc\Templates"; Components: sources; Flags: ignoreversion recursesubdirs
 
 ;; WinSubst GUI shell sources
 Source: "..\WinSubst\WinSubst.2008.vcproj"; DestDir: "{app}\Sources\xsubst\WinSubst"; Components: sources; Flags: ignoreversion
 Source: "..\WinSubst\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Source"; Components: sources; Flags: ignoreversion recursesubdirs
+Source: "..\WinSubst\Templates\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Templates"; Components: sources; Flags: ignoreversion recursesubdirs
 
 ;; CRT/MFC redistributables
 Source: "..\Redist\*"; Excludes: ".svn"; DestDir: "{app}\Sources\xsubst\Redist"; Components: sources; Flags: ignoreversion recursesubdirs
 
 ;; misc solution sources
+Source: "..\Common\*"; Excludes: ".svn"; DestDir: "{app}\Sources\xsubst\Common"; Components: sources; Flags: ignoreversion recursesubdirs
 Source: "..\xsubst.2008.sln"; DestDir: "{app}\Sources\xsubst"; Components: sources; Flags: ignoreversion
 Source: "..\xsubst.2008.build"; DestDir: "{app}\Sources\xsubst"; Components: sources; Flags: ignoreversion
 
