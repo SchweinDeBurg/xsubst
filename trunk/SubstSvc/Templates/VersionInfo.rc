@@ -39,13 +39,13 @@ VS_VERSION_INFO VERSIONINFO
             VALUE "Comments", "none"
             VALUE "CompanyName", "Elijah Zarezky"
             VALUE "FileDescription", "SubstSvc executable module"
-            VALUE "FileVersion", "@VER_MAJOR@.@VER_MINOR@.@VER_BUILD@"
+            VALUE "FileVersion", "@VER_MAJOR@.@VER_MINOR@.@VER_BUILD@.@SVN_REV@"
             VALUE "InternalName", "SubstSvc"
             VALUE "LegalCopyright", "Copyright © 2004–2009 by Elijah Zarezky"
             VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation"
             VALUE "OriginalFilename", "SubstSvc.exe"
-            VALUE "ProductName", "xsubst"
-            VALUE "ProductVersion", "@VER_MAJOR@.@VER_MINOR@.0"
+            VALUE "ProductName", "Power Gadgets"
+            VALUE "ProductVersion", "@VER_MAJOR@.@VER_MINOR@"
          END
       END
       BLOCK "VarFileInfo"

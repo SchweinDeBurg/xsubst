@@ -20,7 +20,7 @@
 #include <winver.h>
 
 VS_VERSION_INFO VERSIONINFO
-   FILEVERSION 1,1,4877,57
+   FILEVERSION 1,1,4906,60
    PRODUCTVERSION 1,1,0,0
    FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
 #if defined(_DEBUG)
@@ -39,13 +39,13 @@ VS_VERSION_INFO VERSIONINFO
             VALUE "Comments", "none"
             VALUE "CompanyName", "Elijah Zarezky"
             VALUE "FileDescription", "WinSubst executable module"
-            VALUE "FileVersion", "1.1.4877"
+            VALUE "FileVersion", "1.1.4906.60"
             VALUE "InternalName", "WinSubst"
             VALUE "LegalCopyright", "Copyright © 2004–2009 by Elijah Zarezky"
             VALUE "LegalTrademarks", "Windows™ is a trademark of Microsoft Corporation"
             VALUE "OriginalFilename", "WinSubst.exe"
-            VALUE "ProductName", "xsubst"
-            VALUE "ProductVersion", "1.1.0"
+            VALUE "ProductName", "Power Gadgets"
+            VALUE "ProductVersion", "1.1"
          END
       END
       BLOCK "VarFileInfo"
