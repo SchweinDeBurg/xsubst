@@ -93,10 +93,36 @@ void CSubstsList::InsertItem(int iItem, LPCTSTR pszDrive, LPCTSTR pszPath)
 	ASSERT(AfxIsValidString(pszDrive));
 	ASSERT(AfxIsValidString(pszPath));
 
+	/*{
+		typedef BOOL(WINAPI* SH_GIL_PROC)(HIMAGELIST* phLarge, HIMAGELIST* phSmall);
+		typedef BOOL(WINAPI* FII_PROC)(BOOL fFullInit);
+
+		HMODULE hShell32 = ::LoadLibrary(_T("shell32.dll"));
+
+		FII_PROC pfnFII = NULL;
+		(FARPROC&)pfnFII = GetProcAddress(hShell32, (LPCSTR)660);
+		pfnFII(TRUE);
+
+		SH_GIL_PROC pfnGIL = NULL;
+		(FARPROC&)pfnGIL = ::GetProcAddress(hShell32, (LPCSTR)71);
+
+		HIMAGELIST hLarge = NULL, hSmall = NULL;
+		pfnGIL(&hLarge, &hSmall);
+
+		::FreeLibrary(hShell32);
+	}*/
+
 	CString strTemp(pszDrive);
 	strTemp += _T('\\');
 	memset(&shfi, 0, sizeof(shfi));
 	::SHGetFileInfo(strTemp, 0, &shfi, sizeof(shfi), SHGFI_ICON | SHGFI_SMALLICON);
+	/*{
+		HMODULE hStubDLL = ::GetModuleHandle(_T("TortoiseSVN.dll"));
+		if (hStubDLL != NULL)
+		{
+			::FreeLibrary(hStubDLL);
+		}
+	}*/
 	if (shfi.hIcon != NULL)
 	{
 		iImage = GetImageList(LVSIL_SMALL)->Add(shfi.hIcon);
