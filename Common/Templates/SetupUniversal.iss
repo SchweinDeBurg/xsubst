@@ -86,6 +86,7 @@ Type: filesandordirs; Name: "{app}\Microsoft.VC90.MFC"
 ;; core application files
 Source: "..\WinSubst\Output.2008\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"; Components: core
 Source: "..\SubstSvc\Output.2008\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Components: core; Check: StopService
+Source: "..\WinSubst\Detours\Bin\detoured.dll"; DestDir: "{app}"; Components: core
 Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Components: core; Flags: ignoreversion
 
 ;; CRT redistributables
@@ -122,6 +123,7 @@ Source: "..\SubstSvc\Templates\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sour
 Source: "..\WinSubst\WinSubst.2008.vcproj"; DestDir: "{app}\Sources\xsubst\WinSubst"; Components: sources; Flags: ignoreversion
 Source: "..\WinSubst\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Source"; Components: sources; Flags: ignoreversion recursesubdirs
 Source: "..\WinSubst\Templates\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Templates"; Components: sources; Flags: ignoreversion recursesubdirs
+Source: "..\WinSubst\Detours\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Detours"; Components: sources; Flags: ignoreversion recursesubdirs
 
 ;; CRT/MFC redistributables
 Source: "..\Redist\*"; Excludes: ".svn"; DestDir: "{app}\Sources\xsubst\Redist"; Components: sources; Flags: ignoreversion recursesubdirs

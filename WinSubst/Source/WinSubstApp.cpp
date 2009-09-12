@@ -124,6 +124,21 @@ BOOL CWinSubstApp::InitInstance(void)
 		return (FALSE);
 	}
 
+	m_mapCatchpit.SetAt(_T("tortoiseoverlays.dll"), true);
+	m_mapCatchpit.SetAt(_T("tortoisestub.dll"), true);
+	m_mapCatchpit.SetAt(_T("tortoisesvn.dll"), true);
+
+	Detoured();
+
+	(PVOID&)m_pfnLoadLibrary = ::DetourFindFunction("kernel32.dll", STRINGIZE(LoadLibrary));
+	(PVOID&)m_pfnLoadLibraryEx = ::DetourFindFunction("kernel32.dll", STRINGIZE(LoadLibraryEx));
+	
+	DetourTransactionBegin();
+	DetourUpdateThread(::GetCurrentThread());
+	DetourAttach(reinterpret_cast<PVOID*>(&m_pfnLoadLibrary), &CWinSubstApp::LoadLibrary);
+	DetourAttach(reinterpret_cast<PVOID*>(&m_pfnLoadLibraryEx), &CWinSubstApp::LoadLibraryEx);
+	DetourTransactionCommit();
+
 	CMainDialog dlgMain;
 	m_pMainWnd = &dlgMain;
 	dlgMain.DoModal();
@@ -132,6 +147,61 @@ BOOL CWinSubstApp::InitInstance(void)
 	m_hMutexAppInst = NULL;
 
 	return (FALSE);
+}
+
+int CWinSubstApp::ExitInstance(void)
+{
+	DetourTransactionBegin();
+	DetourUpdateThread(::GetCurrentThread());
+	DetourDetach(reinterpret_cast<PVOID*>(&m_pfnLoadLibrary),  &CWinSubstApp::LoadLibrary);
+	DetourDetach(reinterpret_cast<PVOID*>(&m_pfnLoadLibraryEx),  &CWinSubstApp::LoadLibraryEx);
+	DetourTransactionCommit();
+
+	return (__super::ExitInstance());
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// implementation helpers
+
+CMap<CString, LPCTSTR, bool, bool> CWinSubstApp::m_mapCatchpit;
+
+CWinSubstApp::PFN_LOAD_LIBRARY CWinSubstApp::m_pfnLoadLibrary(NULL);
+CWinSubstApp::PFN_LOAD_LIBRARY_EX CWinSubstApp::m_pfnLoadLibraryEx(NULL);
+
+HMODULE WINAPI CWinSubstApp::LoadLibrary(LPCTSTR pszFileName)
+{
+	TRACE(_T("*** CWinSubstApp::LoadLibrary(%s)\n"), pszFileName);
+
+	CString strFileNameLower(::PathFindFileName(pszFileName));
+	strFileNameLower.MakeLower();
+
+	bool fCatch = false;
+	if (m_mapCatchpit.Lookup(strFileNameLower, fCatch))
+	{
+		::SetLastError(ERROR_FILE_NOT_FOUND);
+		return (NULL);
+	}
+	else {
+		return (m_pfnLoadLibrary(pszFileName));
+	}
+}
+
+HMODULE WINAPI CWinSubstApp::LoadLibraryEx(LPCTSTR pszFileName, HANDLE hFile, DWORD fdwFlags)
+{
+	TRACE(_T("*** CWinSubstApp::LoadLibraryEx(%s, 0x%08X, 0x%08X)\n"), pszFileName, hFile, fdwFlags);
+
+	CString strFileNameLower(::PathFindFileName(pszFileName));
+	strFileNameLower.MakeLower();
+
+	bool fCatch = false;
+	if (m_mapCatchpit.Lookup(strFileNameLower, fCatch))
+	{
+		::SetLastError(ERROR_FILE_NOT_FOUND);
+		return (NULL);
+	}
+	else {
+		return (m_pfnLoadLibraryEx(pszFileName, hFile, fdwFlags));
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////

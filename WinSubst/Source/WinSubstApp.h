@@ -44,10 +44,24 @@ public:
 // overridables
 public:
 	virtual BOOL InitInstance(void);
+	virtual int ExitInstance(void);
 
 // attributes
 public:
 	HANDLE m_hMutexAppInst;
+
+// implementation helpers
+private:
+	// catched DLLs
+	static CMap<CString, LPCTSTR, bool, bool> m_mapCatchpit;
+	// LoadLibrary[A/W] catcher
+	typedef HMODULE(WINAPI* PFN_LOAD_LIBRARY)(LPCTSTR);
+	static PFN_LOAD_LIBRARY m_pfnLoadLibrary;
+	static HMODULE WINAPI LoadLibrary(LPCTSTR pszFileName);
+	// LoadLibraryEx[A/W] catcher
+	typedef HMODULE(WINAPI* PFN_LOAD_LIBRARY_EX)(LPCTSTR, HANDLE, DWORD);
+	static PFN_LOAD_LIBRARY_EX m_pfnLoadLibraryEx;
+	static HMODULE WINAPI LoadLibraryEx(LPCTSTR pszFileName, HANDLE hFile, DWORD fdwFlags);
 
 // diagnostic services
 #if defined(_DEBUG)

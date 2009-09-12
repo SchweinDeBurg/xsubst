@@ -19,13 +19,13 @@
 
 [Setup]
 AppName=xsubst
-AppVerName=xsubst 1.1.4906
+AppVerName=xsubst 1.1.4908
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
 AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
-AppVersion=1.1.4906
+AppVersion=1.1.4908
 AppCopyright=Copyright © 2004–2009 by Elijah Zarezky
 DefaultDirName={pf}\Elijah Zarezky\xsubst
 DefaultGroupName=Elijah Zarezky\xsubst
@@ -33,8 +33,8 @@ AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
 OutputDir=..\Setup
-OutputBaseFilename=xsubst-1.1.4906-setup-universal
-VersionInfoVersion=1.1.4906.60
+OutputBaseFilename=xsubst-1.1.4908-setup-universal
+VersionInfoVersion=1.1.4908.62
 VersionInfoProductName=Power Gadgets
 VersionInfoProductVersion=1.1
 MinVersion=0,5.0.2195
@@ -86,6 +86,7 @@ Type: filesandordirs; Name: "{app}\Microsoft.VC90.MFC"
 ;; core application files
 Source: "..\WinSubst\Output.2008\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"; Components: core
 Source: "..\SubstSvc\Output.2008\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Components: core; Check: StopService
+Source: "..\WinSubst\Detours\Bin\detoured.dll"; DestDir: "{app}"; Components: core
 Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Components: core; Flags: ignoreversion
 
 ;; CRT redistributables
@@ -122,6 +123,7 @@ Source: "..\SubstSvc\Templates\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sour
 Source: "..\WinSubst\WinSubst.2008.vcproj"; DestDir: "{app}\Sources\xsubst\WinSubst"; Components: sources; Flags: ignoreversion
 Source: "..\WinSubst\Source\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Source"; Components: sources; Flags: ignoreversion recursesubdirs
 Source: "..\WinSubst\Templates\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Templates"; Components: sources; Flags: ignoreversion recursesubdirs
+Source: "..\WinSubst\Detours\*"; Excludes: ".svn, *.aps"; DestDir: "{app}\Sources\xsubst\WinSubst\Detours"; Components: sources; Flags: ignoreversion recursesubdirs
 
 ;; CRT/MFC redistributables
 Source: "..\Redist\*"; Excludes: ".svn"; DestDir: "{app}\Sources\xsubst\Redist"; Components: sources; Flags: ignoreversion recursesubdirs

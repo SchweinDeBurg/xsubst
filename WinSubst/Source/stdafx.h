@@ -85,6 +85,7 @@ __declspec(selectany) int _forceMFCManifestCUR;
 
 #include <afxwin.h>        // MFC core and standard components
 #include <afxcmn.h>        // MFC common control classes
+#include <afxtempl.h>      // MFC collection template classes
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // ATL headers
@@ -112,6 +113,12 @@ __declspec(selectany) int _forceMFCManifestCUR;
 #include "../../../Repository/CodeProject/Source/FolderDlg.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+// Detours headers
+
+#include "../Detours/Include/detours.h"
+#include "../Detours/Include/detoured.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 // some tricks
 
 // force ISO/IEC 14882 conformance in for loop scope
@@ -120,6 +127,12 @@ __declspec(selectany) int _forceMFCManifestCUR;
 #else
 #pragma conform(forScope, on)
 #endif   // _MSC_VER
+
+// helper macro STRINGIZE
+// converts the parameter 'text' to a string after
+// macro replacement on 'text' has been performed
+#define STRINGIZE(text) STRINGIZE_IMPL(text)
+#define STRINGIZE_IMPL(text) #text
 
 #endif   // __stdafx_h
 
