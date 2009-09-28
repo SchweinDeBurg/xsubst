@@ -44,7 +44,6 @@ public:
 // overridables
 public:
 	virtual BOOL InitInstance(void);
-	virtual int ExitInstance(void);
 
 // attributes
 public:
@@ -52,8 +51,6 @@ public:
 
 // implementation helpers
 private:
-	// catched DLLs
-	static CMap<CString, LPCTSTR, bool, bool> m_mapCatchpit;
 	// LoadLibrary[A/W] catcher
 	typedef HMODULE(WINAPI* PFN_LOAD_LIBRARY)(LPCTSTR);
 	static PFN_LOAD_LIBRARY m_pfnLoadLibrary;
@@ -62,6 +59,8 @@ private:
 	typedef HMODULE(WINAPI* PFN_LOAD_LIBRARY_EX)(LPCTSTR, HANDLE, DWORD);
 	static PFN_LOAD_LIBRARY_EX m_pfnLoadLibraryEx;
 	static HMODULE WINAPI LoadLibraryEx(LPCTSTR pszFileName, HANDLE hFile, DWORD fdwFlags);
+	// catched DLLs
+	CMap<CString, LPCTSTR, bool, bool> m_mapCatchpit;
 
 // diagnostic services
 #if defined(_DEBUG)
