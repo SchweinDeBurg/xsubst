@@ -42,8 +42,10 @@ static char THIS_FILE[] = __FILE__;
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Detours libraries
 
+#if defined(WINSUBST_DETOURED)
 #pragma comment(lib, "detours.lib")
 #pragma comment(lib, "detoured.lib")
+#endif   // WINSUBST_DETOURED
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // linker options
@@ -68,8 +70,8 @@ static char THIS_FILE[] = __FILE__;
 #pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.VC90.DebugCRT' version='9.0.30729.4148' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"")
 #pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.VC90.DebugMFC' version='9.0.30729.4148' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"")
 #else
-#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.VC90.CRT' version='9.0.30729.4148' processorArchitecture='x86'\"")
-#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.VC90.MFC' version='9.0.30729.4148' processorArchitecture='x86'\"")
+#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.VC90.PrivateCRT' version='9.0.30729.4148' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"")
+#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.VC90.PrivateMFC' version='9.0.30729.4148' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"")
 #endif   // _DEBUG
 #pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
 

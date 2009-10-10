@@ -2,7 +2,7 @@
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"> 
 <assemblyIdentity 
     version="@VER_MAJOR@.@VER_MINOR@.@VER_BUILD@.@SVN_REV@" 
-    processorArchitecture="X86" 
+    processorArchitecture="x86" 
     name="Elijah.Zarezky.SubstSvc"
     type="win32" 
 /> 

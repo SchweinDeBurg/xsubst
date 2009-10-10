@@ -51,6 +51,7 @@ public:
 
 // implementation helpers
 private:
+#if defined(WINSUBST_DETOURED)
 	// LoadLibrary[A/W] catcher
 	typedef HMODULE(WINAPI* PFN_LOAD_LIBRARY)(LPCTSTR);
 	static PFN_LOAD_LIBRARY m_pfnLoadLibrary;
@@ -61,13 +62,14 @@ private:
 	static HMODULE WINAPI LoadLibraryEx(LPCTSTR pszFileName, HANDLE hFile, DWORD fdwFlags);
 	// catched DLLs
 	CMap<CString, LPCTSTR, bool, bool> m_mapCatchpit;
+#endif   // WINSUBST_DETOURED
 
 // diagnostic services
 #if defined(_DEBUG)
 public:
 	virtual void AssertValid(void) const;
 	virtual void Dump(CDumpContext& dumpCtx) const;
-#endif
+#endif   // _DEBUG
 };
 
 #endif   // __WinSubstApp_h

@@ -67,9 +67,17 @@ END_MESSAGE_MAP()
 CWinSubstApp::CWinSubstApp(void):
 m_hMutexAppInst(NULL)
 {
+#if defined(WINSUBST_DETOURED)
+	// TortoiseSVN
 	m_mapCatchpit.SetAt(_T("tortoiseoverlays.dll"), true);
 	m_mapCatchpit.SetAt(_T("tortoisestub.dll"), true);
 	m_mapCatchpit.SetAt(_T("tortoisesvn.dll"), true);
+
+	// TortoiseCVS
+	m_mapCatchpit.SetAt(_T("tortoiseshell.dll"), true);
+
+	// Nokia PC Suite
+	m_mapCatchpit.SetAt(_T("phonebrowser.dll"), true);
 
 	Detoured();
 
@@ -81,15 +89,18 @@ m_hMutexAppInst(NULL)
 	DetourAttach(reinterpret_cast<PVOID*>(&m_pfnLoadLibrary), &CWinSubstApp::LoadLibrary);
 	DetourAttach(reinterpret_cast<PVOID*>(&m_pfnLoadLibraryEx), &CWinSubstApp::LoadLibraryEx);
 	DetourTransactionCommit();
+#endif   // WINSUBST_DETOURED
 }
 
 CWinSubstApp::~CWinSubstApp(void)
 {
+#if defined(WINSUBST_DETOURED)
 	DetourTransactionBegin();
 	DetourUpdateThread(::GetCurrentThread());
 	DetourDetach(reinterpret_cast<PVOID*>(&m_pfnLoadLibrary),  &CWinSubstApp::LoadLibrary);
 	DetourDetach(reinterpret_cast<PVOID*>(&m_pfnLoadLibraryEx),  &CWinSubstApp::LoadLibraryEx);
 	DetourTransactionCommit();
+#endif   // WINSUBST_DETOURED
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,6 +167,8 @@ BOOL CWinSubstApp::InitInstance(void)
 //////////////////////////////////////////////////////////////////////////////////////////////
 // implementation helpers
 
+#if defined(WINSUBST_DETOURED)
+
 CWinSubstApp::PFN_LOAD_LIBRARY CWinSubstApp::m_pfnLoadLibrary(NULL);
 CWinSubstApp::PFN_LOAD_LIBRARY_EX CWinSubstApp::m_pfnLoadLibraryEx(NULL);
 
@@ -200,6 +213,8 @@ HMODULE WINAPI CWinSubstApp::LoadLibraryEx(LPCTSTR pszFileName, HANDLE hFile, DW
 		return (m_pfnLoadLibraryEx(pszFileName, hFile, fdwFlags));
 	}
 }
+
+#endif   // WINSUBST_DETOURED
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // diagnostic services
