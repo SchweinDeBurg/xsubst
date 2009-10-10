@@ -115,6 +115,8 @@ __declspec(selectany) int _forceMFCManifestCUR;
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Detours headers
 
+#define WINSUBST_DETOURED
+
 #include "../Detours/Include/detours.h"
 #include "../Detours/Include/detoured.h"
 
