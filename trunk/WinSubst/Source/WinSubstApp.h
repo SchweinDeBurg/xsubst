@@ -61,7 +61,8 @@ private:
 	static PFN_LOAD_LIBRARY_EX m_pfnLoadLibraryEx;
 	static HMODULE WINAPI LoadLibraryEx(LPCTSTR pszFileName, HANDLE hFile, DWORD fdwFlags);
 	// catched DLLs
-	CMap<CString, LPCTSTR, bool, bool> m_mapCatchpit;
+	CMap<CString, LPCTSTR, DWORD, DWORD> m_mapCatchpit;
+	INT_PTR RegQueryCatchpit(void);
 #endif   // WINSUBST_DETOURED
 
 // diagnostic services
