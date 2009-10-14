@@ -68,7 +68,7 @@ CWinSubstApp::CWinSubstApp(void):
 m_hMutexAppInst(NULL)
 {
 #if defined(WINSUBST_DETOURED)
-	// TortoiseSVN
+	/*// TortoiseSVN
 	m_mapCatchpit.SetAt(_T("tortoiseoverlays.dll"), true);
 	m_mapCatchpit.SetAt(_T("tortoisestub.dll"), true);
 	m_mapCatchpit.SetAt(_T("tortoisesvn.dll"), true);
@@ -77,7 +77,9 @@ m_hMutexAppInst(NULL)
 	m_mapCatchpit.SetAt(_T("tortoiseshell.dll"), true);
 
 	// Nokia PC Suite
-	m_mapCatchpit.SetAt(_T("phonebrowser.dll"), true);
+	m_mapCatchpit.SetAt(_T("phonebrowser.dll"), true);*/
+
+	RegQueryCatchpit();
 
 	Detoured();
 
@@ -182,8 +184,8 @@ HMODULE WINAPI CWinSubstApp::LoadLibrary(LPCTSTR pszFileName)
 	CString strFileNameLower(::PathFindFileName(pszFileName));
 	strFileNameLower.MakeLower();
 
-	bool fCatch = false;
-	if (pApp->m_mapCatchpit.Lookup(strFileNameLower, fCatch))
+	DWORD fCatch = false;
+	if (pApp->m_mapCatchpit.Lookup(strFileNameLower, fCatch) && fCatch != 0)
 	{
 		::SetLastError(ERROR_FILE_NOT_FOUND);
 		return (NULL);
@@ -203,8 +205,8 @@ HMODULE WINAPI CWinSubstApp::LoadLibraryEx(LPCTSTR pszFileName, HANDLE hFile, DW
 	CString strFileNameLower(::PathFindFileName(pszFileName));
 	strFileNameLower.MakeLower();
 
-	bool fCatch = false;
-	if (pApp->m_mapCatchpit.Lookup(strFileNameLower, fCatch))
+	DWORD fCatch = FALSE;
+	if (pApp->m_mapCatchpit.Lookup(strFileNameLower, fCatch) && fCatch != 0)
 	{
 		::SetLastError(ERROR_FILE_NOT_FOUND);
 		return (NULL);
@@ -212,6 +214,46 @@ HMODULE WINAPI CWinSubstApp::LoadLibraryEx(LPCTSTR pszFileName, HANDLE hFile, DW
 	else {
 		return (m_pfnLoadLibraryEx(pszFileName, hFile, fdwFlags));
 	}
+}
+
+INT_PTR CWinSubstApp::RegQueryCatchpit(void)
+{
+	CString strKeyName;
+	CRegKey regKey;
+
+	m_mapCatchpit.RemoveAll();
+
+	// build the name of the registry key...
+	::LoadString(::GetModuleHandle(NULL), IDS_REGISTRY_KEY, strKeyName.GetBuffer(_MAX_PATH), _MAX_PATH);
+	strKeyName.ReleaseBuffer();
+	strKeyName.Insert(0, _T(".DEFAULT\\Software\\"));
+	strKeyName += _T("\\WinSubst\\Catchpit");
+
+	// ...and then open this key
+	regKey.Create(HKEY_USERS, strKeyName);
+	
+	DWORD cNumValues = 0;
+	if (::RegQueryInfoKey(regKey, 0, 0, 0, 0, 0, 0, &cNumValues, 0, 0, 0, 0) == ERROR_SUCCESS)
+	{
+		for (DWORD i = 0; i < cNumValues; ++i)
+		{
+			TCHAR szValueName[_MAX_PATH] = { 0 };
+			DWORD cchNameLen = _countof(szValueName);
+			DWORD fdwValueType = REG_NONE;
+			if (::RegEnumValue(regKey, i, szValueName, &cchNameLen, 0, &fdwValueType, 0, 0) == ERROR_SUCCESS)
+			{
+				if (fdwValueType == REG_DWORD)
+				{
+					DWORD fCatch = FALSE;
+					regKey.QueryDWORDValue(szValueName, fCatch);
+					_tcslwr_s(szValueName, cchNameLen + 1);
+					m_mapCatchpit.SetAt(szValueName, fCatch);
+				}
+			}
+		}
+	}
+
+	return (m_mapCatchpit.GetCount());
 }
 
 #endif   // WINSUBST_DETOURED
@@ -237,6 +279,10 @@ void CWinSubstApp::Dump(CDumpContext& dumpCtx) const
 		CWinApp::Dump(dumpCtx);
 
 		// ...and then dump own unique members
+		dumpCtx << "m_hMutexAppInst = " << m_hMutexAppInst;
+#if defined(WINSUBST_DETOURED)
+		dumpCtx << "\nm_mapCatchpit = " << m_mapCatchpit;
+#endif   // WINSUBST_DETOURED
 	}
 	catch (CFileException* pXcpt)
 	{
