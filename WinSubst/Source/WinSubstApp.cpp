@@ -68,17 +68,6 @@ CWinSubstApp::CWinSubstApp(void):
 m_hMutexAppInst(NULL)
 {
 #if defined(WINSUBST_DETOURED)
-	/*// TortoiseSVN
-	m_mapCatchpit.SetAt(_T("tortoiseoverlays.dll"), true);
-	m_mapCatchpit.SetAt(_T("tortoisestub.dll"), true);
-	m_mapCatchpit.SetAt(_T("tortoisesvn.dll"), true);
-
-	// TortoiseCVS
-	m_mapCatchpit.SetAt(_T("tortoiseshell.dll"), true);
-
-	// Nokia PC Suite
-	m_mapCatchpit.SetAt(_T("phonebrowser.dll"), true);*/
-
 	RegQueryCatchpit();
 
 	Detoured();
