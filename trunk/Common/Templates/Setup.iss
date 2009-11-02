@@ -208,10 +208,10 @@ Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\SubstSvc\Logging"; F
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\SubstSvc\Logging"; ValueType: dword; ValueName: "Continuous"; ValueData: "1"; Flags: createvalueifdoesntexist
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst"; Flags: uninsdeletekey
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; Flags: uninsdeletekey
+Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; ValueType: dword; ValueName: "TortoiseShell.dll"; ValueData: "1"; Flags: createvalueifdoesntexist
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; ValueType: dword; ValueName: "TortoiseOverlays.dll"; ValueData: "1"; Flags: createvalueifdoesntexist
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; ValueType: dword; ValueName: "TortoiseSVN.dll"; ValueData: "1"; Flags: createvalueifdoesntexist
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; ValueType: dword; ValueName: "TortoiseStub.dll"; ValueData: "1"; Flags: createvalueifdoesntexist
-Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; ValueType: dword; ValueName: "TortoiseShell.dll"; ValueData: "1"; Flags: createvalueifdoesntexist
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; ValueType: dword; ValueName: "PhoneBrowser.dll"; ValueData: "1"; Flags: createvalueifdoesntexist
 
 [Tasks]
