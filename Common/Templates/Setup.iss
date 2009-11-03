@@ -165,8 +165,8 @@ Type: files; Name: "{app}\Microsoft.VC90.MFC.manifest"
 
 [Files]
 ;; core application files
-Source: "..\WinSubst\Output.2008\x86\Release\Unicode\WinSubst.exe"; DestDir: "{app}"
-Source: "..\SubstSvc\Output.2008\x86\Release\Unicode\SubstSvc.exe"; DestDir: "{app}"; Check: StopService
+Source: "..\WinSubst\Output.2008\x86\@BUILD_TYPE@\@CHARACTER_SET@\WinSubst.exe"; DestDir: "{app}"
+Source: "..\SubstSvc\Output.2008\x86\@BUILD_TYPE@\@CHARACTER_SET@\SubstSvc.exe"; DestDir: "{app}"; Check: StopService
 Source: "..\WinSubst\Detours\Bin\detoured.dll"; DestDir: "{app}"
 Source: ".\ApacheLicense.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
