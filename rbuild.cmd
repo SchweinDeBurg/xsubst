@@ -1,7 +1,7 @@
 @ECHO OFF
 
 REM xsubst application.
-REM Copyright (c) 2004-2009 by Elijah Zarezky,
+REM Copyright (c) 2004-2010 by Elijah Zarezky,
 REM All rights reserved.
 
 REM Licensed under the Apache License, Version 2.0 (the "License");
