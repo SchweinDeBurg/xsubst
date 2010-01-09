@@ -63,6 +63,7 @@ private:
 	// catched DLLs
 	CMap<CString, LPCTSTR, DWORD, DWORD> m_mapCatchpit;
 	INT_PTR RegQueryCatchpit(void);
+	bool IsCatchpitEmpty(void) const;
 #endif   // WINSUBST_DETOURED
 
 // diagnostic services
@@ -72,6 +73,14 @@ public:
 	virtual void Dump(CDumpContext& dumpCtx) const;
 #endif   // _DEBUG
 };
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// inlines
+
+inline bool CWinSubstApp::IsCatchpitEmpty(void) const
+{
+	return (m_mapCatchpit.GetCount() == 0);
+}
 
 #endif   // __WinSubstApp_h
 
