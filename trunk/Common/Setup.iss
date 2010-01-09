@@ -1,5 +1,5 @@
 ;; xsubst utility.
-;; Copyright (c) 2004-2009 by Elijah Zarezky,
+;; Copyright (c) 2004-2010 by Elijah Zarezky,
 ;; All rights reserved.
 
 ;; Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,22 +19,22 @@
 
 [Setup]
 AppName=xsubst
-AppVerName=xsubst 1.1.4942
+AppVerName=xsubst 1.1.5161
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
 AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
-AppVersion=1.1.4942
-AppCopyright=Copyright © 2004–2009 by Elijah Zarezky
+AppVersion=1.1.5161
+AppCopyright=Copyright © 2004–2010 by Elijah Zarezky
 DefaultDirName={pf}\Elijah Zarezky\xsubst
 DefaultGroupName=Elijah Zarezky\xsubst
 AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
 OutputDir=..\Setup
-OutputBaseFilename=xsubst-1.1.4942-setup
-VersionInfoVersion=1.1.4942.67
+OutputBaseFilename=xsubst-1.1.5161-setup
+VersionInfoVersion=1.1.5161.72
 VersionInfoProductName=Power Gadgets
 VersionInfoProductVersion=1.1
 MinVersion=0,5.0.2195
