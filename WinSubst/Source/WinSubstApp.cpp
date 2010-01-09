@@ -68,29 +68,33 @@ CWinSubstApp::CWinSubstApp(void):
 m_hMutexAppInst(NULL)
 {
 #if defined(WINSUBST_DETOURED)
-	RegQueryCatchpit();
+	if (RegQueryCatchpit() > 0)
+	{
+		Detoured();
 
-	Detoured();
-
-	(PVOID&)m_pfnLoadLibrary = ::DetourFindFunction("kernel32.dll", STRINGIZE(LoadLibrary));
-	(PVOID&)m_pfnLoadLibraryEx = ::DetourFindFunction("kernel32.dll", STRINGIZE(LoadLibraryEx));
-	
-	DetourTransactionBegin();
-	DetourUpdateThread(::GetCurrentThread());
-	DetourAttach(reinterpret_cast<PVOID*>(&m_pfnLoadLibrary), &CWinSubstApp::LoadLibrary);
-	DetourAttach(reinterpret_cast<PVOID*>(&m_pfnLoadLibraryEx), &CWinSubstApp::LoadLibraryEx);
-	DetourTransactionCommit();
+		(PVOID&)m_pfnLoadLibrary = ::DetourFindFunction("kernel32.dll", STRINGIZE(LoadLibrary));
+		(PVOID&)m_pfnLoadLibraryEx = ::DetourFindFunction("kernel32.dll", STRINGIZE(LoadLibraryEx));
+		
+		DetourTransactionBegin();
+		DetourUpdateThread(::GetCurrentThread());
+		DetourAttach(reinterpret_cast<PVOID*>(&m_pfnLoadLibrary), &CWinSubstApp::LoadLibrary);
+		DetourAttach(reinterpret_cast<PVOID*>(&m_pfnLoadLibraryEx), &CWinSubstApp::LoadLibraryEx);
+		DetourTransactionCommit();
+	}
 #endif   // WINSUBST_DETOURED
 }
 
 CWinSubstApp::~CWinSubstApp(void)
 {
 #if defined(WINSUBST_DETOURED)
-	DetourTransactionBegin();
-	DetourUpdateThread(::GetCurrentThread());
-	DetourDetach(reinterpret_cast<PVOID*>(&m_pfnLoadLibrary),  &CWinSubstApp::LoadLibrary);
-	DetourDetach(reinterpret_cast<PVOID*>(&m_pfnLoadLibraryEx),  &CWinSubstApp::LoadLibraryEx);
-	DetourTransactionCommit();
+	if (!IsCatchpitEmpty())
+	{
+		DetourTransactionBegin();
+		DetourUpdateThread(::GetCurrentThread());
+		DetourDetach(reinterpret_cast<PVOID*>(&m_pfnLoadLibrary),  &CWinSubstApp::LoadLibrary);
+		DetourDetach(reinterpret_cast<PVOID*>(&m_pfnLoadLibraryEx),  &CWinSubstApp::LoadLibraryEx);
+		DetourTransactionCommit();
+	}
 #endif   // WINSUBST_DETOURED
 }
 
