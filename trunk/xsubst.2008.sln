@@ -13,6 +13,29 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinSubst", "WinSubst\WinSub
 		{6B7749EE-74DF-496C-9EBE-0E6C73CAA50B} = {6B7749EE-74DF-496C-9EBE-0E6C73CAA50B}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{C3315697-36E4-48FB-8DC1-D0EF8AAC451B}"
+	ProjectSection(SolutionItems) = preProject
+		Common\ApacheLicense.rtf = Common\ApacheLicense.rtf
+		Common\Setup.iss = Common\Setup.iss
+		Common\SetupUniversal.iss = Common\SetupUniversal.iss
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{9DD74115-092A-4876-8861-16938001E1EB}"
+	ProjectSection(SolutionItems) = preProject
+		Common\Templates\Setup.iss = Common\Templates\Setup.iss
+		Common\Templates\SetupUniversal.iss = Common\Templates\SetupUniversal.iss
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Scripts", "Build Scripts", "{C3E64FB9-8DB8-4935-82F0-93A337F99DE9}"
+	ProjectSection(SolutionItems) = preProject
+		gbuild.cmd = gbuild.cmd
+		irbuild.cmd = irbuild.cmd
+		NAntSettings.txt = NAntSettings.txt
+		rbuild.cmd = rbuild.cmd
+		sbuild.cmd = sbuild.cmd
+		xsubst.2008.build = xsubst.2008.build
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		MBCS Debug|Win32 = MBCS Debug|Win32
@@ -56,5 +79,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9DD74115-092A-4876-8861-16938001E1EB} = {C3315697-36E4-48FB-8DC1-D0EF8AAC451B}
 	EndGlobalSection
 EndGlobal
