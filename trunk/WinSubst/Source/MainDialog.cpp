@@ -483,9 +483,27 @@ void CMainDialog::ControlService(DWORD dwCode)
 	{
 		BeginWaitCursor();
 		HANDLE hEvent = ::CreateEvent(NULL, TRUE, FALSE, SZ_SYNC_EVENT_NAME);
-		::ControlService(schService, dwCode, &ss);
-		::WaitForSingleObject(hEvent, INFINITE);
-		::ResetEvent(hEvent);
+		if (::ControlService(schService, dwCode, &ss))
+		{
+			DWORD dwLastErr = ERROR_SUCCESS;
+			CString strErrMsg;
+
+			switch (::WaitForSingleObject(hEvent, INFINITE))
+			{
+			case WAIT_OBJECT_0:
+				break;
+			case WAIT_ABANDONED:
+				break;
+			case WAIT_TIMEOUT:
+				break;
+			case WAIT_FAILED:
+				dwLastErr = ::GetLastError();
+				strErrMsg.Format(IDS_WAIT_FAILED, dwLastErr);
+				AfxMessageBox(strErrMsg, MB_ICONSTOP | MB_OK);
+				break;
+			}
+			::ResetEvent(hEvent);
+		}
 		::CloseHandle(hEvent);
 		EndWaitCursor();
 	}

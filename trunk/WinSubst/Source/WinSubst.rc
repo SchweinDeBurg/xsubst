@@ -7,7 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
+#include "afxres.h"
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
@@ -182,6 +182,7 @@ BEGIN
     IDS_CHOOSE_PATH         "Choose the folder:"
     IDS_DELETE_CONFIRM      "Are You sure You wish to delete this substitution?"
     IDS_APP_INIT_FAILED     "Failed to initialize application.\nPlease contact to the developer."
+    IDS_WAIT_FAILED         "Failed to control Substituted Drives Manager service: 0x%08X."
 END
 
 #endif    // English (U.S.) resources

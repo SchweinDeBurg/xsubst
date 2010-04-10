@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
+// Microsoft Visual C++ generated include file.
 // Used by WinSubst.rc
 //
 #define IDI_APP_ICON                    1
@@ -25,6 +25,7 @@
 #define IDS_CHOOSE_PATH                 19
 #define IDS_DELETE_CONFIRM              20
 #define IDS_APP_INIT_FAILED             21
+#define IDS_WAIT_FAILED                 22
 #define IDD_MAIN                        101
 #define IDI_DRIVE_ICON                  102
 #define IDD_ABOUT                       103

@@ -253,6 +253,9 @@ void WINAPI ServiceHandler(DWORD fdwControl)
 	int cDrivesSubst;
 
 	ss.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
+	ss.dwWin32ExitCode = NO_ERROR;
+	ss.dwServiceSpecificExitCode = 0;   // will be ignored
+
 	switch (fdwControl)
 	{
 	case SERVICE_CONTROL_SHUTDOWN:
@@ -269,20 +272,28 @@ void WINAPI ServiceHandler(DWORD fdwControl)
 		LogFile_WriteEntry(LL_MINIMAL, IDS_MODIFY_REQUEST);
 		cDrivesSubst = EnumDrivesKey(SubstModify);
 		LogFile_WriteEntry(LL_MINIMAL, IDS_MODIFIED_TOTAL, cDrivesSubst);
-		hEvent = ::OpenEvent(EVENT_MODIFY_STATE, FALSE, SZ_SYNC_EVENT_NAME);
-		::SetEvent(hEvent);
-		::CloseHandle(hEvent);
+		if ((hEvent = ::OpenEvent(EVENT_MODIFY_STATE, FALSE, SZ_SYNC_EVENT_NAME)) != NULL)
+		{
+			::SetEvent(hEvent);
+			::CloseHandle(hEvent);
+		}
+		else {
+			DWORD dwLastErr = ::GetLastError();
+			LogFile_WriteEntry(LL_MINIMAL, IDS_SYNC_EVENT_FAILED, dwLastErr);
+			ss.dwWin32ExitCode = ERROR_SERVICE_SPECIFIC_ERROR;
+			ss.dwServiceSpecificExitCode = dwLastErr;
+		}
 		// fall through
 	default:
 		ss.dwCurrentState = g_dwServiceState;
 		break;
 	}
+
 	ss.dwControlsAccepted = SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN;
-	ss.dwWin32ExitCode = NO_ERROR;
-	ss.dwServiceSpecificExitCode = 0;   // will be ignored
 	ss.dwCheckPoint = 0;
 	ss.dwWaitHint = 0;
 	::SetServiceStatus(g_hServiceStatus, &ss);
+
 	if (g_dwServiceState == SERVICE_STOPPED)
 	{
 		LogFile_WriteEntry(LL_MINIMAL, IDS_SERVICE_STOPPED, g_szServiceName);

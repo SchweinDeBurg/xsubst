@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
+// Microsoft Visual C++ generated include file.
 // Used by SubstSvc.rc
 //
 #define IDI_APP_ICON                    1
@@ -30,6 +30,7 @@
 #define IDS_SUBST_DELETED               25
 #define IDS_DELETE_FAILED               26
 #define IDS_DELETED_TOTAL               27
+#define IDS_SYNC_EVENT_FAILED           28
 
 // Next default values for new objects
 // 

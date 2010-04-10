@@ -7,8 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
-
+#include "afxres.h"
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
@@ -106,6 +105,7 @@ BEGIN
     IDS_SUBST_DELETED       "Deleted %s as a substitution for %s."
     IDS_DELETE_FAILED       "Failed to delete %s as a substitution for %s."
     IDS_DELETED_TOTAL       "Total deleted %i substitution(s)."
+    IDS_SYNC_EVENT_FAILED   "Failed to open synchronization event: 0x%08X."
 END
 
 #endif    // English (U.S.) resources
@@ -132,7 +132,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 #include "VersionInfo.rc"
 
-#endif    // English (U.S.) resources
+#endif    // English (U.S.) resource
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
 
