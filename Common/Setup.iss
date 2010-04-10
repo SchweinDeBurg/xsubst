@@ -214,6 +214,13 @@ Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; 
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; ValueType: dword; ValueName: "TortoiseStub.dll"; ValueData: "1"; Flags: createvalueifdoesntexist
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; ValueType: dword; ValueName: "PhoneBrowser.dll"; ValueData: "1"; Flags: createvalueifdoesntexist
 
+;; compatibility mode for Windows Vista and Windows Server 2008
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\WinSubst.exe"; ValueData: "WINXPSP2 RUNASADMIN"; Flags: uninsdeletevalue; MinVersion: 0,6.0; OnlyBelowVersion: 0,6.1
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\SubstSvc.exe"; ValueData: "WINXPSP2 RUNASADMIN"; Flags: uninsdeletevalue; MinVersion: 0,6.0; OnlyBelowVersion: 0,6.1
+;; compatibility mode for Windows 7 and Windows Server 2008 R2
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\WinSubst.exe"; ValueData: "WINXPSP3 RUNASADMIN"; Flags: uninsdeletevalue; MinVersion: 0,6.1
+Root: HKLM; Subkey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\SubstSvc.exe"; ValueData: "WINXPSP3 RUNASADMIN"; Flags: uninsdeletevalue; MinVersion: 0,6.1
+
 [Tasks]
 Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; Flags: unchecked
 Name: quicklaunchicon; Description: "Create a &Quick Launch icon"; GroupDescription: "Additional icons:"; Flags: unchecked
