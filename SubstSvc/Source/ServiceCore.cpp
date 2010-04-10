@@ -70,7 +70,7 @@ static int EnumDrivesKey(BOOL (__cdecl* pfnCallback)(ATL::CRegKey&, LPCTSTR, LPC
 	CMap<CString, LPCTSTR, CString, LPCTSTR> mapSubsts;
 	CString strDrive, strPath;
 
-	// build key name
+	// build registry key name
 	strKeyName.LoadString(IDS_REGISTRY_KEY);
 	strKeyName.Insert(0, _T("Software\\"));
 	strKeyName += _T('\\');

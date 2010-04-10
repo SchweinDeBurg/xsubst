@@ -158,6 +158,7 @@ end;
 ;; from 1.0 release
 Type: files; Name: "{app}\msvcr71.dll"
 Type: files; Name: "{app}\mfc71u.dll"
+Type: files; Name: "{app}\SubstSvc.log"
 ;; from 1.1 pre-release
 Type: filesandordirs; Name: "{app}\Microsoft.VC90.CRT"
 Type: filesandordirs; Name: "{app}\Microsoft.VC90.MFC"
@@ -188,11 +189,15 @@ Source: "..\Redist\Microsoft.VC90.MFCLOC\mfc90enu.dll"; DestDir: "{app}"
 Source: "..\Redist\Microsoft.VC90.MFCLOC\mfc90rus.dll"; DestDir: "{app}"
 Source: "..\Redist\Microsoft.VC90.MFCLOC\Microsoft.VC90.MFCLOC.manifest"; DestDir: "{app}"; MinVersion: 0,5.01.2600
 
+[Dirs]
+Name: "{commonappdata}\Elijah Zarezky\WinSubst"; Flags: uninsalwaysuninstall
+
 [Icons]
 Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"
 Name: "{group}\xsubst on the Web"; Filename: "{app}\xsubst.url"
 Name: "{group}\License Agreement"; Filename: "{app}\ApacheLicense.rtf"
 Name: "{group}\Uninstall xsubst"; Filename: "{uninstallexe}"
+Name: "{group}\View Substituted Drives Manager log"; FileName: "{commonappdata}\Elijah Zarezky\WinSubst\SubstSvc.log"
 Name: "{userdesktop}\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: quicklaunchicon
 
@@ -205,6 +210,7 @@ Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst"; Flags: uninsdelete
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\SubstSvc"; Flags: uninsdeletekey
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\SubstSvc\Drives"; Flags: uninsdeletekey
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\SubstSvc\Logging"; Flags: uninsdeletekey
+Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\SubstSvc\Logging"; ValueType: string; ValueName: "TargetPath"; ValueData: "{commonappdata}\Elijah Zarezky\WinSubst\SubstSvc.log"; Flags: createvalueifdoesntexist
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\SubstSvc\Logging"; ValueType: dword; ValueName: "Continuous"; ValueData: "1"; Flags: createvalueifdoesntexist
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst"; Flags: uninsdeletekey
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky\xsubst\WinSubst\Catchpit"; Flags: uninsdeletekey
@@ -235,7 +241,7 @@ Filename: "{sys}\net.exe"; Parameters: "stop ""Substituted Drives Manager"""; St
 Filename: "{app}\SubstSvc.exe"; Parameters: "/UnRegister"; StatusMsg: "Unregistering Substituted Drives Manager service..."; Flags: runhidden; AfterInstall: CleanupHKCU
 
 [UninstallDelete]
-Type: files; Name: "{app}\SubstSvc.log"
+Type: files; Name: "{commonappdata}\Elijah Zarezky\WinSubst\SubstSvc.log"
 Type: files; Name: "{app}\xsubst.url"
 
 ;; end of file
