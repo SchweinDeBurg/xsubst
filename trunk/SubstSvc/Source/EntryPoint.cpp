@@ -85,11 +85,13 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* /*envp*/[])
 	g_appSubstSvc.SetRegistryKey(IDS_REGISTRY_KEY);
 
 	// start logging
-	CString strLogName(argv[0]);
-	::PathRenameExtension(strLogName.GetBuffer(0), _T(".log"));
-	strLogName.ReleaseBuffer();
-	LogFile_Create(strLogName);
-	LogFile_WriteEntry(LL_MINIMAL, IDS_EXE_STARTED, argv[0]);
+	CWinApp* pApp = AfxGetApp();
+	CString strLogName = pApp->GetProfileString(_T("Logging"), _T("TargetPath"));
+	if (!strLogName.IsEmpty())
+	{
+		LogFile_Create(strLogName);
+		LogFile_WriteEntry(LL_MINIMAL, IDS_EXE_STARTED, argv[0]);
+	}
 
 	// parse command-line arguments
 	if (argc > 1)
