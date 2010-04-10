@@ -182,7 +182,7 @@ BEGIN
     IDS_CHOOSE_PATH         "Choose the folder:"
     IDS_DELETE_CONFIRM      "Are You sure You wish to delete this substitution?"
     IDS_APP_INIT_FAILED     "Failed to initialize application.\nPlease contact to the developer."
-    IDS_WAIT_FAILED         "Failed to control Substituted Drives Manager service: 0x%08X."
+    IDS_WAIT_FAILED         "Failed to control Substituted Drives Manager service: 0x%08X.\nPlease contact with author of this application."
 END
 
 #endif    // English (U.S.) resources

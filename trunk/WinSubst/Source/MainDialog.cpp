@@ -471,9 +471,11 @@ void CMainDialog::ControlService(DWORD dwCode)
 	SERVICE_STATUS ss;
 	CString strState;
 
+	enum { fdwSvcAccess = SERVICE_QUERY_STATUS | SERVICE_USER_DEFINED_CONTROL };
+	enum { dwWaitTimeout = 1000 * 5 };
+
 	SC_HANDLE schManager = ::OpenSCManager(NULL, NULL, SC_MANAGER_CONNECT);
-	enum { fdwAccess = SERVICE_QUERY_STATUS | SERVICE_USER_DEFINED_CONTROL };
-	SC_HANDLE schService = ::OpenService(schManager, SZ_SERVICE_NAME, fdwAccess);
+	SC_HANDLE schService = ::OpenService(schManager, SZ_SERVICE_NAME, fdwSvcAccess);
 	memset(&ss, 0, sizeof(ss));
 	::QueryServiceStatus(schService, &ss);
 	m_dwSvcState = ss.dwCurrentState;
@@ -488,14 +490,12 @@ void CMainDialog::ControlService(DWORD dwCode)
 			DWORD dwLastErr = ERROR_SUCCESS;
 			CString strErrMsg;
 
-			switch (::WaitForSingleObject(hEvent, INFINITE))
+			switch (::WaitForSingleObject(hEvent, dwWaitTimeout))
 			{
 			case WAIT_OBJECT_0:
 				break;
 			case WAIT_ABANDONED:
-				break;
 			case WAIT_TIMEOUT:
-				break;
 			case WAIT_FAILED:
 				dwLastErr = ::GetLastError();
 				strErrMsg.Format(IDS_WAIT_FAILED, dwLastErr);
