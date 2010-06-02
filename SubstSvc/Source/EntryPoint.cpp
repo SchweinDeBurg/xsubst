@@ -125,7 +125,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* /*envp*/[])
 		static SERVICE_TABLE_ENTRY aste[] =
 		{
 			{ g_szServiceName, ServiceMain },
-			{ NULL, NULL }		// end of table - required
+			{ NULL, NULL }   // end of table - required
 		};
 		LogFile_WriteEntry(LL_MINIMAL, IDS_SCM_CONNECT);
 		::StartServiceCtrlDispatcher(aste);
