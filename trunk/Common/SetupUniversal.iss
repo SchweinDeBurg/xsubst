@@ -19,13 +19,13 @@
 
 [Setup]
 AppName=xsubst
-AppVerName=xsubst 1.1.5161
+AppVerName=xsubst 1.1.5314
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
 AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
-AppVersion=1.1.5161
+AppVersion=1.1.5314
 AppCopyright=Copyright © 2004–2010 by Elijah Zarezky
 DefaultDirName={pf}\Elijah Zarezky\xsubst
 DefaultGroupName=Elijah Zarezky\xsubst
@@ -33,8 +33,8 @@ AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
 OutputDir=..\Setup
-OutputBaseFilename=xsubst-1.1.5161-setup-universal
-VersionInfoVersion=1.1.5161.72
+OutputBaseFilename=xsubst-1.1.5314-setup-universal
+VersionInfoVersion=1.1.5314.78
 VersionInfoProductName=Power Gadgets
 VersionInfoProductVersion=1.1
 MinVersion=0,5.0.2195
@@ -274,7 +274,7 @@ Name: quicklaunchicon; Description: "Create a &Quick Launch icon"; GroupDescript
 [Run]
 Filename: "{app}\SubstSvc.exe"; Parameters: "/Register"; StatusMsg: "Registering Substituted Drives Manager service..."; Flags: runhidden; AfterInstall: CleanupHKCU
 Filename: "{sys}\net.exe"; Parameters: "start ""Substituted Drives Manager"""; StatusMsg: "Starting Substituted Drives Manager service..."; Flags: runhidden
-Filename: "{app}\WinSubst.exe"; Description: "Launch WinSubst"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\WinSubst.exe"; Description: "Launch WinSubst"; Flags: nowait postinstall skipifsilent runascurrentuser
 
 [UninstallRun]
 Filename: "{sys}\net.exe"; Parameters: "stop ""Substituted Drives Manager"""; StatusMsg: "Stopping Substituted Drives Manager service..."; Flags: runhidden
