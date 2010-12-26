@@ -81,6 +81,7 @@ __declspec(selectany) int _forceMFCManifestCUR;
 // MFC headers
 
 #if (_MSC_VER >= 1300)
+#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS
 #define _ATL_DISABLE_DEPRECATED
 #endif   // _MSC_VER
 
