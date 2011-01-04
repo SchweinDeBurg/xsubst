@@ -7,7 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "afxres.h"
+#include "afxres.h"
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
@@ -95,7 +95,7 @@ FONT 8, "MS Shell Dlg 2", 0, 0, 0x0
 BEGIN
     ICON            IDI_APP_ICON,IDC_STATIC,4,4,20,20
     LTEXT           "",IDC_STATIC_TITLE,32,4,144,10
-    LTEXT           "Copyright © 2004–2010 by Elijah Zarezky\nAll rights reserved",IDC_STATIC,32,14,144,18
+    LTEXT           "Copyright © 2004–2011 by Elijah Zarezky\nAll rights reserved",IDC_STATIC,32,14,144,18
     DEFPUSHBUTTON   "Close",IDOK,134,54,44,16
 END
 
