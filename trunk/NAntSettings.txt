@@ -1,4 +1,5 @@
 -t:net-3.5
+-emacs
 -D:VerMajor=1
 -D:VerMinor=1
 -D:VerBuild=5314
