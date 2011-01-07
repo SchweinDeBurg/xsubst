@@ -18,7 +18,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-xsubst.2008.build - NAnt script to build release
+xsubst.2008.build - NAnt script to build xsubst
 
 -->
 
@@ -68,6 +68,51 @@ xsubst.2008.build - NAnt script to build release
 		overwrite="false"/>
 
 	<!-- TARGETS -->
+
+	<!-- 'clean-sln' target -->
+
+	<target
+		name="clean-sln"
+		description="Clean xsubst solution.">
+		<exec
+			program="vcbuild.exe"
+			commandline="xsubst.2008.sln /clean &quot;${SolutionConfig}&quot;">
+		</exec>
+	</target>
+
+	<!-- 'clean-distr' target -->
+
+	<target
+		name="clean-distr"
+		description="Delete setup packages.">
+		<delete
+			if="${directory::exists('Setup')}">
+			<fileset>
+				<include name="Setup\*.exe"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- 'clean-zip' target -->
+
+	<target
+		name="clean-zip"
+		description="Delete ZIPped setup packages.">
+		<delete
+			if="${directory::exists('Setup')}">
+			<fileset>
+				<include name="Setup\*.zip"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- 'clean-all' target -->
+
+	<target
+		name="clean-all"
+		description="Delete all built files."
+		depends="clean-sln,clean-distr,clean-zip">
+	</target>
 
 	<!-- 'verify-ver' target -->
 
@@ -250,12 +295,30 @@ xsubst.2008.build - NAnt script to build release
 		</exec>
 	</target>
 
-	<!-- 'zip-distr' target -->
+		<!-- 'build-all' target -->
+
+	<target
+		name="build-all"
+		description="Build entire xsubst project."
+		depends="build-sln,create-distr">
+		<echo message="xsubst all built."/>
+	</target>
+
+	<!-- 'rebuild-all' target -->
+
+	<target
+		name="rebuild-all"
+		description="Rebuild entire xsubst project."
+		depends="rebuild-sln,create-distr">
+		<echo message="xsubst all rebuilt."/>
+	</target>
+
+<!-- 'zip-distr' target -->
 
 	<target
 		name="zip-distr"
 		description="Create ZIPped setup packages."
-		depends="create-distr,clean-zip">
+		depends="create-distr">
 		<exec
 			program="7z.exe"
 			workingdir="Setup">
@@ -272,24 +335,11 @@ xsubst.2008.build - NAnt script to build release
 		</exec>
 	</target>
 
-	<!-- 'commit-src' target -->
+	<!-- 'zip-src' target -->
 
 	<target
-		name="commit-src"
-		description="Commit sources to the SVN repository.">
-		<if test="${property::exists('CommitMsg')}">
-			<exec
-				program="svn.exe"
-				commandline="commit --message &quot;${CommitMsg}&quot;">
-			</exec>
-		</if>
-	</target>
-
-	<!-- 'export-src' target -->
-
-	<target
-		name="export-src"
-		description="Export sources from the working copy.">
+		name="zip-src"
+		description="Create ZIPped sources from the working copy.">
 		<if test="${property::exists('ExportDir')}">
 			<exec
 				program="svn.exe"
@@ -306,67 +356,26 @@ xsubst.2008.build - NAnt script to build release
 		</if>
 	</target>
 
-	<!-- 'build-all' target -->
+	<!-- 'zip-all' target -->
 
 	<target
-		name="build-all"
-		description="Build entire xsubst project."
-		depends="build-sln,create-distr,zip-distr">
-		<echo message="xsubst all built."/>
+		name="zip-all"
+		description="ZIP entire xsubst project."
+		depends="clean-zip,zip-distr,zip-src">
+		<echo message="xsubst all ZIPped."/>
 	</target>
 
-	<!-- 'rebuild-all' target -->
+	<!-- 'commit-src' target -->
 
 	<target
-		name="rebuild-all"
-		description="Rebuild entire xsubst project."
-		depends="rebuild-sln,create-distr,zip-distr">
-		<echo message="xsubst all rebuilt."/>
-	</target>
-
-	<!-- 'clean-sln' target -->
-
-	<target
-		name="clean-sln"
-		description="Clean xsubst solution.">
-		<exec
-			program="vcbuild.exe"
-			commandline="xsubst.2008.sln /clean &quot;${SolutionConfig}&quot;">
-		</exec>
-	</target>
-
-	<!-- 'clean-distr' target -->
-
-	<target
-		name="clean-distr"
-		description="Delete setup packages.">
-		<delete
-			if="${directory::exists('Setup')}">
-			<fileset>
-				<include name="Setup\*.exe"/>
-			</fileset>
-		</delete>
-	</target>
-
-	<!-- 'clean-zip' target -->
-
-	<target
-		name="clean-zip"
-		description="Delete ZIPped setup packages.">
-		<delete
-			if="${directory::exists('Setup')}">
-			<fileset>
-				<include name="Setup\*.zip"/>
-			</fileset>
-		</delete>
-	</target>
-
-	<!-- 'clean-all' target -->
-
-	<target
-		name="clean-all"
-		description="Delete all built files."
-		depends="clean-sln,clean-distr,clean-zip">
+		name="commit-src"
+		description="Commit sources to the SVN repository.">
+		<if test="${property::exists('CommitMsg')}">
+			<exec
+				program="svn.exe"
+				commandline="commit --message &quot;${CommitMsg}&quot;">
+			</exec>
+		</if>
 	</target>
 
 </project>
