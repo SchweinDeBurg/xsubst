@@ -163,6 +163,9 @@ Type: files; Name: "{app}\SubstSvc.log"
 Type: filesandordirs; Name: "{app}\Microsoft.VC90.CRT"
 Type: filesandordirs; Name: "{app}\Microsoft.VC90.MFC"
 Type: files; Name: "{app}\Microsoft.VC90.MFC.manifest"
+Type: files; Name: "{group}\xsubst on the Web.lnk"
+Type: files; Name: "{app}\xsubst.url"
+Type: files; Name: "{group}\View Substituted Drives Manager log.lnk"
 
 [Files]
 ;; core application files
@@ -193,16 +196,20 @@ Source: "..\Redist\Microsoft.VC90.MFCLOC\Microsoft.VC90.MFCLOC.manifest"; DestDi
 Name: "{commonappdata}\Elijah Zarezky\WinSubst"; Flags: uninsalwaysuninstall
 
 [Icons]
-Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"
-Name: "{group}\xsubst on the Web"; Filename: "{app}\xsubst.url"
-Name: "{group}\License Agreement"; Filename: "{app}\ApacheLicense.rtf"
-Name: "{group}\Uninstall xsubst"; Filename: "{uninstallexe}"
-Name: "{group}\View Substituted Drives Manager log"; FileName: "{commonappdata}\Elijah Zarezky\WinSubst\SubstSvc.log"
-Name: "{userdesktop}\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: quicklaunchicon
+Name: "{group}\WinSubst"; Filename: "{app}\WinSubst.exe"; Comment: "Launch WinSubst to manage substituted drives"
+Name: "{group}\License Agreement"; Filename: "{app}\ApacheLicense.rtf"; Comment: "View xsubst license agreement"
+Name: "{group}\Uninstall xsubst"; Filename: "{uninstallexe}"; Comment: "Remove xsubst from your computer"
+Name: "{group}\View Log"; FileName: "{commonappdata}\Elijah Zarezky\WinSubst\SubstSvc.log"; Comment: "View Substituted Drives Manager log"
+Name: "{userdesktop}\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: desktopicon; Comment: "Launch WinSubst to manage substituted drives"
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\WinSubst"; Filename: "{app}\WinSubst.exe"; Tasks: quicklaunchicon; Comment: "Launch WinSubst to manage substituted drives"
 
 [INI]
-Filename: "{app}\xsubst.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://zarezky.spb.ru/projects/xsubst.html"
+Filename: "{group}\xsubst on the Web.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://zarezky.spb.ru/projects/xsubst.html"
+Filename: "{group}\xsubst on the Web.url"; Section: "InternetShortcut"; Key: "IconFile"; String: ""
+Filename: "{group}\xsubst on the Web.url"; Section: "InternetShortcut"; Key: "IconIndex"; String: "0"
+Filename: "{group}\xsubst on the Web.url"; Section: "InternetShortcut"; Key: "Hotkey"; String: "0"
+Filename: "{group}\xsubst on the Web.url"; Section: "InternetShortcut"; Key: "WorkingDirectory"; String: ""
+Filename: "{group}\xsubst on the Web.url"; Section: "InternetShortcut"; Key: "ShowCommand"; String: "1"
 
 [Registry]
 Root: HKU; Subkey: ".DEFAULT\Software\Elijah Zarezky"; Flags: uninsdeletekeyifempty
@@ -242,6 +249,6 @@ Filename: "{app}\SubstSvc.exe"; Parameters: "/UnRegister"; StatusMsg: "Unregiste
 
 [UninstallDelete]
 Type: files; Name: "{commonappdata}\Elijah Zarezky\WinSubst\SubstSvc.log"
-Type: files; Name: "{app}\xsubst.url"
+Type: files; Name: "{group}\xsubst on the Web.url"
 
 ;; end of file
