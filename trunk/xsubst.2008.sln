@@ -16,11 +16,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{C3315697-36E4-48FB-8DC1-D0EF8AAC451B}"
 	ProjectSection(SolutionItems) = preProject
 		Common\ApacheLicense.rtf = Common\ApacheLicense.rtf
+		Common\Setup.iss = Common\Setup.iss
 		Common\SetupUniversal.iss = Common\SetupUniversal.iss
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{9DD74115-092A-4876-8861-16938001E1EB}"
 	ProjectSection(SolutionItems) = preProject
+		Common\Templates\Setup.iss = Common\Templates\Setup.iss
 		Common\Templates\SetupUniversal.iss = Common\Templates\SetupUniversal.iss
 	EndProjectSection
 EndProject
@@ -32,6 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Scripts", "Build Scri
 		rbuild.cmd = rbuild.cmd
 		sbuild.cmd = sbuild.cmd
 		xsubst.2008.build = xsubst.2008.build
+		zipsrc.cmd = zipsrc.cmd
 	EndProjectSection
 EndProject
 Global

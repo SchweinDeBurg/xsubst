@@ -349,7 +349,7 @@ xsubst.2008.build - NAnt script to build xsubst
 				program="7z.exe"
 				workingdir="${ExportDir}">
 				<arg line="a -tzip -mm=Deflate -mx7 -bd"/>
-				<arg value="xsubst.zip"/>
+				<arg value="xsubst-src.zip"/>
 				<arg value="xsubst"/>
 			</exec>
 			<delete dir="${ExportDir}\xsubst"/>
