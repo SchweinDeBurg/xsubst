@@ -1,0 +1,215 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "Resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "Resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "// English (U.S.) resources\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "\r\n"
+    "#if defined(_WIN32)\r\n"
+    "LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "// version information\r\n"
+    "\r\n"
+    "#include ""VersionInfo.rc""\r\n"
+    "\r\n"
+    "#endif    // English (U.S.) resource\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP_ICON            ICON                    "BinRes\\AppIcon.ico"
+IDI_DRIVE_ICON          ICON                    "BinRes\\DriveIcon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 306, 178
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "WinSubst"
+CLASS "WinSubst_MainDialogClass_6E1A328F-F808-4861-8C67-04E6C89B954A"
+FONT 8, "MS Shell Dlg 2", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "&Substitutions",IDC_STATIC,4,4,298,142,WS_GROUP
+    CONTROL         "List1",IDC_LIST_SUBSTS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_GROUP | WS_TABSTOP,10,16,286,102,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "&New substitution...",IDC_BUTTON_NEW_SUBST,10,124,84,16,WS_GROUP
+    PUSHBUTTON      "&Change substitution...",IDC_BUTTON_CHANGE_SUBST,110,124,86,16
+    PUSHBUTTON      "&Delete substitution",IDC_BUTTON_DELETE_SUBST,212,124,84,16
+    CTEXT           "",IDC_TEXT_STATUS,4,158,240,16,SS_CENTERIMAGE | SS_SUNKEN
+    PUSHBUTTON      "E&xit",IDC_BUTTON_EXIT,254,158,48,16,WS_GROUP
+END
+
+IDD_ABOUT DIALOGEX 0, 0, 182, 74
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Shell Dlg 2", 0, 0, 0x0
+BEGIN
+    ICON            IDI_APP_ICON,IDC_STATIC,4,4,20,20
+    LTEXT           "",IDC_STATIC_TITLE,32,4,144,10
+    LTEXT           "Copyright © 2004–2011 by Elijah Zarezky\nAll rights reserved",IDC_STATIC,32,14,144,18
+    DEFPUSHBUTTON   "Close",IDOK,134,54,44,16
+END
+
+IDD_SUBST DIALOG  0, 0, 234, 74
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Shell Dlg 2"
+BEGIN
+    RTEXT           "&Drive:",IDC_STATIC,4,8,22,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_COMBO_DRIVE,28,8,34,64,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "&Path:",IDC_STATIC,4,26,22,12,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_PATH,28,26,186,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_BUTTON_BROWSE,216,26,14,12,WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,130,54,44,16,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,186,54,44,16
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 299
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 171
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 175
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+
+    IDD_SUBST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 227
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_SUBST_DRIVE         "Drive"
+    IDS_SUBST_PATH          "Path"
+    IDS_REGISTRY_KEY        "Elijah Zarezky\\xsubst"
+    IDS_SERVICE_STOPPED     "Warning! The %s service is not running."
+    IDS_SERVICE_START_PENDING "Warning! The %s service is starting."
+    IDS_SERVICE_STOP_PENDING "Warning! The %s service is stopping."
+    IDS_SERVICE_RUNNING     "Ready. The %s service is running."
+    IDS_SERVICE_CONTINUE_PENDING 
+                            "Warning! The %s service continue is pending."
+    IDS_SERVICE_PAUSE_PENDING "Warning! The %s service pause is pending."
+    IDS_SERVICE_PAUSED      "Warning! The %s service is paused."
+    IDS_SERVICE_DOES_NOT_EXIST 
+                            "The %s service does not installed.\nApplication will be terminated."
+    IDS_ABOUT               "About..."
+    IDS_FILE_VERSION        "\\StringFileInfo\\040904b0\\FileVersion"
+    IDS_TITLE_FORMAT        "WinSubst – Version %s"
+    IDS_SERVICE_UNKNOWN_STATE "Warning! The %s service is in unknown state."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NEW_SUBST           "New substitution"
+    IDS_CHANGE_SUBST        "Change substitution"
+    IDS_NO_FREE_DRIVES      "No free drive letters found."
+    IDS_CHOOSE_PATH         "Choose the folder:"
+    IDS_DELETE_CONFIRM      "Are You sure You wish to delete this substitution?"
+    IDS_APP_INIT_FAILED     "Failed to initialize application.\nPlease contact to the developer."
+    IDS_WAIT_FAILED         "Failed to control Substituted Drives Manager service: 0x%08X.\nPlease contact with author of this application."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+
+#if defined(_WIN32)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif
+
+// version information
+
+#include "VersionInfo.rc"
+
+#endif    // English (U.S.) resource
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
