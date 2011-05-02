@@ -19,13 +19,13 @@
 
 [Setup]
 AppName=xsubst
-AppVerName=xsubst 1.1.5679
+AppVerName=xsubst 1.1.5794
 AppID={{5F7BE167-B54A-408C-9AE0-66F20E2BEFFC}
 AppPublisher=Elijah Zarezky
 AppPublisherURL=http://zarezky.spb.ru/
 AppSupportURL=http://zarezky.spb.ru/projects/xsubst.html
 AppUpdatesURL=http://zarezky.spb.ru/projects/xsubst.html
-AppVersion=1.1.5679
+AppVersion=1.1.5794
 AppCopyright=Copyright © 2004–2011 by Elijah Zarezky
 DefaultDirName={pf}\Elijah Zarezky\xsubst
 DefaultGroupName=Elijah Zarezky\xsubst
@@ -33,8 +33,8 @@ AllowNoIcons=true
 Compression=lzma
 SolidCompression=true
 OutputDir=..\Setup
-OutputBaseFilename=xsubst-1.1.5679-setup
-VersionInfoVersion=1.1.5679.84
+OutputBaseFilename=xsubst-1.1.5794-setup
+VersionInfoVersion=1.1.5794.87
 VersionInfoProductName=Power Gadgets
 VersionInfoProductVersion=1.1
 MinVersion=0,5.0.2195
